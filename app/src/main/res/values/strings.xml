@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">soundlyspotify</string>
+    <string name="login">Login</string>
 </resources>
