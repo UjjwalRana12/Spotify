@@ -24,7 +24,7 @@
         android:width="274sp"
         android:height="56sp"
 
-        android:text="your thoughts Cleaner"
+        android:text="@string/your_thoughts_cleaner"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.562"
