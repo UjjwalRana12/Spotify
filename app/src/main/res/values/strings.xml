@@ -20,4 +20,5 @@
     <string name="soundly">Soundly</string>
     <string name="sssoundly">soundly</string>
     <string name="welcome_to_soundly">Welcome To <b><font color="#FFA500">Soundly</font></b></string>
+    <string name="resend_otp_in_00_52_seconds">Resend OTP in <b>00:52</b> seconds</string>
 </resources>

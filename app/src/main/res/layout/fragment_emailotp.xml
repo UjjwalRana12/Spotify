@@ -101,12 +101,12 @@
 
                 <TextView
                     android:id="@+id/textView5"
-                    android:layout_width="195dp"
-                    android:layout_height="27dp"
+                    android:layout_width="294dp"
+                    android:layout_height="43dp"
                     android:layout_marginTop="96dp"
                     android:width="195sp"
                     android:height="24sp"
-                    android:text="+91 8888889887"
+                    android:text="Example123@gmail.com"
                     android:textStyle="bold"
                     android:textSize="24sp"
                     app:layout_constraintEnd_toEndOf="parent"
