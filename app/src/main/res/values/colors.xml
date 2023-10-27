@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="lightyellow"> #FCEFD3</color>
     <color name="darkyellow">#FFA500</color>
+    <color name="hintcolor">#A4A4A4</color>
+    <color name="lightblack">#1F1F1F</color>
 </resources>
