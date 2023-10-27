@@ -1,5 +1,6 @@
 package com.android.soundlyspotify
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ class signupfragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +39,13 @@ class signupfragment : Fragment() {
         textbutton2.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.signupphone, signupphonefragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+        val textbutton = view.findViewById<TextView>(R.id.loginbutton)
+          textbutton.setOnClickListener {
+            val fragmentTransaction = parentFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.signupphone,loginfragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
