@@ -37,7 +37,7 @@ class registeredphone : Fragment() {
         textButton.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
             fragmentTransaction.add(R.id.registeredphone, registeredemail())
-            fragmentTransaction.addToBackStack(null)
+
             fragmentTransaction.commit()
         }
         val button = view.findViewById<Button>(R.id.contbutton)
