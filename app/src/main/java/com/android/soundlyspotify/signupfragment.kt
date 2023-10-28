@@ -46,7 +46,7 @@ class signupfragment : Fragment() {
           textbutton.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.signupfrag,loginfragment())
-              fragmentTransaction.addToBackStack(null)
+
             fragmentTransaction.commit()
         }
 
