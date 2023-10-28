@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
 
     android:background="@color/white"
-    android:id="@+id/loginfrag"
-    tools:context=".loginfragment">
+    android:id="@+id/registeredemail"
+    tools:context=".registeredemail">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,20 +105,20 @@
                     android:layout_marginTop="188dp"
                     android:background="@drawable/backgroundborder"
                     android:ems="10"
-                    android:hint="Enter Phone Number"
-                    android:textColorHint="@color/hintcolor"
+                    android:hint="Enter Email"
                     android:inputType="text"
-                    android:textColor="@color/lightblack"
-
                     android:padding="12sp"
                     android:text=""
+
+                    android:textColor="@color/lightblack"
+                    android:textColorHint="@color/hintcolor"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
 
                 <Button
-                    android:id="@+id/forgotcontbutton"
+                    android:id="@+id/contbutton"
                     android:layout_width="320dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="284dp"
@@ -133,8 +133,8 @@
                     android:id="@+id/textView20"
                     android:layout_width="89dp"
                     android:layout_height="20dp"
-                    android:layout_marginTop="168dp"
-                    android:text="Username"
+                    android:layout_marginTop="164dp"
+                    android:text="Email"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="@+id/editTextText4"
@@ -144,26 +144,28 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="235dp"
-                    android:layout_height="58dp"
+                    android:layout_width="259dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="100dp"
-                    android:text="Create an account or login using your mobile number or email to get started"
-                    android:textSize="13sp"
+                    android:text="Enter Your Registered Email"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
+                    android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="@+id/textView18"
                     app:layout_constraintStart_toStartOf="@+id/textView18"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
-                    android:id="@+id/forgottext"
+                    android:id="@+id/phoneswitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="244dp"
-                    android:text="Forgot Username?"
-                    android:textColor="@color/black"
+                    android:layout_marginTop="168dp"
+                    android:text=" Via Phone Number"
+                    android:textColor="@color/darkyellow"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/editTextText4"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintHorizontal_bias="0.99"
                     app:layout_constraintStart_toStartOf="@+id/editTextText4"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
@@ -177,14 +179,14 @@
             android:layout_marginStart="8dp"
             android:src="@drawable/baselinekeyboardarrowleft"
             app:layout_constraintBottom_toBottomOf="@+id/textView15"
-            app:layout_constraintEnd_toEndOf="@+id/forgotsignupbutton"
+            app:layout_constraintEnd_toEndOf="@+id/signupbutton"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.813" />
 
         <TextView
-            android:id="@+id/forgotsignupbutton"
+            android:id="@+id/signupbutton"
             android:layout_width="64dp"
             android:layout_height="32dp"
             android:text="Sign Up"

@@ -14,38 +14,43 @@ import android.widget.TextView
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class loginfragment : Fragment() {
-    // TODO: Rename and change types of parameters
+class registeredemail : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    @SuppressLint("SuspiciousIndentation", "MissingInflatedId")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
+        }
+    }
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_loginfragment, container, false)
+        val view = inflater.inflate(R.layout.fragment_registeredemail, container, false)
 
-        val button = view.findViewById<Button>(R.id.forgotcontbutton)
+        val textButton = view.findViewById<TextView>(R.id.phoneswitch)
+        textButton.setOnClickListener {
+            val fragmentTransaction = parentFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.registeredemail, registeredphone())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+        val button = view.findViewById<Button>(R.id.contbutton)
         button.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.loginfrag,otpfragment())
+            fragmentTransaction.replace(R.id.registeredemail,otpfragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
-
-        val textbutton2 = view.findViewById<TextView>(R.id.forgottext)
-        textbutton2.setOnClickListener {
+        val textButton2 = view.findViewById<TextView>(R.id.signupbutton)
+        textButton2.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.loginfrag, registeredphone())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-        }
-        val textbutton = view.findViewById<TextView>(R.id.forgotsignupbutton)
-        textbutton.setOnClickListener {
-            val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.loginfrag,signupfragment())
+            fragmentTransaction.replace(R.id.registeredemail, signupfragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
