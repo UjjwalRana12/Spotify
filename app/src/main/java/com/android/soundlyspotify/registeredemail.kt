@@ -36,21 +36,21 @@ class registeredemail : Fragment() {
         val textButton = view.findViewById<TextView>(R.id.phoneswitch)
         textButton.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.registeredemail, registeredphone())
+            fragmentTransaction.replace(R.id.registeredemail, registeredphone())
 
             fragmentTransaction.commit()
         }
         val button = view.findViewById<Button>(R.id.contbutton)
         button.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.registeredemail,otpfragment())
+            fragmentTransaction.replace(R.id.registeredemail,otpfragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
         val textButton2 = view.findViewById<TextView>(R.id.signupbutton)
         textButton2.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.registeredemail, signupfragment())
+            fragmentTransaction.replace(R.id.registeredemail, signupfragment())
 
             fragmentTransaction.commit()
         }

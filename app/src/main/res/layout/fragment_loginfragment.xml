@@ -144,12 +144,12 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="235dp"
-                    android:layout_height="58dp"
+                    android:layout_width="239dp"
+                    android:layout_height="66dp"
                     android:layout_marginTop="100dp"
                     android:text="Create an account or login using your mobile number or email to get started"
-                    android:textSize="13sp"
                     android:textColor="@color/black"
+                    android:textSize="13sp"
                     app:layout_constraintEnd_toEndOf="@+id/textView18"
                     app:layout_constraintStart_toStartOf="@+id/textView18"
                     app:layout_constraintTop_toTopOf="parent"

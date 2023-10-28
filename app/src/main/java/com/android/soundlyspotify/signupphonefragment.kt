@@ -37,14 +37,14 @@ class signupphonefragment : Fragment() {
         val button = view.findViewById<Button>(R.id.cont2button)
         button.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.signupphonefrag, otpfragment())
+            fragmentTransaction.replace(R.id.signupphonefrag, otpfragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
         val textbutton2 = view.findViewById<TextView>(R.id.emailtext2)
         textbutton2.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.add(R.id.signupphonefrag, signupfragment())
+            fragmentTransaction.replace(R.id.signupphonefrag, signupfragment())
 
             fragmentTransaction.commit()
         }
