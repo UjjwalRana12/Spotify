@@ -1,14 +1,14 @@
 package com.android.soundlyspotify
-
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import signupphonefragment
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,7 +39,7 @@ class signupfragment : Fragment() {
         val textbutton2 = view.findViewById<TextView>(R.id.emailtext1)
         textbutton2.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.signupfrag, signupphonefragment())
+            fragmentTransaction.replace(R.id.signupfrag,signupphonefragment())
 
             fragmentTransaction.commit()
         }

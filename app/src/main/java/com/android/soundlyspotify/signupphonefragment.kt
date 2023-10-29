@@ -1,3 +1,4 @@
+
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -17,7 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignupPhoneFragment : Fragment() {
+class signupphonefragment : Fragment() {
     private val userAPI = RetrofitClient.userAPI
 
     override fun onCreateView(
@@ -56,8 +57,8 @@ class SignupPhoneFragment : Fragment() {
                     }
 
                     override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                        // Handle network errors or other failures
-                        showToast("Network error. Please check your internet connection.")
+
+                        showToast("Invalid Password or Username")
                     }
                 })
             }
@@ -85,7 +86,6 @@ class SignupPhoneFragment : Fragment() {
             return false
         }
 
-        // Add more specific validation logic if needed
 
         return true
     }

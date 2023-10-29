@@ -136,11 +136,12 @@
                     android:id="@+id/cont2button"
                     android:layout_width="320dp"
                     android:layout_height="56dp"
-                    android:layout_marginTop="284dp"
+                    android:layout_marginTop="288dp"
                     android:backgroundTint="@color/darkyellow"
                     android:text="Continue"
-                    app:layout_constraintEnd_toEndOf="@+id/editTextText4"
-                    app:layout_constraintStart_toStartOf="@+id/editTextText4"
+                    app:layout_constraintEnd_toEndOf="@+id/supphone"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/supphone"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
