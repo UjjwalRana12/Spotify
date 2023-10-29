@@ -1,6 +1,6 @@
 package com.android.soundlyspotify
 
-data class EmailRegistrationRequest(val email: String, val username: String)
+data class EmailRegistrationRequest(val username: String, val email: String)
 data class PhoneRegistrationRequest(val username: String, val phone_number: String)
 data class VerificationRequest(val username: String, val otp: String)
 data class UserLoginRequest(val username: String)

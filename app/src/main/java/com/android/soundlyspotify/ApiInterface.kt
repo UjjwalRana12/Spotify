@@ -5,10 +5,10 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface UserAPI {
-    @POST("/api/user/register/email")
+    @POST("/api/user/register/email/")
     fun registerByEmail(@Body userData: EmailRegistrationRequest): Call<ApiResponse>
 
-    @POST("/api/user/register/phone")
+    @POST("/api/user/register/phone/")
     fun registerByPhone(@Body userData: PhoneRegistrationRequest): Call<ApiResponse>
 
     @POST("/api/user/verify/")
