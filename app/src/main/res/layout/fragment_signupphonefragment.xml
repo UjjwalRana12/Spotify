@@ -139,6 +139,7 @@
                     android:layout_marginTop="288dp"
                     android:backgroundTint="@color/darkyellow"
                     android:text="Continue"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="@+id/supphone"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/supphone"

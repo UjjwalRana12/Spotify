@@ -138,6 +138,7 @@
                     android:layout_marginTop="284dp"
                     android:backgroundTint="@color/darkyellow"
                     android:text="Continue"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="@+id/editTextText4"
                     app:layout_constraintStart_toStartOf="@+id/editTextText4"
                     app:layout_constraintTop_toTopOf="parent" />
