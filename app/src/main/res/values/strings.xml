@@ -22,4 +22,6 @@
     <string name="welcome_to_soundly"><font color="#000">Welcome To </font><b><font color="#FFA500">Soundly</font></b></string>
     <string name="resend_otp_in_00_52_seconds">Resend OTP in <b>00:52</b> seconds</string>
     <string name="let_the_music_take_control"><font color="#000">Let the music take control!</font></string>
+    <string name="via_phone_number"><font color="#FFA500">via phone number</font></string>
+    <string name="via_email"><font color="#FFA500">via email</font></string>
 </resources>

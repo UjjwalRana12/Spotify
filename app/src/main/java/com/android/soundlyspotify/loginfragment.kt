@@ -49,6 +49,13 @@ class loginfragment : Fragment() {
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
+        val textbutton3 = view.findViewById<TextView>(R.id.viaemail)
+        textbutton3.setOnClickListener {
+            val fragmentTransaction = parentFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.loginfrag,loginviaemail())
+
+            fragmentTransaction.commit()
+        }
 
         return view
     }
