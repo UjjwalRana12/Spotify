@@ -31,7 +31,15 @@ class signupfragment : Fragment() {
         signupButton.setOnClickListener {
             val username = usernameEditText.text.toString()
             val email = emailEditText.text.toString()
+            if (username.isEmpty()) {
+                Toast.makeText(requireContext(), "Username is empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
+            else if (email.isEmpty()) {
+                Toast.makeText(requireContext(), "Email is empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             val userAPI = RetrofitClient.userAPI
             val userRegistrationRequest = EmailRegistrationRequest(username, email)
 
@@ -47,12 +55,12 @@ class signupfragment : Fragment() {
                             fragmentTransaction.commit()
                         } else {
                             Log.d("api", "Unsuccessful")
-                            Toast.makeText(requireContext(), "Something went wrong.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "enter valid details.", Toast.LENGTH_SHORT).show()
                         }
                     }
 
                     override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                        Log.e("api", "API call failed: ${t.message}") // Log the reason for failure
+                        Log.e("api", "API call failed: ${t.message}")
                         Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()
                     }
                 })
