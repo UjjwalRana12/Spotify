@@ -58,7 +58,7 @@ class signupphonefragment : Fragment() {
                 return@setOnClickListener
             }
             val userAPI = RetrofitClient.userAPI
-            val userphoneRegistrationRequest = PhoneRegistrationRequest(username,phone)
+            val userphoneRegistrationRequest = PhoneRegistrationRequest(username, phone)
 
             try {
                 val call = userAPI.registerByPhone(userphoneRegistrationRequest)
