@@ -39,10 +39,12 @@ class otpfragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_otpfragment, container, false)
 
+        var username = arguments?.getString("USERNAME_KEY")
         val phoneNumberTextView = view.findViewById<TextView>(R.id.textView5)
         phoneNumberTextView.text = param1 ?: "No phone number received"
 
         val usernameEditText: EditText = view.findViewById(R.id.userTextText4)
+        usernameEditText.setText(username)
         val editText1: EditText = view.findViewById(R.id.textView6)
         val editText2: EditText = view.findViewById(R.id.textView7)
         val editText3: EditText = view.findViewById(R.id.textView8)
@@ -91,7 +93,7 @@ class otpfragment : Fragment() {
     private fun verifyOTP(enteredOTP: String) {
         val verificationRequest = VerificationRequest(username, enteredOTP)
 
-        // Replace 'userAPI' with your actual Retrofit API interface instance
+
         userAPI.verifyUser(verificationRequest).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.isSuccessful && response.body()?.success == true) {

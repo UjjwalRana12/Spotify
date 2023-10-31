@@ -56,6 +56,11 @@ class usernamelogin : Fragment() {
                     if (response.isSuccessful) {
                         val apiResponse = response.body()
                         if (apiResponse != null && apiResponse.success) {
+                            val username = usernameEditText.text.toString()
+                            val fragment = otpfragment()
+                            val args = Bundle()
+                            args.putString("USERNAME_KEY", username)
+                            fragment.arguments = args
                             val fragmentTransaction = parentFragmentManager.beginTransaction()
                             fragmentTransaction.replace(R.id.usernamelogin, otpfragment())
                             fragmentTransaction.addToBackStack(null)
