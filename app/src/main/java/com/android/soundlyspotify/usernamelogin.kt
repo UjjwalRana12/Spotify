@@ -14,7 +14,7 @@ import android.widget.TextView
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class registeredphone : Fragment() {
+class usernamelogin : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
@@ -31,29 +31,23 @@ class registeredphone : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_registeredphone, container, false)
+        val view = inflater.inflate(R.layout.fragment_usernamelogin, container, false)
 
-        val textButton = view.findViewById<TextView>(R.id.emailswitch)
+        val textButton = view.findViewById<TextView>(R.id.forgotView2)
         textButton.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.registeredphone, registeredemail())
+            fragmentTransaction.replace(R.id.usernamelogin, registeredemail())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
         val button = view.findViewById<Button>(R.id.contbutton)
         button.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.registeredphone,otpfragment())
+            fragmentTransaction.replace(R.id.usernamelogin,otpfragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
-        val textButton2 = view.findViewById<TextView>(R.id.signupbutton)
-        textButton2.setOnClickListener {
-            val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.registeredphone, signupfragment())
 
-            fragmentTransaction.commit()
-        }
 
         return view
     }

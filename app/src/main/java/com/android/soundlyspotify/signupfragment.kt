@@ -80,7 +80,7 @@ class signupfragment : Fragment() {
         val textbutton = view.findViewById<TextView>(R.id.loginbutton1)
         textbutton.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.signupfrag, loginfragment())
+            fragmentTransaction.replace(R.id.signupfrag, usernamelogin())
             fragmentTransaction.commit()
         }
 

@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
 
     android:background="@color/white"
-    android:id="@+id/loginviaemailfrag">
+    android:id="@+id/usernamelogin"
+    tools:context=".usernamelogin">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -104,7 +105,7 @@
                     android:layout_marginTop="188dp"
                     android:background="@drawable/backgroundborder"
                     android:ems="10"
-                    android:hint="Enter Email"
+                    android:hint="Enter Username"
                     android:inputType="text"
                     android:padding="12sp"
                     android:text=""
@@ -117,7 +118,7 @@
                     tools:ignore="MissingConstraints" />
 
                 <Button
-                    android:id="@+id/forgotucontbutton"
+                    android:id="@+id/contbutton"
                     android:layout_width="320dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="284dp"
@@ -130,10 +131,10 @@
 
                 <TextView
                     android:id="@+id/textView20"
-                    android:layout_width="89dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="168dp"
-                    android:text="Email"
+                    android:layout_width="154dp"
+                    android:layout_height="23dp"
+                    android:layout_marginTop="164dp"
+                    android:text="Username"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="@+id/editTextText4"
@@ -143,43 +144,29 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="239dp"
-                    android:layout_height="66dp"
+                    android:layout_width="259dp"
+                    android:layout_height="60dp"
                     android:layout_marginTop="100dp"
                     android:text="Create an account or login using your mobile number or email to get started"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="13sp"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/textView18"
                     app:layout_constraintStart_toStartOf="@+id/textView18"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
-                    android:id="@+id/forgottext"
+                    android:id="@+id/forgotView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="244dp"
                     android:text="Forgot Username?"
-                    android:textColor="@color/black"
-                    app:layout_constraintEnd_toEndOf="@+id/editTextText4"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/editTextText4"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
-                <TextView
-                    android:id="@+id/viaphonenumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="168dp"
-                    android:text="@string/via_phone_number"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/editTextText4"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/editTextText4"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -190,14 +177,14 @@
             android:layout_marginStart="8dp"
             android:src="@drawable/baselinekeyboardarrowleft"
             app:layout_constraintBottom_toBottomOf="@+id/textView15"
-            app:layout_constraintEnd_toEndOf="@+id/forgotsignupbutton"
+            app:layout_constraintEnd_toEndOf="@+id/signupbutton"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.813" />
 
         <TextView
-            android:id="@+id/forgotsignupbutton"
+            android:id="@+id/signupbutton"
             android:layout_width="64dp"
             android:layout_height="32dp"
             android:text="Sign Up"
