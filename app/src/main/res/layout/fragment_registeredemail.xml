@@ -99,7 +99,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/editemailTextText4"
                     android:layout_width="320dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="188dp"
@@ -121,12 +121,12 @@
                     android:id="@+id/cont8button"
                     android:layout_width="320dp"
                     android:layout_height="56dp"
-                    android:layout_marginTop="284dp"
+                    android:layout_marginTop="288dp"
                     android:backgroundTint="@color/darkyellow"
                     android:text="Continue"
                     android:textColor="@color/white"
-                    app:layout_constraintEnd_toEndOf="@+id/editTextText4"
-                    app:layout_constraintStart_toStartOf="@+id/editTextText4"
+                    app:layout_constraintEnd_toEndOf="@+id/editemailTextText4"
+                    app:layout_constraintStart_toStartOf="@+id/editemailTextText4"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -137,9 +137,9 @@
                     android:text="Email"
                     android:textColor="@color/black"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="@+id/editTextText4"
+                    app:layout_constraintEnd_toEndOf="@+id/editemailTextText4"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/editTextText4"
+                    app:layout_constraintStart_toStartOf="@+id/editemailTextText4"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -164,9 +164,9 @@
                     android:text=" Via Phone Number"
                     android:textColor="@color/darkyellow"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@+id/editTextText4"
-                    app:layout_constraintHorizontal_bias="0.99"
-                    app:layout_constraintStart_toStartOf="@+id/editTextText4"
+                    app:layout_constraintEnd_toEndOf="@+id/editemailTextText4"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/editemailTextText4"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
             </androidx.constraintlayout.widget.ConstraintLayout>

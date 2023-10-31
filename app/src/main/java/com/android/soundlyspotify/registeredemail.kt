@@ -37,7 +37,7 @@ class registeredemail : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_registeredemail, container, false)
 
-        val emailView = view.findViewById<EditText>(R.id.editTextText4)
+        val emailView = view.findViewById<EditText>(R.id.editemailTextText4)
         val navButton = view.findViewById<Button>(R.id.cont8button)
 
         navButton.setOnClickListener {
