@@ -53,13 +53,14 @@ class registeredemail : Fragment() {
 
             val call = userAPI.verifyForgotEmail(useremailRegistrationRequest)
             call.enqueue(object : Callback<ApiResponse> {
+                @SuppressLint("SuspiciousIndentation")
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
                         Log.d("api", "Success")
                         val fragmentTransaction = parentFragmentManager.beginTransaction()
-                        fragmentTransaction.replace(R.id.registeredemail, otpfragment())
-                            .addToBackStack(null) // Add transaction to back stack
-                            .commit()
+                            fragmentTransaction.replace(R.id.registeredemail, otpfragment())
+                            fragmentTransaction.addToBackStack(null) // Add transaction to back stack
+                            fragmentTransaction.commit()
                     } else {
                         Log.d("api", "Unsuccessful")
                         Toast.makeText(requireContext(), "Enter valid details.", Toast.LENGTH_SHORT).show()
@@ -81,13 +82,13 @@ class registeredemail : Fragment() {
 
             fragmentTransaction.commit()
         }
-        val button = view.findViewById<Button>(R.id.contbutton)
-        button.setOnClickListener {
-            val fragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.registeredemail,otpfragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-        }
+//        val button = view.findViewById<Button>(R.id.contbutton)
+//        button.setOnClickListener {
+//            val fragmentTransaction = parentFragmentManager.beginTransaction()
+//            fragmentTransaction.replace(R.id.registeredemail,otpfragment())
+//            fragmentTransaction.addToBackStack(null)
+//            fragmentTransaction.commit()
+//        }
         val textButton2 = view.findViewById<TextView>(R.id.signupbutton)
         textButton2.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
