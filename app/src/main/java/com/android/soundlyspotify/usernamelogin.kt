@@ -1,6 +1,5 @@
 package com.android.soundlyspotify
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -29,7 +28,6 @@ class usernamelogin : Fragment() {
         }
     }
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,6 +45,7 @@ class usernamelogin : Fragment() {
                 return@setOnClickListener
             }
 
+
             val userLoginRequest = UserLoginRequest(username)
             val userAPI = RetrofitClient.userAPI
             val call = userAPI.userLogin(userLoginRequest)
@@ -56,13 +55,13 @@ class usernamelogin : Fragment() {
                     if (response.isSuccessful) {
                         val apiResponse = response.body()
                         if (apiResponse != null && apiResponse.success) {
-                            val username = usernameEditText.text.toString()
                             val fragment = otpfragment()
                             val args = Bundle()
                             args.putString("USERNAME_KEY", username)
                             fragment.arguments = args
+
                             val fragmentTransaction = parentFragmentManager.beginTransaction()
-                            fragmentTransaction.replace(R.id.usernamelogin, otpfragment())
+                            fragmentTransaction.replace(R.id.usernamelogin, fragment)
                             fragmentTransaction.addToBackStack(null)
                             fragmentTransaction.commit()
                         } else {
