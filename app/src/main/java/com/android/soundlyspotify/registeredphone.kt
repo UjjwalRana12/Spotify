@@ -29,7 +29,6 @@ class registeredphone : Fragment() {
         }
     }
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,46 +37,41 @@ class registeredphone : Fragment() {
 
         val button = view.findViewById<Button>(R.id.contbutton)
         button.setOnClickListener {
-            // Get the phone number from the EditText
             val phoneNumberEditText = view.findViewById<EditText>(R.id.editTextText4)
             val phoneNumber = phoneNumberEditText.text.toString()
 
-            // Check if the phone number is empty
             if (phoneNumber.isEmpty()) {
                 Toast.makeText(requireContext(), "Phone number is empty", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Create a ForgotPhoneNumberRequest object with the phone number
+            if (!isValidPhoneNumber(phoneNumber)) {
+                Toast.makeText(requireContext(), "Invalid phone number format", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val phoneData = ForgotPhoneNumberRequest(phoneNumber)
 
-            // Retrofit API call
             val userAPI = RetrofitClient.userAPI
             val call = userAPI.verifyForgotPhoneNumber(phoneData)
 
             call.enqueue(object : Callback<ApiResponse> {
-                @SuppressLint("SuspiciousIndentation")
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
-                        // Handle successful response, navigate to otpfragment or perform necessary actions
                         val fragmentTransaction = parentFragmentManager.beginTransaction()
                         fragmentTransaction.replace(R.id.registeredphone, otpfragment())
                         fragmentTransaction.addToBackStack(null)
                         fragmentTransaction.commit()
                     } else {
-                        // Handle unsuccessful response
                         Toast.makeText(requireContext(), "Verification failed", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                    // Handle failure
                     Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()
                 }
             })
         }
-
-        // Other buttons for navigation
 
         val textButton = view.findViewById<TextView>(R.id.emailswitch)
         textButton.setOnClickListener {
@@ -95,5 +89,11 @@ class registeredphone : Fragment() {
         }
 
         return view
+    }
+
+    private fun isValidPhoneNumber(phoneNumber: String): Boolean {
+        // Basic check for 10 digits - you may need to adjust this based on your requirements
+        val regex = Regex("\\d{10}") // Change this regex pattern according to your phone number format
+        return regex.matches(phoneNumber)
     }
 }

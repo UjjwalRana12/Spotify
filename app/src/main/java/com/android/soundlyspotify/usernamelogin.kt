@@ -61,11 +61,15 @@ class usernamelogin : Fragment() {
                             args.putString("USERNAME_KEY", username)
                             fragment.arguments = args
 
+                           // Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
+
                             val fragmentTransaction = parentFragmentManager.beginTransaction()
                             fragmentTransaction.replace(R.id.usernamelogin, fragment)
                             fragmentTransaction.addToBackStack(null)
                             fragmentTransaction.commit()
-                        } else {
+                        }
+
+                        else {
                             Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
                         }
                     } else {
