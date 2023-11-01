@@ -89,7 +89,7 @@ class registeredemail : Fragment() {
 //            fragmentTransaction.addToBackStack(null)
 //            fragmentTransaction.commit()
 //        }
-        val textButton2 = view.findViewById<TextView>(R.id.signupbutton)
+        val textButton2 = view.findViewById<TextView>(R.id.signupemailbutton)
         textButton2.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.registeredemail, signupfragment())
