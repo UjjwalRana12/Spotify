@@ -63,7 +63,7 @@ class registeredphone : Fragment() {
                         fragmentTransaction.addToBackStack(null)
                         fragmentTransaction.commit()
                     } else {
-                        Toast.makeText(requireContext(), "Verification failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Api call failed", Toast.LENGTH_SHORT).show()
                     }
                 }
 

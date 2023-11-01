@@ -59,11 +59,11 @@ class registeredemail : Fragment() {
                         Log.d("api", "Success")
                         val fragmentTransaction = parentFragmentManager.beginTransaction()
                             fragmentTransaction.replace(R.id.registeredemail, otpfragment())
-                            fragmentTransaction.addToBackStack(null) // Add transaction to back stack
+                            fragmentTransaction.addToBackStack(null)
                             fragmentTransaction.commit()
                     } else {
                         Log.d("api", "Unsuccessful")
-                        Toast.makeText(requireContext(), "Enter valid details.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Api calling failed.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
