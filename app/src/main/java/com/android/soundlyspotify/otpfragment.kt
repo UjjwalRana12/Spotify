@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.text.TextWatcher
 import android.text.Editable
+import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.android.soundlyspotify.RetrofitClient.userAPI
@@ -39,40 +41,44 @@ class otpfragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_otpfragment, container, false)
 
-        var username = arguments?.getString("USERNAME_KEY")
+        if (arguments?.getString("USERNAME_KEY") != null) {
+            username = arguments?.getString("USERNAME_KEY")!!
+        }
+        else{
+            Log.d("Ashu", "null")
+        }
         val phoneNumberTextView = view.findViewById<TextView>(R.id.textView5)
         phoneNumberTextView.text = param1 ?: "No phone number received"
 
-        val usernameEditText: EditText = view.findViewById(R.id.userTextText4)
-        usernameEditText.setText(username)
         val editText1: EditText = view.findViewById(R.id.textView6)
         val editText2: EditText = view.findViewById(R.id.textView7)
         val editText3: EditText = view.findViewById(R.id.textView8)
         val editText4: EditText = view.findViewById(R.id.textView9)
 
-        usernameEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            override fun afterTextChanged(editable: Editable) {
-                username = editable.toString()
-            }
-        })
-
         editText1.addTextChangedListener(createTextWatcher(editText2))
         editText2.addTextChangedListener(createTextWatcher(editText3))
         editText3.addTextChangedListener(createTextWatcher(editText4))
 
-        editText4.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+//        editText4.addTextChangedListener(object : TextWatcher {
+//            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+//            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+//
+//            override fun afterTextChanged(editable: Editable) {
+//                val enteredOTP = "${editText1.text}${editText2.text}${editText3.text}${editText4.text}"
+//                if (enteredOTP.length == 4) {
+//                    verifyOTP(enteredOTP)
+//                }
+//            }
+//        })
 
-            override fun afterTextChanged(editable: Editable) {
-                val enteredOTP = "${editText1.text}${editText2.text}${editText3.text}${editText4.text}"
-                if (enteredOTP.length == 4) {
-                    verifyOTP(enteredOTP)
-                }
+        val button2 = view.findViewById<Button>(R.id.button2)
+        button2.setOnClickListener {
+            val enteredOTP = "${editText1.text}${editText2.text}${editText3.text}${editText4.text}"
+            if (enteredOTP.length == 4) {
+                verifyOTP(enteredOTP)
             }
-        })
+        }
+
 
         return view
     }
@@ -91,7 +97,9 @@ class otpfragment : Fragment() {
     }
 
     private fun verifyOTP(enteredOTP: String) {
-        val verificationRequest = VerificationRequest(username, enteredOTP)
+        val d = VerificationRequest(username, enteredOTP)
+        Log.d("Ashu", d.toString())
+        val verificationRequest = d
 
 
         userAPI.verifyUser(verificationRequest).enqueue(object : Callback<ApiResponse> {
