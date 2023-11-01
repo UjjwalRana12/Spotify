@@ -34,12 +34,11 @@ class signupfragment : Fragment() {
             if (username.isEmpty()) {
                 Toast.makeText(requireContext(), "Username is empty", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            }
-
-            else if (email.isEmpty()) {
+            } else if (email.isEmpty()) {
                 Toast.makeText(requireContext(), "Email is empty", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
+
             val userAPI = RetrofitClient.userAPI
             val userRegistrationRequest = EmailRegistrationRequest(username, email)
 
@@ -49,8 +48,13 @@ class signupfragment : Fragment() {
                     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                         if (response.isSuccessful) {
                             Log.d("api", "Success")
+                            val fragment = otpfragment()
+                            val bundle = Bundle()
+                            bundle.putString("USERNAME_KEY", username)
+                            fragment.arguments = bundle
+
                             val fragmentTransaction = parentFragmentManager.beginTransaction()
-                            fragmentTransaction.replace(R.id.signupfrag, otpfragment())
+                            fragmentTransaction.replace(R.id.signupfrag, fragment)
                             fragmentTransaction.addToBackStack(null)
                             fragmentTransaction.commit()
                         } else {

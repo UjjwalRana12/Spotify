@@ -32,6 +32,7 @@ class otpfragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        username = arguments?.getString("USERNAME_KEY") ?: ""
     }
 
     @SuppressLint("MissingInflatedId")
@@ -41,12 +42,6 @@ class otpfragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_otpfragment, container, false)
 
-        if (arguments?.getString("USERNAME_KEY") != null) {
-            username = arguments?.getString("USERNAME_KEY")!!
-        }
-        else{
-            Log.d("Ashu", "null")
-        }
         val phoneNumberTextView = view.findViewById<TextView>(R.id.textView5)
         phoneNumberTextView.text = param1 ?: "No phone number received"
 
@@ -59,18 +54,6 @@ class otpfragment : Fragment() {
         editText2.addTextChangedListener(createTextWatcher(editText3))
         editText3.addTextChangedListener(createTextWatcher(editText4))
 
-//        editText4.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-//            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
-//
-//            override fun afterTextChanged(editable: Editable) {
-//                val enteredOTP = "${editText1.text}${editText2.text}${editText3.text}${editText4.text}"
-//                if (enteredOTP.length == 4) {
-//                    verifyOTP(enteredOTP)
-//                }
-//            }
-//        })
-
         val button2 = view.findViewById<Button>(R.id.button2)
         button2.setOnClickListener {
             val enteredOTP = "${editText1.text}${editText2.text}${editText3.text}${editText4.text}"
@@ -79,9 +62,10 @@ class otpfragment : Fragment() {
             }
         }
 
-
         return view
     }
+
+    // Rest of your functions...
 
     private fun createTextWatcher(nextEditText: EditText): TextWatcher {
         return object : TextWatcher {
@@ -100,7 +84,6 @@ class otpfragment : Fragment() {
         val d = VerificationRequest(username, enteredOTP)
         Log.d("Ashu", d.toString())
         val verificationRequest = d
-
 
         userAPI.verifyUser(verificationRequest).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
