@@ -178,14 +178,14 @@
             android:layout_marginStart="8dp"
             android:src="@drawable/baselinekeyboardarrowleft"
             app:layout_constraintBottom_toBottomOf="@+id/textView15"
-            app:layout_constraintEnd_toEndOf="@+id/signupbutton"
+            app:layout_constraintEnd_toEndOf="@+id/signup2button"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.813" />
 
         <TextView
-            android:id="@+id/signupbutton"
+            android:id="@+id/signup2button"
             android:layout_width="64dp"
             android:layout_height="32dp"
             android:text="Sign Up"

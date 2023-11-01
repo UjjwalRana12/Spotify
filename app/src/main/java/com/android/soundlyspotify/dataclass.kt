@@ -7,5 +7,6 @@ data class UserLoginRequest(val username: String)
 data class ForgotEmailVerificationRequest(val email: String)
 
 data class ForgotPhoneNumberRequest(val phoneNumber: String)
-data class ApiResponse(val success: Boolean, val message: String)
+data class ApiResponse(val success: Boolean, val message: String,val data: ResponseData?)
 
+data class ResponseData(val access_token: String)

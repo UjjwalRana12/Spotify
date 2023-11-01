@@ -1,5 +1,6 @@
 package com.android.soundlyspotify
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -28,6 +29,7 @@ class usernamelogin : Fragment() {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -87,6 +89,13 @@ class usernamelogin : Fragment() {
         textButton.setOnClickListener {
             val fragmentTransaction = parentFragmentManager.beginTransaction()
             fragmentTransaction.replace(R.id.usernamelogin, registeredemail())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
+        val textButtonA = view.findViewById<TextView>(R.id.signup2button)
+        textButtonA.setOnClickListener {
+            val fragmentTransaction = parentFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.usernamelogin, signupfragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }

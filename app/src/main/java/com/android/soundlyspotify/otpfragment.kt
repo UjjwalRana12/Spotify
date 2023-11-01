@@ -1,6 +1,7 @@
 package com.android.soundlyspotify
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -65,7 +66,6 @@ class otpfragment : Fragment() {
         return view
     }
 
-
     private fun createTextWatcher(nextEditText: EditText): TextWatcher {
         return object : TextWatcher {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
@@ -80,14 +80,18 @@ class otpfragment : Fragment() {
     }
 
     private fun verifyOTP(enteredOTP: String) {
-        val d = VerificationRequest(username, enteredOTP)
-        Log.d("Ashu", d.toString())
-        val verificationRequest = d
-
+        val verificationRequest = VerificationRequest(username, enteredOTP)
         userAPI.verifyUser(verificationRequest).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.isSuccessful && response.body()?.success == true) {
-                    showToast("OTP Verified successfully")
+                    val accessToken = response.body()?.data?.access_token
+                    if (!accessToken.isNullOrBlank()) {
+                        saveTokenToPreferences(accessToken)
+                        showToast("OTP Verified successfully")
+                        // next screen pr jana hai yaha se
+                    } else {
+                        showToast("Access token is null or empty")
+                    }
                 } else {
                     showToast("OTP Verification failed")
                 }
@@ -101,5 +105,12 @@ class otpfragment : Fragment() {
 
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun saveTokenToPreferences(token: String) {
+        val sharedPreferences = requireActivity().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("access_token", token)
+        editor.apply()
     }
 }
