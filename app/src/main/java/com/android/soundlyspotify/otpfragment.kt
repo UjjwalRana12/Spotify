@@ -65,7 +65,6 @@ class otpfragment : Fragment() {
         return view
     }
 
-    // Rest of your functions...
 
     private fun createTextWatcher(nextEditText: EditText): TextWatcher {
         return object : TextWatcher {
