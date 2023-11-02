@@ -42,8 +42,12 @@ class signupphonefragment : Fragment() {
         signupButton.setOnClickListener {
             val username = usernamephoneEditText.text.toString()
             val phone = phonenEditText.text.toString()
-            if (username.isEmpty() || phone.isEmpty()) {
-                Toast.makeText(requireContext(), "Username or Phone Number is empty", Toast.LENGTH_SHORT).show()
+            if (username.isEmpty()) {
+                Toast.makeText(requireContext(), "Username is empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+             if ( phone.isEmpty()) {
+                Toast.makeText(requireContext(), "Phone Number is empty", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

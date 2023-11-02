@@ -104,13 +104,13 @@
                     android:background="@drawable/backgroundborder"
                     android:ems="10"
                     android:hint="Enter Username"
-                    android:textColorHint="@color/hintcolor"
                     android:inputType="text"
-                    android:textColor="@color/lightblack"
                     android:padding="12sp"
                     android:text=""
+                    android:textColor="@color/lightblack"
+                    android:textColorHint="@color/hintcolor"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.355"
+                    app:layout_constraintHorizontal_bias="0.488"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -135,11 +135,12 @@
                     android:id="@+id/signupButton"
                     android:layout_width="320dp"
                     android:layout_height="56dp"
-                    android:layout_marginTop="284dp"
+                    android:layout_marginTop="288dp"
                     android:backgroundTint="@color/darkyellow"
                     android:text="Continue"
                     android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="@+id/editTextText4"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/editTextText4"
                     app:layout_constraintTop_toTopOf="parent" />
 
