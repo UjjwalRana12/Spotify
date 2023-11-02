@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -29,18 +30,23 @@ class signupfragment : Fragment() {
         val sgnupusername = view.findViewById<TextView>(R.id.textView113)
         val sgnupemail = view.findViewById<TextView>(R.id.textView114)
         val signupButton = view.findViewById<Button>(R.id.signupButton)
+        val loadingProgressBar = view.findViewById<ProgressBar>(R.id.loadingProgressBar)
         signupButton.setOnClickListener {
             val username = usernameEditText.text.toString()
             val email = emailEditText.text.toString()
+            loadingProgressBar.visibility = View.VISIBLE
             if (username.isEmpty()) {
                 sgnupusername.text="Username is empty"
                 sgnupusername.visibility=View.VISIBLE
+                loadingProgressBar.visibility = View.GONE
+
                 sgnupemail.visibility=View.GONE
 
                 return@setOnClickListener
             } else if (email.isEmpty()) {
                 sgnupemail.text="Email is empty"
                 sgnupusername.visibility=View.GONE
+                loadingProgressBar.visibility = View.GONE
                 sgnupemail.visibility=View.VISIBLE
                 return@setOnClickListener
 
@@ -55,6 +61,7 @@ class signupfragment : Fragment() {
                     override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                         if (response.isSuccessful) {
                             Log.d("api", "Success")
+                            loadingProgressBar.visibility = View.GONE
                             val fragment = otpfragment()
                             val bundle = Bundle()
                             bundle.putString("USERNAME_KEY", username)
@@ -65,6 +72,7 @@ class signupfragment : Fragment() {
                             fragmentTransaction.addToBackStack(null)
                             fragmentTransaction.commit()
                         } else {
+                            loadingProgressBar.visibility = View.GONE
                             Log.d("api", "Unsuccessful")
                             sgnupemail.text=" Enter valid Details"
                             sgnupusername.visibility=View.GONE

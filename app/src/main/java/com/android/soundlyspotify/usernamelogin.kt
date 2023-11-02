@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import org.w3c.dom.Text
@@ -40,10 +41,14 @@ class usernamelogin : Fragment() {
         val usernameEditText = view.findViewById<EditText>(R.id.userTextText4)
         val button = view.findViewById<Button>(R.id.contbutton)
         val usernotexist = view.findViewById<TextView>(R.id.usernamenotexist)
+        val loadingProgressBar = view.findViewById<ProgressBar>(R.id.progressBar2)
+
+
         button.setOnClickListener {
             val username = usernameEditText.text.toString()
-
+            loadingProgressBar.visibility=View.VISIBLE
             if (username.isEmpty()) {
+                loadingProgressBar.visibility=View.GONE
                 usernotexist.text ="Username is empty"
                 usernotexist.visibility = View.VISIBLE
                 return@setOnClickListener
@@ -58,6 +63,7 @@ class usernamelogin : Fragment() {
             call.enqueue(object : Callback<ApiResponse> {
                 override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
+
                         val apiResponse = response.body()
                         if (apiResponse != null && apiResponse.success) {
                             val fragment = otpfragment()
@@ -74,6 +80,7 @@ class usernamelogin : Fragment() {
                         }
 
                         else {
+                            loadingProgressBar.visibility=View.GONE
                             usernotexist.text ="Username does not exist"
                             usernotexist.visibility=View.GONE
                             usernotexist.visibility=View.VISIBLE
@@ -86,6 +93,7 @@ class usernamelogin : Fragment() {
                 }
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    loadingProgressBar.visibility=View.GONE
                     Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()
 
                 }

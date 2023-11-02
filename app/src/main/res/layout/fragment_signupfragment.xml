@@ -212,6 +212,19 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/editTextText4"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ProgressBar
+                    android:id="@+id/loadingProgressBar"
+                    android:layout_width="77dp"
+                    android:layout_height="82dp"
+                    android:layout_marginTop="148dp"
+                    android:visibility="gone"
+                    android:outlineAmbientShadowColor="@color/darkyellow"
+                    android:outlineSpotShadowColor="@color/darkyellow"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import retrofit2.Call
@@ -40,10 +41,13 @@ class registeredemail : Fragment() {
         val emailView = view.findViewById<EditText>(R.id.editemailTextText4)
         val navButton = view.findViewById<Button>(R.id.cont8button)
         val regisemailbharo = view.findViewById<TextView>(R.id.textView13email)
+        val progressbarmy = view.findViewById<ProgressBar>(R.id.progressBar4)
 
         navButton.setOnClickListener {
+            progressbarmy.visibility=View.VISIBLE
             val emailInput = emailView.text.toString()
             if (emailInput.isEmpty()) {
+                progressbarmy.visibility=View.GONE
                 regisemailbharo.text="Email is required"
                 regisemailbharo.visibility=View.VISIBLE
                 return@setOnClickListener
@@ -67,12 +71,14 @@ class registeredemail : Fragment() {
                     } else {
                         regisemailbharo.text="Enter valid email address"
                         regisemailbharo.visibility=View.VISIBLE
+                        progressbarmy.visibility=View.GONE
                         Log.d("api", "Unsuccessful")
                        // Toast.makeText(requireContext(), "Api calling failed.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    progressbarmy.visibility=View.GONE
                     Log.e("api", "API call failed: ${t.message}")
                     Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()
                 }

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import retrofit2.Call
@@ -30,7 +31,7 @@ class signupphonefragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,10 +43,13 @@ class signupphonefragment : Fragment() {
         val signupButton = view.findViewById<Button>(R.id.cont2button)
         val usernameError = view.findViewById<TextView>(R.id.supunerror)
         val phoneError = view.findViewById<TextView>(R.id.supphnoerror)
+        val loadingProgressBar = view.findViewById<ProgressBar>(R.id.progressBar)
         signupButton.setOnClickListener {
+            loadingProgressBar.visibility = View.VISIBLE
             val username = usernamephoneEditText.text.toString()
             val phone = phonenEditText.text.toString()
             if (username.isEmpty()) {
+                loadingProgressBar.visibility = View.GONE
                 usernameError.text = "Username is empty"
                 usernameError.visibility = View.VISIBLE
                 phoneError.visibility = View.GONE
@@ -55,6 +59,7 @@ class signupphonefragment : Fragment() {
                  phoneError.text ="phone no. is empty"
                 usernameError.visibility = View.GONE
                 phoneError.visibility = View.VISIBLE
+                loadingProgressBar.visibility = View.GONE
                 return@setOnClickListener
             }
 
@@ -80,6 +85,7 @@ class signupphonefragment : Fragment() {
                         phoneError.text="Enter Valid Details"
                         phoneError.visibility = View.VISIBLE
                         usernameError.visibility = View.GONE
+                        loadingProgressBar.visibility = View.GONE
 
                     }
                 }

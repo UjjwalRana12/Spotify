@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import retrofit2.Call
@@ -35,19 +36,24 @@ class registeredphone : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_registeredphone, container, false)
-
+        val progressbarmera = view.findViewById<ProgressBar>(R.id.progressBar3)
         val button = view.findViewById<Button>(R.id.contbutton)
         button.setOnClickListener {
+            progressbarmera.visibility=View.VISIBLE
             val phoneNumberEditText = view.findViewById<EditText>(R.id.editTextText4)
             val phoneNumber = phoneNumberEditText.text.toString()
             val phonebharo = view.findViewById<TextView>(R.id.text13View13)
+
+
             if (phoneNumber.isEmpty()) {
                 phonebharo.text="Phone Number Required"
                 phonebharo.visibility=View.VISIBLE
+                progressbarmera.visibility=View.GONE
                 return@setOnClickListener
             }
 
             if (!isValidPhoneNumber(phoneNumber)) {
+                progressbarmera.visibility=View.GONE
                 phonebharo.text="Invalid phone number format"
                 phonebharo.visibility=View.VISIBLE
 
@@ -68,6 +74,7 @@ class registeredphone : Fragment() {
                         fragmentTransaction.addToBackStack(null)
                         fragmentTransaction.commit()
                     } else {
+                        progressbarmera.visibility=View.GONE
                         phonebharo.text="enter valid phone number"
                         phonebharo.visibility=View.VISIBLE
                         Toast.makeText(requireContext(), "Api call failed", Toast.LENGTH_SHORT).show()
@@ -75,6 +82,7 @@ class registeredphone : Fragment() {
                 }
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    progressbarmera.visibility=View.GONE
                     Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()
                 }
             })
