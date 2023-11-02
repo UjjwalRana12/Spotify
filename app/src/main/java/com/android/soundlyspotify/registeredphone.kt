@@ -29,6 +29,7 @@ class registeredphone : Fragment() {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,13 +40,17 @@ class registeredphone : Fragment() {
         button.setOnClickListener {
             val phoneNumberEditText = view.findViewById<EditText>(R.id.editTextText4)
             val phoneNumber = phoneNumberEditText.text.toString()
-
+            val phonebharo = view.findViewById<TextView>(R.id.text13View13)
             if (phoneNumber.isEmpty()) {
-                Toast.makeText(requireContext(), "Phone number is empty", Toast.LENGTH_SHORT).show()
+                phonebharo.text="Phone Number Required"
+                phonebharo.visibility=View.VISIBLE
                 return@setOnClickListener
             }
 
             if (!isValidPhoneNumber(phoneNumber)) {
+                phonebharo.text="Invalid phone number format"
+                phonebharo.visibility=View.VISIBLE
+
                 Toast.makeText(requireContext(), "Invalid phone number format", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -63,6 +68,8 @@ class registeredphone : Fragment() {
                         fragmentTransaction.addToBackStack(null)
                         fragmentTransaction.commit()
                     } else {
+                        phonebharo.text="enter valid phone number"
+                        phonebharo.visibility=View.VISIBLE
                         Toast.makeText(requireContext(), "Api call failed", Toast.LENGTH_SHORT).show()
                     }
                 }
