@@ -46,12 +46,14 @@ class otpfragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_otpfragment, container, false)
 
         val phoneNumberTextView = view.findViewById<TextView>(R.id.textView5)
+
         phoneNumberTextView.text = param1 ?: "No phone number received"
 
         val editText1: EditText = view.findViewById(R.id.textView6)
         val editText2: EditText = view.findViewById(R.id.textView7)
         val editText3: EditText = view.findViewById(R.id.textView8)
         val editText4: EditText = view.findViewById(R.id.textView9)
+        val invalidotp = view.findViewById<TextView>(R.id.invalidotp)
 
         editText1.addTextChangedListener(createTextWatcher(editText2))
         editText2.addTextChangedListener(createTextWatcher(editText3))
@@ -59,6 +61,7 @@ class otpfragment : Fragment() {
 
         val button2 = view.findViewById<Button>(R.id.button2)
         button2.setOnClickListener {
+            invalidotp.visibility = View.GONE
             val enteredOTP = "${editText1.text}${editText2.text}${editText3.text}${editText4.text}"
             if (enteredOTP.length == 4) {
                 verifyOTP(enteredOTP)
@@ -84,6 +87,7 @@ class otpfragment : Fragment() {
     }
 
     private fun verifyOTP(enteredOTP: String) {
+        val invalidots = view?.findViewById<TextView>(R.id.invalidotp)
         val verificationRequest = VerificationRequest(username, enteredOTP)
         userAPI.verifyUser(verificationRequest).enqueue(object : Callback<ApiResponse> {
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
@@ -97,6 +101,11 @@ class otpfragment : Fragment() {
                         showToast("Access token is null or empty")
                     }
                 } else {
+
+                    if (invalidots != null) {
+                        invalidots.text="Invalid Otp"
+                        invalidots.visibility=View.VISIBLE
+                    }
 
                     showToast("OTP Verification failed")
                 }
