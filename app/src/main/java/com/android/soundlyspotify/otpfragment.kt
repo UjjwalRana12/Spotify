@@ -97,6 +97,7 @@ class otpfragment : Fragment() {
                         showToast("Access token is null or empty")
                     }
                 } else {
+
                     showToast("OTP Verification failed")
                 }
             }
@@ -126,7 +127,7 @@ class otpfragment : Fragment() {
             }
 
             override fun onFinish() {
-                timerTextView.text = "Time's up!"
+                timerTextView.text = "Resend Otp?"
                 // Additional logic on timer completion can be added here
             }
         }.start()

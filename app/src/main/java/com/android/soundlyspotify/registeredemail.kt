@@ -39,12 +39,15 @@ class registeredemail : Fragment() {
 
         val emailView = view.findViewById<EditText>(R.id.editemailTextText4)
         val navButton = view.findViewById<Button>(R.id.cont8button)
+        val regisemailbharo = view.findViewById<TextView>(R.id.textView13email)
 
         navButton.setOnClickListener {
             val emailInput = emailView.text.toString()
             if (emailInput.isEmpty()) {
-                Toast.makeText(requireContext(), "Email is empty", Toast.LENGTH_SHORT).show()
+                regisemailbharo.text="Email is required"
+                regisemailbharo.visibility=View.VISIBLE
                 return@setOnClickListener
+
             }
 
             // Retrofit API call
@@ -62,8 +65,10 @@ class registeredemail : Fragment() {
                             fragmentTransaction.addToBackStack(null)
                             fragmentTransaction.commit()
                     } else {
+                        regisemailbharo.text="Enter valid email address"
+                        regisemailbharo.visibility=View.VISIBLE
                         Log.d("api", "Unsuccessful")
-                        Toast.makeText(requireContext(), "Api calling failed.", Toast.LENGTH_SHORT).show()
+                       // Toast.makeText(requireContext(), "Api calling failed.", Toast.LENGTH_SHORT).show()
                     }
                 }
 

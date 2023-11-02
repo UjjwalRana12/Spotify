@@ -169,6 +169,20 @@
                     app:layout_constraintStart_toStartOf="@+id/editemailTextText4"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/textView13email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="244dp"
+                    android:text="Email Is Empty"
+                    android:textColor="@color/red"
+                    android:visibility="gone"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="@+id/editemailTextText4"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/editemailTextText4"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
