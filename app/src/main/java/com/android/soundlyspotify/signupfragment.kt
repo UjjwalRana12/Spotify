@@ -26,17 +26,24 @@ class signupfragment : Fragment() {
 
         val usernameEditText = view.findViewById<EditText>(R.id.editTextText3)
         val emailEditText = view.findViewById<EditText>(R.id.editTextText4)
-
+        val sgnupusername = view.findViewById<TextView>(R.id.textView113)
+        val sgnupemail = view.findViewById<TextView>(R.id.textView114)
         val signupButton = view.findViewById<Button>(R.id.signupButton)
         signupButton.setOnClickListener {
             val username = usernameEditText.text.toString()
             val email = emailEditText.text.toString()
             if (username.isEmpty()) {
-                Toast.makeText(requireContext(), "Username is empty", Toast.LENGTH_SHORT).show()
+                sgnupusername.text="Username is empty"
+                sgnupusername.visibility=View.VISIBLE
+                sgnupemail.visibility=View.GONE
+
                 return@setOnClickListener
             } else if (email.isEmpty()) {
-                Toast.makeText(requireContext(), "Email is empty", Toast.LENGTH_SHORT).show()
+                sgnupemail.text="Email is empty"
+                sgnupusername.visibility=View.GONE
+                sgnupemail.visibility=View.VISIBLE
                 return@setOnClickListener
+
             }
 
             val userAPI = RetrofitClient.userAPI
@@ -59,7 +66,10 @@ class signupfragment : Fragment() {
                             fragmentTransaction.commit()
                         } else {
                             Log.d("api", "Unsuccessful")
-                            Toast.makeText(requireContext(), "Api call Unsuccessful.", Toast.LENGTH_SHORT).show()
+                            sgnupemail.text=" Enter valid Details"
+                            sgnupusername.visibility=View.GONE
+                            sgnupemail.visibility=View.VISIBLE
+
                         }
                     }
 

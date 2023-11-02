@@ -77,7 +77,10 @@ class signupphonefragment : Fragment() {
                         fragmentTransaction.addToBackStack(null)
                         fragmentTransaction.commit()
                     } else {
-                        Toast.makeText(requireContext(), "Enter valid details.", Toast.LENGTH_SHORT).show()
+                        phoneError.text="Enter Valid Details"
+                        phoneError.visibility = View.VISIBLE
+                        usernameError.visibility = View.GONE
+
                     }
                 }
 

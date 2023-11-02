@@ -24,4 +24,5 @@
     <string name="let_the_music_take_control"><font color="#000">Let the music take control!</font></string>
     <string name="via_phone_number"><font color="#FFA500">via phone number</font></string>
     <string name="via_email"><font color="#FFA500">via email</font></string>
+    <string name="s">S</string>
 </resources>
