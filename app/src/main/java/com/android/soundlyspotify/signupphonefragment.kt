@@ -1,5 +1,6 @@
 package com.android.soundlyspotify
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -29,6 +30,7 @@ class signupphonefragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,16 +40,21 @@ class signupphonefragment : Fragment() {
         val usernamephoneEditText = view.findViewById<EditText>(R.id.supusername)
         val phonenEditText = view.findViewById<EditText>(R.id.supphone)
         val signupButton = view.findViewById<Button>(R.id.cont2button)
-
+        val usernameError = view.findViewById<TextView>(R.id.supunerror)
+        val phoneError = view.findViewById<TextView>(R.id.supphnoerror)
         signupButton.setOnClickListener {
             val username = usernamephoneEditText.text.toString()
             val phone = phonenEditText.text.toString()
             if (username.isEmpty()) {
-                Toast.makeText(requireContext(), "Username is empty", Toast.LENGTH_SHORT).show()
+                usernameError.text = "Username is empty"
+                usernameError.visibility = View.VISIBLE
+                phoneError.visibility = View.GONE
                 return@setOnClickListener
             }
-             if ( phone.isEmpty()) {
-                Toast.makeText(requireContext(), "Phone Number is empty", Toast.LENGTH_SHORT).show()
+             else if ( phone.isEmpty()) {
+                 phoneError.text ="phone no. is empty"
+                usernameError.visibility = View.GONE
+                phoneError.visibility = View.VISIBLE
                 return@setOnClickListener
             }
 

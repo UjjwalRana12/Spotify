@@ -109,7 +109,7 @@
                 android:layout_marginTop="96dp"
                 android:width="195sp"
                 android:height="24sp"
-                android:text="+91 8888889887"
+                android:text="+91 888.........."
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:textSize="24sp"
@@ -184,15 +184,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/textView222"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="220dp"
-                android:text="@string/resend_otp_in_00_52_seconds"
-                android:textSize="10dp"
+                android:layout_marginTop="212dp"
+                android:text="i am invisible"
                 android:textColor="@color/black"
+                android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView9"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.027"
                 app:layout_constraintStart_toStartOf="@+id/textView6"
                 app:layout_constraintTop_toTopOf="parent" />
 

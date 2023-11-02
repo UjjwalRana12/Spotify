@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -38,12 +39,13 @@ class usernamelogin : Fragment() {
 
         val usernameEditText = view.findViewById<EditText>(R.id.userTextText4)
         val button = view.findViewById<Button>(R.id.contbutton)
-
+        val usernotexist = view.findViewById<TextView>(R.id.usernamenotexist)
         button.setOnClickListener {
             val username = usernameEditText.text.toString()
 
             if (username.isEmpty()) {
-                Toast.makeText(requireContext(), "Username cannot be empty", Toast.LENGTH_SHORT).show()
+                usernotexist.text ="Username is empty"
+                usernotexist.visibility = View.VISIBLE
                 return@setOnClickListener
             }
 
@@ -72,15 +74,20 @@ class usernamelogin : Fragment() {
                         }
 
                         else {
-                            Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
+                            usernotexist.text ="Username does not exist"
+                            usernotexist.visibility=View.GONE
+                            usernotexist.visibility=View.VISIBLE
                         }
                     } else {
-                        Toast.makeText(requireContext(), "Login failed", Toast.LENGTH_SHORT).show()
+                        usernotexist.text ="Username does not exist"
+                        usernotexist.visibility=View.GONE
+                        usernotexist.visibility=View.VISIBLE
                     }
                 }
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                     Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()
+
                 }
             })
         }

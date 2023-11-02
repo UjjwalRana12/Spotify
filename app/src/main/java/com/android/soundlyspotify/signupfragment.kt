@@ -59,7 +59,7 @@ class signupfragment : Fragment() {
                             fragmentTransaction.commit()
                         } else {
                             Log.d("api", "Unsuccessful")
-                            Toast.makeText(requireContext(), "enter valid details.", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Api call Unsuccessful.", Toast.LENGTH_SHORT).show()
                         }
                     }
 

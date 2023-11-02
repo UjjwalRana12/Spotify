@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.text.TextWatcher
 import android.text.Editable
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -18,6 +17,7 @@ import com.android.soundlyspotify.RetrofitClient.userAPI
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.os.CountDownTimer
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -26,6 +26,8 @@ class otpfragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var username: String = ""
+    private var countdownTimer: CountDownTimer? = null
+    private val COUNTDOWN_TIME: Long = 60000 // 60 seconds
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,6 +65,8 @@ class otpfragment : Fragment() {
             }
         }
 
+        startCountdownTimer(view.findViewById(R.id.textView222)) // Start the countdown timer
+
         return view
     }
 
@@ -88,7 +92,7 @@ class otpfragment : Fragment() {
                     if (!accessToken.isNullOrBlank()) {
                         saveTokenToPreferences(accessToken)
                         showToast("OTP Verified successfully")
-                        // next screen pr jana hai yaha se
+                        // Next screen navigation logic here
                     } else {
                         showToast("Access token is null or empty")
                     }
@@ -112,5 +116,24 @@ class otpfragment : Fragment() {
         val editor = sharedPreferences.edit()
         editor.putString("access_token", token)
         editor.apply()
+    }
+
+    private fun startCountdownTimer(timerTextView: TextView) {
+        countdownTimer = object : CountDownTimer(COUNTDOWN_TIME, 1000) { // 1000 is the interval (1 second)
+            override fun onTick(millisUntilFinished: Long) {
+                val secondsRemaining = millisUntilFinished / 1000
+                timerTextView.text = "Resend Otp in $secondsRemaining seconds"
+            }
+
+            override fun onFinish() {
+                timerTextView.text = "Time's up!"
+                // Additional logic on timer completion can be added here
+            }
+        }.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        countdownTimer?.cancel() // Cancel the timer to prevent memory leaks
     }
 }

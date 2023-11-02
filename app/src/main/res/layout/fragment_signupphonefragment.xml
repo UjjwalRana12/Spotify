@@ -121,7 +121,7 @@
                     android:id="@+id/supphone"
                     android:layout_width="320dp"
                     android:layout_height="56dp"
-                    android:layout_marginTop="212dp"
+                    android:layout_marginTop="208dp"
                     android:background="@drawable/backgroundborder"
                     android:ems="10"
                     android:hint="Enter Phone Number"
@@ -131,6 +131,7 @@
                     android:textColor="@color/lightblack"
                     android:textColorHint="@color/hintcolor"
                     app:layout_constraintEnd_toEndOf="@+id/supusername"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="@+id/supusername"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -164,7 +165,7 @@
                     android:id="@+id/textView20"
                     android:layout_width="91dp"
                     android:layout_height="25dp"
-                    android:layout_marginTop="196dp"
+                    android:layout_marginTop="188dp"
                     android:text="Phone No."
                     android:textColor="@color/black"
                     android:textSize="12sp"
@@ -177,7 +178,7 @@
                     android:id="@+id/emailtext2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="196dp"
+                    android:layout_marginTop="192dp"
                     android:text="Sign Up With Email?"
                     android:textColor="#FFA500"
                     android:textColorHighlight="#FFA500"
@@ -189,19 +190,34 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/supunerror"
                     android:layout_width="140dp"
                     android:layout_height="21dp"
                     android:layout_marginTop="164dp"
-                    android:text="hello world"
+                    android:text=""
                     android:textColor="@color/red"
                     android:visibility="gone"
+                    android:textSize="12sp"
 
                     app:layout_constraintEnd_toEndOf="@+id/supusername"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/supusername"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/supphnoerror"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="264dp"
+                    android:text="phone no. is empty"
+                    android:textSize="12sp"
+                    android:textColor="@color/red"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@+id/supphone"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/supphone"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
