@@ -55,6 +55,7 @@ class otpfragment : Fragment() {
         val editText4: EditText = view.findViewById(R.id.textView9)
         val invalidotp = view.findViewById<TextView>(R.id.invalidotp)
 
+
         editText1.addTextChangedListener(createTextWatcher(editText2))
         editText2.addTextChangedListener(createTextWatcher(editText3))
         editText3.addTextChangedListener(createTextWatcher(editText4))
@@ -68,7 +69,7 @@ class otpfragment : Fragment() {
             }
         }
 
-        startCountdownTimer(view.findViewById(R.id.textView222)) // Start the countdown timer
+        startCountdownTimer(view.findViewById(R.id.textView222))
 
         return view
     }
