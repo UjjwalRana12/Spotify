@@ -87,6 +87,7 @@ class registeredphone : Fragment() {
                 }
             })
         }
+        
 
         val textButton = view.findViewById<TextView>(R.id.emailswitch)
         textButton.setOnClickListener {
@@ -107,6 +108,7 @@ class registeredphone : Fragment() {
     }
 
     private fun isValidPhoneNumber(phoneNumber: String): Boolean {
+
         // Basic check for 10 digits - you may need to adjust this based on your requirements
         val regex = Regex("\\d{10}") // Change this regex pattern according to your phone number format
         return regex.matches(phoneNumber)

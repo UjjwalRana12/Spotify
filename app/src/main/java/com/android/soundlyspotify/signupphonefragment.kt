@@ -44,7 +44,8 @@ class signupphonefragment : Fragment() {
         val usernameError = view.findViewById<TextView>(R.id.supunerror)
         val phoneError = view.findViewById<TextView>(R.id.supphnoerror)
         val loadingProgressBar = view.findViewById<ProgressBar>(R.id.progressBar)
-        signupButton.setOnClickListener {
+
+            signupButton.setOnClickListener {
             loadingProgressBar.visibility = View.VISIBLE
             val username = usernamephoneEditText.text.toString()
             val phone = phonenEditText.text.toString()
@@ -92,6 +93,7 @@ class signupphonefragment : Fragment() {
 
                 override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                     Log.e("api", "API call failed: ${t.message}")
+                    loadingProgressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()
                 }
             })
