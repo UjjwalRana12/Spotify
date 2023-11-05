@@ -15,10 +15,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="please_enter_the_4_digit_code_sent_you_at">Please Enter The 4-Digit Code Sent You At</string>
     <string name="continue_text">Continue</string>
-    <string name="your_thoughts_cleaner"><font color="#000">your thoughts </font><font color="#FFA500">Cleaner</font></string>
+    <string name="your_thoughts_cleaner"><font color="#000">Your thoughts </font><font color="#FFA500">Cleaner</font></string>
     <string name="sign_up_with_email"><font color="#FFA500">sign Up With Email</font></string>
     <string name="soundly">Soundly</string>
-    <string name="sssoundly">soundly</string>
+    <string name="sssoundly">Soundly</string>
     <string name="welcome_to_soundly"><font color="#000">Welcome To </font><b><font color="#FFA500">Soundly</font></b></string>
     <string name="resend_otp_in_00_52_seconds">Resend OTP in <b>00:52</b> seconds</string>
     <string name="let_the_music_take_control"><font color="#000">Let the music take control!</font></string>

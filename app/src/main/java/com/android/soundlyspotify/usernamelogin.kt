@@ -89,6 +89,7 @@ class usernamelogin : Fragment() {
                         usernotexist.text ="Username does not exist"
                         usernotexist.visibility=View.GONE
                         usernotexist.visibility=View.VISIBLE
+                        loadingProgressBar.visibility=View.GONE
                     }
                 }
 

@@ -10,11 +10,13 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="273dp"
-        android:layout_height="43dp"
+        android:layout_width="336dp"
+        android:layout_height="42dp"
         android:layout_marginTop="68dp"
+        android:fontFamily="@font/poppins"
         android:text="@string/your_thoughts_cleaner"
         android:textSize="24sp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,12 +27,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
+        android:fontFamily="@font/poppins"
         android:text="Let the music take control!"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -50,6 +52,8 @@
         android:layout_height="56dp"
         android:layout_marginTop="576dp"
         android:text="Get Started"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins"
         android:backgroundTint="@color/darkyellow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.57"
