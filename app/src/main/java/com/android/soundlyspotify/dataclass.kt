@@ -10,3 +10,15 @@ data class ForgotPhoneNumberRequest(val phoneNumber: String)
 data class ApiResponse(val success: Boolean, val message: String,val data: ResponseData?)
 
 data class ResponseData(val access_token: String)
+
+data class Song(
+    val id: Int,
+    val name: String,
+    val date_added: String,
+    val genre: String,
+    val mood: String,
+    val song_url: String?,
+    val thumbnail_url: String?,
+    val artist: String,
+    val language: String?
+)

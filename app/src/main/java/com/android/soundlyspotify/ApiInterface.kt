@@ -2,6 +2,7 @@ package com.android.soundlyspotify
 
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface UserAPI {
@@ -22,4 +23,10 @@ interface UserAPI {
 
     @POST("/api/user/verify/phone_number/")
     fun verifyForgotPhoneNumber(@Body phoneData: ForgotPhoneNumberRequest): Call<ApiResponse>
+
+    interface SongAPI {
+        @GET("https://test-mkcw.onrender.com/api/playlists")
+        fun getSongs(): Call<List<Song>>
+        //getSongs is a method
+    }
 }

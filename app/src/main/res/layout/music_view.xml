@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp"
+    android:layout_marginBottom="5dp"
+    android:id="@+id/SearchRecycler">
+
+
+    <ImageView
+        android:id="@+id/imageMV"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:srcCompat="@drawable/arjitsingh"
+        android:layout_marginStart="5dp"/>
+
+    <TextView
+        android:id="@+id/songNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="Name of songs"
+        android:layout_toEndOf="@+id/imageMV"
+        android:layout_toStartOf="@+id/SongDuration"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/black">
+
+    </TextView>
+    <TextView
+        android:id="@+id/artistTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="Artist"
+        android:layout_toEndOf="@+id/imageMV"
+        android:layout_toStartOf="@+id/SongDuration"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/SongDuration"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:text="00:00"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+
+
+        />
+</RelativeLayout>

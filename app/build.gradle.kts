@@ -33,6 +33,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -64,5 +67,6 @@ dependencies {
 
     // Preferences DataStore
     implementation ("androidx.datastore:datastore-preferences:1.0.0-alpha04")
+
 
 }
