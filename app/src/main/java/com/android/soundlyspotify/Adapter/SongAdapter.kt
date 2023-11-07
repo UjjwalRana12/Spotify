@@ -32,10 +32,10 @@ class SongAdapter(private val dataList: List<Song>) : RecyclerView.Adapter<SongA
         private val songDuration: TextView = itemView.findViewById(R.id.SongDuration)
 
         fun bind(item: Song) {
-            imageMV.setImageResource(item.imageMV) // Set image resource using item.imageMV
+            imageMV.setImageResource(item.imageMV)
             songName.text = item.songName
             artist.text = item.artist
-            songDuration.text = item.duration // Assuming the duration is set in the 'Song' class, use 'item.duration'
+            songDuration.text = item.duration
         }
 
     }

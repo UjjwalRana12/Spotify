@@ -38,9 +38,11 @@ class homefragment : Fragment() {
         offerRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         val offers = listOf(
-            Offer(R.drawable.honeysingh, "Offer Title 1"),
-            Offer(R.drawable.honeysingh, "Offer Title 2"),
-            Offer(R.drawable.honeysingh, "Offer Title 3"),
+            Offer(R.drawable.phototeen, "Offer Title 1"),
+            Offer(R.drawable.photoek, "Offer Title 2"),
+            Offer(R.drawable.photocheh, "Offer Title 3"),
+            Offer(R.drawable.photodo, "Offer Title 3"),
+            Offer(R.drawable.photopaanch, "Offer Title 3"),
             // Add more items as needed
         )
         val offerAdapter = OfferAdapter(offers)
@@ -55,9 +57,11 @@ class homefragment : Fragment() {
         bestsellerRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         val bestSellers = listOf(
-            BestSeller(R.drawable.honeysingh, "Title 1"),
-            BestSeller(R.drawable.honeysingh, "Title 2"),
-            BestSeller(R.drawable.honeysingh, "Title 3"),
+            BestSeller(R.drawable.photoek, "Title 1"),
+            BestSeller(R.drawable.photodo, "Title 2"),
+            BestSeller(R.drawable.phototeen, "Title 3"),
+            BestSeller(R.drawable.photochaar, "Title 3"),
+            BestSeller(R.drawable.photopaanch, "Title 3"),
             // or item add krlo agar krna ho toh
 
 
@@ -86,9 +90,11 @@ class homefragment : Fragment() {
 
         val context: Context = requireContext()// suggested by chatgpt to encounter errors
         val clothingList = listOf(
-            Clothing(R.drawable.honeysingh, "Summer "),
-            Clothing(R.drawable.honeysingh, "Casual "),
-            Clothing(R.drawable.honeysingh, "Formal "),
+            Clothing(R.drawable.photoek, "listen this "),
+            Clothing(R.drawable.phototeen, "Casual song"),
+            Clothing(R.drawable.photopaanch, "Formal "),
+            Clothing(R.drawable.photochaar, "Formal "),
+            Clothing(R.drawable.photodo, "Formal "),
             // Add more  items as needed
         )
 
@@ -106,9 +112,11 @@ class homefragment : Fragment() {
         bestseller2RecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         val bestSellersList = listOf(
-            BestSeller2(R.drawable.arjitsingh, "arjit singh"),
-            BestSeller2(R.drawable.arjitsingh, "arjit Awaits"),
-            BestSeller2(R.drawable.arjitsingh, "arjit"),
+            BestSeller2(R.drawable.photosaath, "arjit singh"),
+            BestSeller2(R.drawable.photocheh, "arjit Awaits"),
+            BestSeller2(R.drawable.photoek, "arjit"),
+            BestSeller2(R.drawable.phototeen, "arjit"),
+            BestSeller2(R.drawable.photochaar, "arjit"),
             // Add item
         )
         val adapter = BestSeller2Adapter(context, bestSellersList)
