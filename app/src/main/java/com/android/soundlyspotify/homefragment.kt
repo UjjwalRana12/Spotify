@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.android.soundlyspotify.Myadapter.BestSeller2Adapter
 import com.android.soundlyspotify.Myadapter.BestSellerAdapter
+import com.android.soundlyspotify.Myadapter.CarouselAdapter
 import com.android.soundlyspotify.Myadapter.ClothingAdapter
 import com.android.soundlyspotify.Myadapter.ImagePagerAdapter
 import com.android.soundlyspotify.Myadapter.OfferAdapter
@@ -46,7 +47,7 @@ class homefragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_homefragment, container, false)
 
-        //View pager
+        //View pager 1st
         viewPager = view.findViewById(R.id.viewPager)
         imageAdapter = ImagePagerAdapter(requireContext(), imageList)
         viewPager.adapter = imageAdapter
@@ -63,10 +64,12 @@ class homefragment : Fragment() {
             override fun run() {
                 handler.post(update)
             }
-        }, 2000, 3000)
+        }, 1000, 3000)
 
-
-
+            // closuer apply
+        val viewPagerCarousel = view.findViewById<ViewPager>(R.id.viewPager2)
+        val carouselAdapter = CarouselAdapter(requireContext())
+        viewPagerCarousel.adapter = carouselAdapter
 
 
         // Initialize RecyclerViews and set their properties
