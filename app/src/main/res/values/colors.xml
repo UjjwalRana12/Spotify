@@ -8,5 +8,6 @@
     <color name="lightblack">#1F1F1F</color>
     <color name="red">#DF1010</color>
     <color name="greyish"> #505050</color>
+    <color name="bluegreen"> #008B8B</color>
 
 </resources>

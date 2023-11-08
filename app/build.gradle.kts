@@ -68,5 +68,7 @@ dependencies {
     // Preferences DataStore
     implementation ("androidx.datastore:datastore-preferences:1.0.0-alpha04")
 
+    //viewpager dependency
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
 
 }

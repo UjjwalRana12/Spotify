@@ -15,7 +15,7 @@ import com.android.soundlyspotify.R
 class search : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var songAdapter: SongAdapter
-    private var songList = listOf<Song>() // Your list of songs
+    private var songList = listOf<Song>()
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

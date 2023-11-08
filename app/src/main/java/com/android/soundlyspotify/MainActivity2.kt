@@ -1,5 +1,5 @@
 package com.android.soundlyspotify
-
+import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,6 +14,9 @@ class MainActivity2 : AppCompatActivity() {
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(homefragment())
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar) // Fetching the Toolbar from the layout
+        setSupportActionBar(toolbar)
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
