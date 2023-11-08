@@ -1,6 +1,4 @@
 package com.android.soundlyspotify
-
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,24 +6,25 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.soundlyspotify.Adapter.SongAdapter
+
 import com.android.soundlyspotify.data.Song
 import com.android.soundlyspotify.R
 
 class search : Fragment() {
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var songAdapter: SongAdapter
-    private var songList = listOf<Song>()
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
+        val songList = listOf(
+            SongModel(R.drawable.arjitsingh, "Song Title 1", "Artist 1", "Album 1"),
+            SongModel(R.drawable.nehakakkar, "Song Title 2", "Artist 2", "Album 2"),
+            // Add more SongModel instances as needed
+        )
 
-        recyclerView = view.findViewById(R.id.firstrecycler)
-        songAdapter = SongAdapter(songList)
+        val recyclerView: RecyclerView = view.findViewById(R.id.firstrecycler)
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        val songAdapter = SongAdapter(songList)
         recyclerView.adapter = songAdapter
 
         return view

@@ -43,9 +43,9 @@
         android:id="@+id/SongDuration"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:text="00:00"
         android:layout_alignParentEnd="true"
         android:gravity="center"
+        android:text="00:00"
 
 
         />
