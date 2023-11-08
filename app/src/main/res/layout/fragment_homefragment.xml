@@ -22,8 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/viewpageris"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="40dp"
@@ -76,13 +76,15 @@
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
                 android:fontFamily="@font/poppins"
                 android:text="Recently Played"
                 android:textColor="@color/greyish"
                 android:textFontWeight="700"
                 android:textSize="24sp"
-                tools:layout_editor_absoluteX="46dp"
-                tools:layout_editor_absoluteY="392dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewPager"
                 tools:ignore="MissingConstraints" />
 
             <TextView

@@ -9,5 +9,6 @@
     <color name="red">#DF1010</color>
     <color name="greyish"> #505050</color>
     <color name="bluegreen"> #008B8B</color>
+    <color name="lightbg"> #D5EAEA</color>
 
 </resources>

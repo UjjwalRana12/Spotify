@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/bestseller2_layout">
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/bestseller2_layout"
+    android:layout_margin="20dp">
 
     <ImageView
         android:id="@+id/bestseller2Mv"
@@ -21,7 +22,7 @@
         android:id="@+id/bestseller2Tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/bestseller2Mv"
         app:layout_constraintHorizontal_bias="0.333"
