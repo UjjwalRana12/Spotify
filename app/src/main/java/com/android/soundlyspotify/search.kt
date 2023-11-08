@@ -19,7 +19,7 @@ class search : Fragment() {
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.music_view, container, false)
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
 
 
         recyclerView = view.findViewById(R.id.firstrecycler)
