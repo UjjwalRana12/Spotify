@@ -32,9 +32,9 @@ class homefragment : Fragment() {
     private lateinit var viewPager: ViewPager
     private lateinit var imageAdapter: ImagePagerAdapter
     private val imageList = listOf(
-        R.drawable.mobileslider,
-        R.drawable.mobileslider,
-        R.drawable.mobileslider
+        R.drawable.pager1,
+        R.drawable.pager2,
+        R.drawable.pager3
     )
     private var currentPage = 0
     private val timer = Timer()

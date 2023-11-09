@@ -12,11 +12,11 @@ import com.android.soundlyspotify.R
 class CarouselAdapter(private val context: Context) : PagerAdapter() {
 
     private val images = intArrayOf(
-        R.drawable.closureek,
-        R.drawable.closureek,
-        R.drawable.closureek,
-        R.drawable.closureek,
-        R.drawable.closureek
+        R.drawable.crousel1,
+        R.drawable.crousel2,
+        R.drawable.crousel3,
+        R.drawable.crousel4
+
     )
 
     override fun getCount(): Int {

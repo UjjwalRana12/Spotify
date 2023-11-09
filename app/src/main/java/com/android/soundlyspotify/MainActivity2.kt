@@ -17,6 +17,7 @@ class MainActivity2 : AppCompatActivity() {
 
         val toolbar: Toolbar = findViewById(R.id.toolbar) // Fetching the Toolbar from the layout
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
