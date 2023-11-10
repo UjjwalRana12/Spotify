@@ -58,6 +58,8 @@ dependencies {
 
 
 
+
+
     //coroutines dependency
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
@@ -75,5 +77,9 @@ dependencies {
 
     // bottom sheet
     implementation("com.google.android.material:material:1.1.0")
+
+    //
+    implementation("com.squareup.picasso:picasso:2.71828")
+
 
 }

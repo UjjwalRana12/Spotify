@@ -7,26 +7,32 @@ import retrofit2.http.POST
 
 interface UserAPI {
     @POST("/api/user/register/email/")
-    fun registerByEmail(@Body userData: EmailRegistrationRequest): Call<ApiResponse>
+    fun registerByEmail(@Body userData: EmailRegistrationRequest): Call<ApiResponse<Any?>>
 
     @POST("/api/user/register/phone/")
-    fun registerByPhone(@Body userData: PhoneRegistrationRequest): Call<ApiResponse>
+    fun registerByPhone(@Body userData: PhoneRegistrationRequest): Call<ApiResponse<Any?>>
 
     @POST("/api/user/verify/")
-    fun verifyUser(@Body verifyData: VerificationRequest): Call<ApiResponse>
+    fun verifyUser(@Body verifyData: VerificationRequest): Call<ApiResponse<Any?>>
 
     @POST("/api/user/login/")
-    fun userLogin(@Body user: UserLoginRequest): Call<ApiResponse>
+    fun userLogin(@Body user: UserLoginRequest): Call<ApiResponse<Any?>>
 
     @POST("/api/user/verify/forgot-email/")
-    fun verifyForgotEmail(@Body emailData: ForgotEmailVerificationRequest): Call<ApiResponse>
+    fun verifyForgotEmail(@Body emailData: ForgotEmailVerificationRequest): Call<ApiResponse<Any?>>
 
     @POST("/api/user/verify/phone_number/")
-    fun verifyForgotPhoneNumber(@Body phoneData: ForgotPhoneNumberRequest): Call<ApiResponse>
+    fun verifyForgotPhoneNumber(@Body phoneData: ForgotPhoneNumberRequest): Call<ApiResponse<Any?>>
 
-    interface SongAPI {
+    interface ApiService {
         @GET("https://test-mkcw.onrender.com/api/playlists")
-        fun getSongs(): Call<List<Song>>
-        //getSongs is a method
+        suspend fun getSongs(): ApiResponse<List<Song>>
     }
+
+//data class ApiResponse<T>(
+//        val success: Boolean,
+//        val message: String,
+//        val data: T
+//    )
+
 }

@@ -3,10 +3,13 @@ package com.android.soundlyspotify
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -20,8 +23,12 @@ import com.android.soundlyspotify.models.BestSeller
 import com.android.soundlyspotify.models.BestSeller2
 import com.android.soundlyspotify.models.Clothing
 import com.android.soundlyspotify.models.Offer
+import kotlinx.coroutines.launch
 import java.util.Timer
 import java.util.TimerTask
+import com.android.soundlyspotify.RetrofitClient.userAPI
+
+import com.android.soundlyspotify.RetrofitClient
 
 class homefragment : Fragment() {
 
@@ -92,32 +99,31 @@ class homefragment : Fragment() {
 
 
         // BESTSELLER IS HERE
+
+        lateinit var bestSellerAdapter: BestSellerAdapter
         bestsellerRecyclerView = view.findViewById(R.id.bestSellerRecyclerView)
         bestsellerRecyclerView.setHasFixedSize(true)
         bestsellerRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        val bestSellers = listOf(
-            BestSeller(R.drawable.photoek, "Title 1"),
-            BestSeller(R.drawable.photodo, "Title 2"),
-            BestSeller(R.drawable.phototeen, "Title 3"),
-            BestSeller(R.drawable.photochaar, "Title 3"),
-            BestSeller(R.drawable.photopaanch, "Title 3"),
-            // or item add krlo agar krna ho toh
+// Fetch data from API using Retrofit or populate it with some default data
+        val apiService: UserAPI.ApiService = RetrofitClient.retrofit.create(UserAPI.ApiService::class.java)
 
-
-            // Assuming you have a list of BestSeller objects named bestSellers
-            // val bestSellers: List<BestSeller> = // Populate this with your data
-            //this will help me to put api
-        )
-
-        // setting up bestseller adapter
-        val bestSellerAdapter = BestSellerAdapter(bestSellers)
-        bestsellerRecyclerView.adapter = bestSellerAdapter
-
-
-
-
-
+        lifecycleScope.launch {
+            try {
+                // API request to get songs
+                val response = apiService.getSongs()
+                if (response.success) {
+                    // Update the adapter with the received data
+                    bestSellerAdapter.setSongs(response.data ?: emptyList())
+                } else {
+                    // Handle API error
+                    Toast.makeText(requireContext(), response.message, Toast.LENGTH_SHORT).show()
+                }
+            } catch (e: Exception) {
+                // Handle network or other errors
+                Toast.makeText(requireContext(), "Error fetching data", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
         // clothing is here

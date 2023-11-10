@@ -118,7 +118,7 @@
         android:layout_height="82dp"
         android:background="@drawable/desikalakarcornerradius"
         android:backgroundTint="@color/lightbg"
-        app:cardCornerRadiusTopEnd="4dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
 
@@ -136,8 +136,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:src="@drawable/line13"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView32"
+                app:layout_constraintStart_toStartOf="@+id/textView32"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView

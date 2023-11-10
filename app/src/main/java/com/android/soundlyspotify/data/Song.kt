@@ -1,8 +1,11 @@
 package com.android.soundlyspotify.data
 
 data class Song(
-    val songName: String,
+    val id: Int,
+    val name: String,
     val artist: String,
-    val duration: String,
-    val imageMV: Int    // this is the id of my image
+    val language: String,
+    val mood: String,
+    val genre: String,
+    val thumbnailUrl: String?
 )

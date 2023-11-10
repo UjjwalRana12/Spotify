@@ -59,9 +59,9 @@ class registeredemail : Fragment() {
             val useremailRegistrationRequest = ForgotEmailVerificationRequest(emailInput)
 
             val call = userAPI.verifyForgotEmail(useremailRegistrationRequest)
-            call.enqueue(object : Callback<ApiResponse> {
+            call.enqueue(object : Callback<ApiResponse<Any?>> {
                 @SuppressLint("SuspiciousIndentation")
-                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                override fun onResponse(call: Call<ApiResponse<Any?>>, response: Response<ApiResponse<Any?>>) {
                     if (response.isSuccessful) {
                         Log.d("api", "Success")
                         val fragmentTransaction = parentFragmentManager.beginTransaction()
@@ -77,7 +77,7 @@ class registeredemail : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                override fun onFailure(call: Call<ApiResponse<Any?>>, t: Throwable) {
                     progressbarmy.visibility=View.GONE
                     Log.e("api", "API call failed: ${t.message}")
                     Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()

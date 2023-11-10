@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
     private const val BASE_URL = "https://test-mkcw.onrender.com"
 
-    private val retrofit: Retrofit by lazy {
+    val retrofit: Retrofit by lazy<Retrofit> {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

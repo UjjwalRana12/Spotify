@@ -57,8 +57,8 @@ class signupfragment : Fragment() {
 
             try {
                 val call = userAPI.registerByEmail(userRegistrationRequest)
-                call.enqueue(object : Callback<ApiResponse> {
-                    override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                call.enqueue(object : Callback<ApiResponse<Any?>> {
+                    override fun onResponse(call: Call<ApiResponse<Any?>>, response: Response<ApiResponse<Any?>>) {
                         if (response.isSuccessful) {
                             Log.d("api", "Success")
                             loadingProgressBar.visibility = View.GONE
@@ -81,7 +81,7 @@ class signupfragment : Fragment() {
                         }
                     }
 
-                    override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                    override fun onFailure(call: Call<ApiResponse<Any?>>, t: Throwable) {
                         Log.e("api", "API call failed: ${t.message}")
                         loadingProgressBar.visibility = View.GONE
                         Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()
