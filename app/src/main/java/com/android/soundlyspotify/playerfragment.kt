@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.SeekBar
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import com.android.soundlyspotify.MediaPlayerManager
 import com.android.soundlyspotify.R
@@ -21,7 +22,7 @@ class playerfragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_playerfragment, container, false)
 
         // Initialize your views
-        val playPauseButton = view.findViewById<Button>(R.id.imageplaypause)
+        val playPauseButton = view.findViewById<AppCompatImageView>(R.id.imageplaypause)
         val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
 
         // Set up click listeners and other necessary UI setup
@@ -38,7 +39,7 @@ class playerfragment : Fragment() {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                // Do something when user starts touching the SeekBar
+                // Do something when user start touching the SeekBar
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
