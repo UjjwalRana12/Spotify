@@ -1,28 +1,18 @@
 package com.android.soundlyspotify
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import android.widget.Button
+import android.widget.SeekBar
+import androidx.fragment.app.Fragment
+import com.android.soundlyspotify.MediaPlayerManager
+import com.android.soundlyspotify.R
 
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class playerfragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var mediaPlayerManager: MediaPlayerManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,13 +20,40 @@ class playerfragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_playerfragment, container, false)
 
-        val imageView: ImageView = view.findViewById(R.id.imageView18)
+        // Initialize your views
+        val playPauseButton = view.findViewById<Button>(R.id.imageplaypause)
+        val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
 
-        imageView.setOnClickListener {
-            val bottomSheetFragment = BottomSheetFragment()
-            bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+        // Set up click listeners and other necessary UI setup
+        playPauseButton.setOnClickListener {
+            mediaPlayerManager.playPause()
+            // Update UI as needed
         }
 
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    mediaPlayerManager.seekTo(progress)
+                }
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+                // Do something when user starts touching the SeekBar
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                // if user stops touching the SeekBar then write response
+            }
+        })
+
+        // Initialize MediaPlayerManager
+        mediaPlayerManager = MediaPlayerManager(requireContext(), R.raw.media1)
+
         return view
+    }
+
+    override fun onDestroy() {
+        mediaPlayerManager.release()
+        super.onDestroy()
     }
 }
