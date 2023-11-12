@@ -15,10 +15,12 @@ import com.android.soundlyspotify.Myadapter.BestSellerAdapter
 import com.android.soundlyspotify.Myadapter.CarouselAdapter
 import com.android.soundlyspotify.Myadapter.ClothingAdapter
 import com.android.soundlyspotify.Myadapter.ImagePagerAdapter
+import com.android.soundlyspotify.Myadapter.MusicAdapter
 import com.android.soundlyspotify.Myadapter.OfferAdapter
 import com.android.soundlyspotify.models.BestSeller
 import com.android.soundlyspotify.models.BestSeller2
 import com.android.soundlyspotify.models.Clothing
+import com.android.soundlyspotify.models.MyItem
 import com.android.soundlyspotify.models.Offer
 import java.util.Timer
 import java.util.TimerTask
@@ -31,6 +33,7 @@ class homefragment : Fragment() {
     private lateinit var bestseller2RecyclerView: RecyclerView
     private lateinit var viewPager: ViewPager
     private lateinit var imageAdapter: ImagePagerAdapter
+
     private val imageList = listOf(
         R.drawable.pager1,
         R.drawable.pager2,
@@ -163,8 +166,21 @@ class homefragment : Fragment() {
         bestseller2RecyclerView.adapter = adapter
 
 
+        // music adapter is here
 
+        val recyclerView: RecyclerView = view.findViewById(R.id.musicoRecyclerView)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
+        val itemList = listOf(
+            MyItem("musico 1", R.drawable.photoek),
+            MyItem("musico 2", R.drawable.photoek),
+            MyItem("musico 3", R.drawable.photoek),
+            // Add more items as needed
+        )
+
+        val Adapter = MusicAdapter(itemList)
+        recyclerView.adapter = Adapter
 
 
         return view

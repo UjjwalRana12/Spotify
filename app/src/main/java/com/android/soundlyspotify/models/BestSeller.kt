@@ -9,3 +9,6 @@ data class Clothing(val image: Int, val title: String)
 data class BestSeller2(val image: Int, val title: String)
 
 data class GridItemData(val text: String, val imageUrl: Int)
+
+data class MyItem(val text: String, val imageUrl: Int)
+
