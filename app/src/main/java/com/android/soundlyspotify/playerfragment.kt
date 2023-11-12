@@ -21,14 +21,14 @@ class playerfragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_playerfragment, container, false)
 
-        // Initialize your views
+
         val playPauseButton = view.findViewById<AppCompatImageView>(R.id.imageplaypause)
         val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
 
         // Set up click listeners and other necessary UI setup
         playPauseButton.setOnClickListener {
             mediaPlayerManager.playPause()
-            // Update UI as needed
+            // Update UI as i want
         }
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {

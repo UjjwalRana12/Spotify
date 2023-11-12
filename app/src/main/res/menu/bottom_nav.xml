@@ -5,20 +5,27 @@
 
         android:title="Home"
         android:id="@+id/Home"
+        android:iconTint="@color/bluegreen"
         android:icon="@drawable/baseline_home_24"/>
     <item
 
         android:id="@+id/Library"
         android:title="Library"
+        android:iconTint="@color/bluegreen"
+
         android:icon="@drawable/baseline_library_music_24"/>
     <item
 
         android:title="Search"
         android:id="@+id/Search"
+        android:iconTint="@color/bluegreen"
+
         android:icon="@drawable/baseline_search_24"/>
     <item
 
         android:title="Game"
         android:id="@+id/Game"
+        android:iconTint="@color/bluegreen"
+        
         android:icon="@drawable/baseline_gamepad_24"/>
 </menu>

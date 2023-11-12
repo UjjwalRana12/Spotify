@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,122 +8,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="96dp"
-            android:src="@drawable/heartimage"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewgridlibrary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="52dp"
+            android:clipToPadding="false"
+            android:padding="16dp"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.118"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView10"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="96dp"
-            android:src="@drawable/arjitsingh"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.835"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView11"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="316dp"
-            android:src="@drawable/honeysingh"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.118"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView12"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="316dp"
-            android:src="@drawable/nehakakkar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.835"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView14"
-            android:layout_width="148dp"
-            android:layout_height="144dp"
-            android:layout_marginTop="532dp"
-            android:src="@drawable/addyoplay"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.117"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:text="Liked Songs"
-            android:fontFamily="@font/poppins"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/imageView9"
-            app:layout_constraintStart_toStartOf="@+id/imageView9"
-            app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:text="Arjit Singh"
-            android:fontFamily="@font/poppins"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/imageView10"
-            app:layout_constraintStart_toStartOf="@+id/imageView10"
-            app:layout_constraintTop_toBottomOf="@+id/imageView10" />
-
-        <TextView
-            android:id="@+id/textView24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:text="Honey Singh"
-            android:fontFamily="@font/poppins"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/imageView11"
-            app:layout_constraintStart_toStartOf="@+id/imageView11"
-            app:layout_constraintTop_toBottomOf="@+id/imageView11" />
-
-        <TextView
-            android:id="@+id/textView25"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:text="Neha Kakkar"
-            android:fontFamily="@font/poppins"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/imageView12"
-            app:layout_constraintStart_toStartOf="@+id/imageView12"
-            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
-
-        <TextView
-            android:id="@+id/textView26"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:text="Add To Playlist"
-            android:fontFamily="@font/poppins"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/imageView14"
-            app:layout_constraintStart_toStartOf="@+id/imageView14"
-            app:layout_constraintTop_toBottomOf="@+id/imageView14" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:spanCount="2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</ScrollView>

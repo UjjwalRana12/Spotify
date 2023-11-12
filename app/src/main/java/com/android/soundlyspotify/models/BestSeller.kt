@@ -1,9 +1,11 @@
 package com.android.soundlyspotify.models
 
-
+// these are the data classes for my recyclerView
 data class BestSeller(val image: Int, val title: String)
 data class Offer(val image: Int, val title: String)
 
 data class Clothing(val image: Int, val title: String)
 
 data class BestSeller2(val image: Int, val title: String)
+
+data class GridItemData(val text: String, val imageUrl: Int)
