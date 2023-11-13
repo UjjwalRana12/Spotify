@@ -7,27 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.soundlyspotify.GridAdapter
-import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.GridItemData
 
 class library : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_library, container, false)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewgridlibrary)
@@ -43,22 +30,37 @@ class library : Fragment() {
             // Add more items as needed
         )
 
-        val adapter = GridAdapter(data)
+        val adapter = GridAdapter(data) { clickedItem ->
+            addPlaylist(clickedItem)
+        }
+
         recyclerView.adapter = adapter
 
         return view
     }
 
-    companion object {
-        private const val ARG_PARAM1 = "param1"
-        private const val ARG_PARAM2 = "param2"
+    private fun addPlaylist(gridItemData: GridItemData) {
 
-        fun newInstance(param1: String, param2: String) =
-            library().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        // Example logic:
+        val playlistName = "Playlist for ${gridItemData.text}"
+        val imageUrl = gridItemData.imageUrl
+
+        // Now, you can use the playlist information to perform the desired action,
+        // such as adding the playlist to your application's playlist collection or
+        // navigating to a new screen to display the playlist details.
+
+        // Example: Print the playlist information
+        println("Added Playlist: Name - $playlistName, Image URL - $imageUrl")
+
+        // You can customize this logic based on your application's requirements.
+        // For instance, you might want to use a database to store playlists or
+        // trigger a network request to add the playlisist to add a server
+
+
+
+        // Implement the logic to add a playlist based on the clicked item
+        // For example, you can use gridItemData.text and gridItemData.imageUrl
+        // to get information about the clicked item and add it to the playlist.
+        // Add your specific logic here.
     }
 }

@@ -9,16 +9,37 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.BestSeller
 
-class BestSellerAdapter(private val bestSellers: List<BestSeller>) : RecyclerView.Adapter<BestSellerAdapter.BestSellerViewHolder>() {
+class BestSellerAdapter(private val bestSellers: List<BestSeller>) :
+    RecyclerView.Adapter<BestSellerAdapter.BestSellerViewHolder>() {
+
+    // Define a listener interface
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    // Declare a listener variable
+    private var onItemClickListener: OnItemClickListener? = null
+
+    // Setter method for the listener
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.onItemClickListener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BestSellerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.best_seller_layout, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.best_seller_layout, parent, false)
         return BestSellerViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: BestSellerViewHolder, position: Int) {
         val currentBestSeller = bestSellers[position]
         holder.bind(currentBestSeller)
+
+        // Set click listener for the ImageView
+        holder.bestSellerImage.setOnClickListener {
+            // Notify the listener when an item is clicked
+            onItemClickListener?.onItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -26,7 +47,7 @@ class BestSellerAdapter(private val bestSellers: List<BestSeller>) : RecyclerVie
     }
 
     inner class BestSellerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val bestSellerImage: ImageView = itemView.findViewById(R.id.bestsellerMV)
+        val bestSellerImage: ImageView = itemView.findViewById(R.id.bestsellerMV)
         private val bestSellerTitle: TextView = itemView.findViewById(R.id.bestsellerTV)
 
         fun bind(bestSeller: BestSeller) {

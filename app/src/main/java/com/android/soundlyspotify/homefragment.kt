@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -117,6 +118,23 @@ class homefragment : Fragment() {
         val bestSellerAdapter = BestSellerAdapter(bestSellers)
         bestsellerRecyclerView.adapter = bestSellerAdapter
 
+        bestSellerAdapter.setOnItemClickListener(object : BestSellerAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                // Handle item click here
+                val clickedBestSeller = bestSellers[position]
+                Toast.makeText(
+                    requireContext(),
+                    "Clicked on ${clickedBestSeller.title}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                // Navigate to the next fragment
+//                val nextFragment = NextFragment() // Replace with the actual fragment i want to navigate to
+//                val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
+//                fragmentTransaction.replace(R.id.fragmentContainer, nextFragment) // Replace fragmentContainer with your actual container ID
+//                fragmentTransaction.addToBackStack(null) // This allows the user to navigate back
+//                fragmentTransaction.commit()
+            }
+        })
 
 
 
@@ -146,7 +164,7 @@ class homefragment : Fragment() {
 
 
 
-
+        // best seller 2 is here
 
 
 
@@ -164,6 +182,13 @@ class homefragment : Fragment() {
         )
         val adapter = BestSeller2Adapter(context, bestSellersList)
         bestseller2RecyclerView.adapter = adapter
+
+
+
+
+
+
+
 
 
         // music adapter is here
