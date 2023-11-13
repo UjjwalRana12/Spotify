@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.viewpager.widget.PagerAdapter
 
 class ImagePagerAdapter(private val context: Context, private val imageList: List<Int>) : PagerAdapter() {
@@ -21,6 +22,13 @@ class ImagePagerAdapter(private val context: Context, private val imageList: Lis
         val imageView = ImageView(context)
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
         imageView.setImageResource(imageList[position])
+
+        // Set OnClickListener for the ImageView
+        imageView.setOnClickListener {
+            // Show a Toast when the ImageView is clicked
+            Toast.makeText(context, "Item clicked at position $position", Toast.LENGTH_SHORT).show()
+        }
+
         container.addView(imageView, 0)
         return imageView
     }

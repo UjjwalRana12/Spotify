@@ -127,7 +127,7 @@
                 app:layout_constraintStart_toStartOf="@+id/clothingRecyclerView"
                 app:layout_constraintTop_toBottomOf="@+id/clothingRecyclerView" />
 
-            <androidx.viewpager.widget.ViewPager
+            <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewPager2"
                 android:layout_width="406dp"
                 android:layout_height="376dp"

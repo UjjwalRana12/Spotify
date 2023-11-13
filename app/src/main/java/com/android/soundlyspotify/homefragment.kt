@@ -1,5 +1,6 @@
 package com.android.soundlyspotify
 
+import CarouselAdapter
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
@@ -11,9 +12,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.android.soundlyspotify.Myadapter.BestSeller2Adapter
 import com.android.soundlyspotify.Myadapter.BestSellerAdapter
-import com.android.soundlyspotify.Myadapter.CarouselAdapter
 import com.android.soundlyspotify.Myadapter.ClothingAdapter
 import com.android.soundlyspotify.Myadapter.ImagePagerAdapter
 import com.android.soundlyspotify.Myadapter.MusicAdapter
@@ -71,7 +72,7 @@ class homefragment : Fragment() {
         }, 1000, 3000)
 
             // closuer apply
-        val viewPagerCarousel = view.findViewById<ViewPager>(R.id.viewPager2)
+        val viewPagerCarousel = view.findViewById<ViewPager2>(R.id.viewPager2)
         val carouselAdapter = CarouselAdapter(requireContext())
         viewPagerCarousel.adapter = carouselAdapter
 
@@ -169,7 +170,7 @@ class homefragment : Fragment() {
 
 
 
-// Set item click listener
+        // Set item click listener
         clothingAdapter.setOnItemClickListener(object : ClothingAdapter.OnItemClickListener {
             override fun onItemClick(item: Clothing) {
                 // Handle item click here
@@ -178,11 +179,8 @@ class homefragment : Fragment() {
         })
 
 
-
+        // BEST SELLER 2
         // best seller 2 is here
-
-
-
         bestseller2RecyclerView = view.findViewById(R.id.bestSeller2RecyclerView)
         bestseller2RecyclerView.setHasFixedSize(true)
         bestseller2RecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
@@ -214,7 +212,7 @@ class homefragment : Fragment() {
 
 
 
-
+        //MUSIC ADAPTER
         // music adapter is here
 
         val recyclerView: RecyclerView = view.findViewById(R.id.musicoRecyclerView)
