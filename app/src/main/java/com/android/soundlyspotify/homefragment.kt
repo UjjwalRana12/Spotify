@@ -180,10 +180,19 @@ class homefragment : Fragment() {
             BestSeller2(R.drawable.photochaar, "arjit"),
             // Add item
         )
-        val adapter = BestSeller2Adapter(context, bestSellersList)
+
+
+
+        val adapter = BestSeller2Adapter(requireContext(), bestSellersList)
         bestseller2RecyclerView.adapter = adapter
 
-
+        // Set the item click listener
+        adapter.setOnItemClickListener(object : BestSeller2Adapter.OnItemClickListener {
+            override fun onItemClick(item: BestSeller2) {
+                // Handle item click here
+                Toast.makeText(requireContext(), "Item clicked: ${item.title}", Toast.LENGTH_SHORT).show()
+            }
+        })
 
 
 

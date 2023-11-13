@@ -13,6 +13,19 @@ import com.android.soundlyspotify.models.BestSeller2
 class BestSeller2Adapter(private val context: Context, private val bestSellers: List<BestSeller2>) :
     RecyclerView.Adapter<BestSeller2Adapter.BestSeller2ViewHolder>() {
 
+    // Click listener interface
+    interface OnItemClickListener {
+        fun onItemClick(item: BestSeller2)
+    }
+
+    // Reference to the click listener
+    private var listener: OnItemClickListener? = null
+
+    // Setter for the click listener
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BestSeller2ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.bestseller2_layout, parent, false)
         return BestSeller2ViewHolder(view)
@@ -21,6 +34,12 @@ class BestSeller2Adapter(private val context: Context, private val bestSellers: 
     override fun onBindViewHolder(holder: BestSeller2ViewHolder, position: Int) {
         val currentItem = bestSellers[position]
         holder.bind(currentItem)
+
+        // Set click listener for each item
+        holder.itemView.setOnClickListener {
+            // Notify the listener that an item is clicked
+            listener?.onItemClick(currentItem)
+        }
     }
 
     override fun getItemCount(): Int {
