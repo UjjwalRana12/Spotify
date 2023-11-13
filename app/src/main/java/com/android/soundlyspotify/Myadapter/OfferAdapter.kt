@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.Offer
 
-class OfferAdapter(private val offers: List<Offer>) : RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
+class OfferAdapter(private val offers: List<Offer>, private val onItemClick: (Offer) -> Unit) : RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfferViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.offer_layout, parent, false)
@@ -19,6 +19,11 @@ class OfferAdapter(private val offers: List<Offer>) : RecyclerView.Adapter<Offer
     override fun onBindViewHolder(holder: OfferViewHolder, position: Int) {
         val currentOffer = offers[position]
         holder.bind(currentOffer)
+
+        // Set click listener for each item
+        holder.itemView.setOnClickListener {
+            onItemClick(currentOffer)
+        }
     }
 
     override fun getItemCount(): Int {

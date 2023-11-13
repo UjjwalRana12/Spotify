@@ -85,13 +85,18 @@ class homefragment : Fragment() {
             Offer(R.drawable.phototeen, "Offer Title 1"),
             Offer(R.drawable.photoek, "Offer Title 2"),
             Offer(R.drawable.photocheh, "Offer Title 3"),
-            Offer(R.drawable.photodo, "Offer Title 3"),
-            Offer(R.drawable.photopaanch, "Offer Title 3"),
+            Offer(R.drawable.photodo, "Offer Title 4"),
+            Offer(R.drawable.photopaanch, "Offer Title 5"),
             // Add more items as needed
         )
-        val offerAdapter = OfferAdapter(offers)
-        offerRecyclerView.adapter = offerAdapter
 
+        val offerAdapter = OfferAdapter(offers) { clickedOffer ->
+            // Handle item click here
+
+            Toast.makeText(requireContext(), "Item clicked: ${clickedOffer.title}", Toast.LENGTH_SHORT).show()
+        }
+
+        offerRecyclerView.adapter = offerAdapter
 
 
 
@@ -227,7 +232,7 @@ class homefragment : Fragment() {
             // Handle item click here
             Toast.makeText(requireContext(), "Item clicked: ${clickedItem.text}", Toast.LENGTH_SHORT).show()
 
-            // Add any other actions you want to perform on item click
+            // Add any other actions i want to perform on item click
         }
 
         recyclerView.adapter = adapterss
