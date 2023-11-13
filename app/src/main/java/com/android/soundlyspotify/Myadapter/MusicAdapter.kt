@@ -10,7 +10,8 @@ import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.MyItem
 import com.bumptech.glide.Glide
 
-class MusicAdapter(private val itemList: List<MyItem>) : RecyclerView.Adapter<MusicAdapter.MyViewHolder>() {
+class MusicAdapter(private val itemList: List<MyItem>, private val onItemClick: (MyItem) -> Unit) :
+    RecyclerView.Adapter<MusicAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -21,7 +22,6 @@ class MusicAdapter(private val itemList: List<MyItem>) : RecyclerView.Adapter<Mu
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = itemList[position]
 
-
         Glide.with(holder.itemView.context)
             .load(currentItem.imageUrl)
             .override(450, 450) // Set your desired width and height
@@ -29,6 +29,12 @@ class MusicAdapter(private val itemList: List<MyItem>) : RecyclerView.Adapter<Mu
             .into(holder.imageViewItem)
 
         holder.textViewItem.text = currentItem.text
+
+        // Set click listener for each item
+        holder.itemView.setOnClickListener {
+            // Handle item click here
+            onItemClick(currentItem)
+        }
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

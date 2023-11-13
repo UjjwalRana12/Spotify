@@ -13,6 +13,18 @@ import com.android.soundlyspotify.models.Clothing
 class ClothingAdapter(private val context: Context, private val clothingList: List<Clothing>) :
     RecyclerView.Adapter<ClothingAdapter.ClothingViewHolder>() {
 
+    // Define a listener interface
+    interface OnItemClickListener {
+        fun onItemClick(item: Clothing)
+    }
+
+    private var itemClickListener: OnItemClickListener? = null
+
+    // Set the click listener
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        itemClickListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClothingViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.clothing_layout, parent, false)
         return ClothingViewHolder(view)
@@ -23,6 +35,12 @@ class ClothingAdapter(private val context: Context, private val clothingList: Li
 
         holder.clothingImage.setImageResource(currentItem.image)
         holder.clothingTitle.text = currentItem.title
+
+        // Set click listener for each item
+        holder.itemView.setOnClickListener {
+            // Notify the listener when an item is clicked
+            itemClickListener?.onItemClick(currentItem)
+        }
     }
 
     override fun getItemCount(): Int {

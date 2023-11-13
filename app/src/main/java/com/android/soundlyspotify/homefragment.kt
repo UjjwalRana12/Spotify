@@ -164,6 +164,16 @@ class homefragment : Fragment() {
 
 
 
+// Set item click listener
+        clothingAdapter.setOnItemClickListener(object : ClothingAdapter.OnItemClickListener {
+            override fun onItemClick(item: Clothing) {
+                // Handle item click here
+                Toast.makeText(requireContext(), "Item clicked: ${item.title}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+
+
         // best seller 2 is here
 
 
@@ -213,8 +223,15 @@ class homefragment : Fragment() {
             // Add more items as needed
         )
 
-        val Adapter = MusicAdapter(itemList)
-        recyclerView.adapter = Adapter
+        val adapterss = MusicAdapter(itemList) { clickedItem ->
+            // Handle item click here
+            Toast.makeText(requireContext(), "Item clicked: ${clickedItem.text}", Toast.LENGTH_SHORT).show()
+
+            // Add any other actions you want to perform on item click
+        }
+
+        recyclerView.adapter = adapterss
+
 
 
         return view
