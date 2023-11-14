@@ -24,9 +24,4 @@ interface UserAPI {
     @POST("/api/user/verify/phone_number/")
     fun verifyForgotPhoneNumber(@Body phoneData: ForgotPhoneNumberRequest): Call<ApiResponse>
 
-    interface SongAPI {
-        @GET("https://test-mkcw.onrender.com/api/playlists")
-        fun getSongs(): Call<List<Song>>
-        //getSongs is a method
-    }
 }
