@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Game"
+    android:background="@color/white"
     android:id="@+id/Game">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,11 +14,12 @@
 
         <TextView
             android:id="@+id/textView14"
-            android:layout_width="131dp"
-            android:layout_height="71dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="220dp"
-            android:text="GAme"
-            android:textSize="49dp"
+            android:text="To Be Announced!!!"
+            android:textColor="@color/black"
+            android:textSize="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toStartOf="parent"

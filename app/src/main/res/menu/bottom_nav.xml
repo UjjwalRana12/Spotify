@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
 
         android:title="Home"
         android:id="@+id/Home"
+        app:tabBackground="@drawable/tab_background"
+        app:tabMode="fixed"
         android:iconTint="@color/bluegreen"
         android:icon="@drawable/baseline_home_24"/>
     <item
 
         android:id="@+id/Library"
         android:title="Library"
+        app:tabBackground="@drawable/tab_background"
+        app:tabMode="fixed"
         android:iconTint="@color/bluegreen"
 
         android:icon="@drawable/baseline_library_music_24"/>
@@ -18,6 +23,8 @@
 
         android:title="Search"
         android:id="@+id/Search"
+        app:tabBackground="@drawable/tab_background"
+        app:tabMode="fixed"
         android:iconTint="@color/bluegreen"
 
         android:icon="@drawable/baseline_search_24"/>
@@ -25,7 +32,8 @@
 
         android:title="Game"
         android:id="@+id/Game"
+        app:tabBackground="@drawable/tab_background"
+        app:tabMode="fixed"
         android:iconTint="@color/bluegreen"
-        
         android:icon="@drawable/baseline_gamepad_24"/>
 </menu>
