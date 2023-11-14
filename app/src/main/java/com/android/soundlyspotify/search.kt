@@ -7,17 +7,20 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-import com.android.soundlyspotify.data.Song
-import com.android.soundlyspotify.R
-
 class search : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
         val songList = listOf(
-            SongModel(R.drawable.arjitsingh, "Song Title 1", "Artist 1", "Album 1"),
-            SongModel(R.drawable.nehakakkar, "Song Title 2", "Artist 2", "Album 2"),
+            SongModelshai(R.drawable.arjitsingh, "Song Title 1", "Artist 1", "Album 1"),
+            SongModelshai(R.drawable.nehakakkar, "Song Title 2", "Artist 2", "Album 2"),
+            SongModelshai(R.drawable.nehakakkar, "Song Title 2", "Artist 2", "Album 2"),
+            SongModelshai(R.drawable.nehakakkar, "Song Title 2", "Artist 2", "Album 2"),
+            SongModelshai(R.drawable.nehakakkar, "Song Title 2", "Artist 2", "Album 2"),
+            SongModelshai(R.drawable.nehakakkar, "Song Title 2", "Artist 2", "Album 2"),
+            SongModelshai(R.drawable.nehakakkar, "Song Title 2", "Artist 2", "Album 2"),
+            SongModelshai(R.drawable.nehakakkar, "Song Title 2", "Artist 2", "Album 2"),
             // Add more SongModel instances as needed
         )
 

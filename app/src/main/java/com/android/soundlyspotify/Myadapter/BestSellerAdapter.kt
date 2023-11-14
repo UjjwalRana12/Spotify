@@ -7,46 +7,52 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
-import com.android.soundlyspotify.Song
+import com.android.soundlyspotify.models.BestSeller
 
-import com.squareup.picasso.Picasso
+class BestSellerAdapter(private val bestSellers: List<BestSeller>) :
+    RecyclerView.Adapter<BestSellerAdapter.BestSellerViewHolder>() {
 
-class BestSellerAdapter(private var songs: List<Song>) : RecyclerView.Adapter<BestSellerAdapter.BestSellerViewHolder>() {
+    // Define a listener interface
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
 
-    // Update function to set new data in the adapter
-    fun setSongs(newSongs: List<Song>?) {
-        songs = newSongs ?: emptyList()
-        notifyDataSetChanged()
+    // Declare a listener variable
+    private var onItemClickListener: OnItemClickListener? = null
+
+    // Setter method for the listener
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.onItemClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BestSellerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.best_seller_layout, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.best_seller_layout, parent, false)
         return BestSellerViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: BestSellerViewHolder, position: Int) {
-        val currentSong = songs[position]
-        holder.bind(currentSong)
+        val currentBestSeller = bestSellers[position]
+        holder.bind(currentBestSeller)
+
+        // Set click listener for the ImageView
+        holder.bestSellerImage.setOnClickListener {
+            // Notify the listener when an item is clicked
+            onItemClickListener?.onItemClick(position)
+        }
     }
 
     override fun getItemCount(): Int {
-        return songs.size
+        return bestSellers.size
     }
 
     inner class BestSellerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val bestSellerImage: ImageView = itemView.findViewById(R.id.bestsellerMV)
+        val bestSellerImage: ImageView = itemView.findViewById(R.id.bestsellerMV)
         private val bestSellerTitle: TextView = itemView.findViewById(R.id.bestsellerTV)
 
-        fun bind(song: Song) {
-            // Load image using Picasso (or you can use Glide, or any other image loading library)
-            if (!song.thumbnail_url.isNullOrEmpty()) {
-                Picasso.get().load(song.thumbnail_url).into(bestSellerImage)
-            } else {
-                // You can set a placeholder image or handle the case when the thumbnail URL is empty
-                bestSellerImage.setImageResource(R.drawable.photoek)
-            }
-
-            bestSellerTitle.text = song.name
+        fun bind(bestSeller: BestSeller) {
+            bestSellerImage.setImageResource(bestSeller.image)
+            bestSellerTitle.text = bestSeller.title
         }
     }
 }

@@ -24,6 +24,7 @@ interface UserAPI {
     @POST("/api/user/verify/phone_number/")
     fun verifyForgotPhoneNumber(@Body phoneData: ForgotPhoneNumberRequest): Call<ApiResponse<Any?>>
 
+
     interface ApiService {
         @GET("https://test-mkcw.onrender.com/api/playlists")
         suspend fun getSongs(): ApiResponse<List<Song>>
@@ -34,5 +35,6 @@ interface UserAPI {
 //        val message: String,
 //        val data: T
 //    )
+
 
 }

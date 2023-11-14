@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/drawable/tab_background.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected Tab -->
+    <item android:state_selected="true">
+        <shape>
+            <solid android:color="@color/bluegreen" /> <!-- Set the background color when the tab is selected -->
+        </shape>
+    </item>
+    <!-- Unselected Tab -->
+    <item android:state_selected="false">
+        <shape>
+            <solid android:color="@color/bluegreen" /> <!-- Set the background color when the tab is unselected -->
+        </shape>
+    </item>
+</selector>

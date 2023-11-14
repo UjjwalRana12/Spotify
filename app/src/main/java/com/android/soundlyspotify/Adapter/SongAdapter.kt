@@ -7,7 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class SongAdapter(private val dataList: List<SongModel>) :
+
+class SongAdapter(private val dataList: List<SongModelshai>) :
     RecyclerView.Adapter<SongAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,7 +31,7 @@ class SongAdapter(private val dataList: List<SongModel>) :
         private val textViewArtist: TextView = itemView.findViewById(R.id.artistTextView)
         private val textViewAlbum: TextView = itemView.findViewById(R.id.SongDuration)
 
-        fun bind(item: SongModel) {
+        fun bind(item: SongModelshai) {
             imageView.setImageResource(item.image)
             textViewTitle.text = item.title
             textViewArtist.text = item.artist
@@ -39,4 +40,4 @@ class SongAdapter(private val dataList: List<SongModel>) :
     }
 }
 
-data class SongModel(val image: Int, val title: String, val artist: String, val album: String)
+data class SongModelshai(val image: Int, val title: String, val artist: String, val album: String)

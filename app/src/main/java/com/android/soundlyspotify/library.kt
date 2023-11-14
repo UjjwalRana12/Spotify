@@ -5,55 +5,62 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.android.soundlyspotify.models.GridItemData
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [library.newInstance] factory method to
- * create an instance of this fragment.
- */
 class library : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_library, container, false)
+        val view = inflater.inflate(R.layout.fragment_library, container, false)
+
+        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerViewgridlibrary)
+        val layoutManager = GridLayoutManager(requireContext(), 2)
+        recyclerView.layoutManager = layoutManager
+
+        val data = listOf(
+            GridItemData("Item 1", R.drawable.photochaar),
+            GridItemData("Item 2", R.drawable.photoek),
+            GridItemData("Item 3", R.drawable.photoek),
+            GridItemData("Item 4", R.drawable.photoek),
+            GridItemData("Item 5", R.drawable.photoek),
+            // Add more items as needed
+        )
+
+        val adapter = GridAdapter(data) { clickedItem ->
+            addPlaylist(clickedItem)
+        }
+
+        recyclerView.adapter = adapter
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment library.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            library().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun addPlaylist(gridItemData: GridItemData) {
+
+        // Example logic:
+        val playlistName = "Playlist for ${gridItemData.text}"
+        val imageUrl = gridItemData.imageUrl
+
+        // Now, you can use the playlist information to perform the desired action,
+        // such as adding the playlist to your application's playlist collection or
+        // navigating to a new screen to display the playlist details.
+
+        // Example: Print the playlist information
+        println("Added Playlist: Name - $playlistName, Image URL - $imageUrl")
+
+        // You can customize this logic based on your application's requirements.
+        // For instance, you might want to use a database to store playlists or
+        // trigger a network request to add the playlisist to add a server
+
+
+
+        // Implement the logic to add a playlist based on the clicked item
+        // For example, you can use gridItemData.text and gridItemData.imageUrl
+        // to get information about the clicked item and add it to the playlist.
+        // Add your specific logic here.
     }
 }

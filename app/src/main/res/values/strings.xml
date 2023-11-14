@@ -25,4 +25,5 @@
     <string name="via_phone_number"><font color="#FFA500">via phone number</font></string>
     <string name="via_email"><font color="#FFA500">via email</font></string>
     <string name="s">S</string>
+    <string name="Search_the_Music"><font color="#505050">Search Your Music</font></string>
 </resources>
