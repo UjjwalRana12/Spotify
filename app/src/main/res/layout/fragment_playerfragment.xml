@@ -135,13 +135,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_height="80dp"
+            android:background="@drawable/desikalakarcornerradius">
 
             <ImageView
-                android:id="@+id/imageView18"
+                android:id="@+id/imageViewbottom18"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="2dp"
                 android:src="@drawable/line13"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

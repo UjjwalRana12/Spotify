@@ -45,16 +45,23 @@ class playerfragment : Fragment() {
             }
 
             override fun onStartTrackingTouch(seekBar: SeekBar?) {
-                // Do something when user starts touching the SeekBar
+                // Do something when the user starts touching the SeekBar
             }
 
             override fun onStopTrackingTouch(seekBar: SeekBar?) {
-                // Do something when user stops touching the SeekBar
+                // Do something when the user stops touching the SeekBar
             }
         })
 
         // Initialize MediaPlayerManager
         mediaPlayerManager = MediaPlayerManager(requireContext(), R.raw.media1)
+
+        // Set up Bottom Sheet
+        val bottomSheetButton = view.findViewById<AppCompatImageView>(R.id.imageViewbottom18)
+        bottomSheetButton.setOnClickListener {
+            val bottomSheetFragment = BottomSheetFragment()
+            bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
+        }
 
         return view
     }
