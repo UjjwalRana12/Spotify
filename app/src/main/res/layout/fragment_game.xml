@@ -16,12 +16,13 @@
             android:id="@+id/QuestiontextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:text="Remeber This Song"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/poppins"
+            android:text="Remeber This Song ?"
             android:textColor="@color/black"
-            android:textSize="40dp"
+            android:textSize="32dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView14"
-            app:layout_constraintHorizontal_bias="0.473"
+            app:layout_constraintHorizontal_bias="0.433"
             app:layout_constraintStart_toStartOf="@+id/imageView14"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,10 +41,13 @@
             android:id="@+id/option1Button"
             android:layout_width="320dp"
             android:layout_height="56dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="24dp"
             android:text="Desi Kalakar"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:background="@drawable/button_background"
+            android:fontFamily="@font/poppins"
             app:layout_constraintEnd_toEndOf="@+id/imageView14"
-            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="@+id/imageView14"
             app:layout_constraintTop_toBottomOf="@+id/imageView14" />
 
@@ -51,10 +55,15 @@
             android:id="@+id/option2Button"
             android:layout_width="320dp"
             android:layout_height="56dp"
-            android:layout_marginTop="27dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins"
             android:text="Rata Lambiyan"
+            android:background="@drawable/button_background"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
 
             app:layout_constraintEnd_toEndOf="@+id/option1Button"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/option1Button"
             app:layout_constraintTop_toBottomOf="@+id/option1Button" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -144,9 +144,9 @@ class homefragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
                 // Navigate to the next fragment
-//                val nextFragment = NextFragment() // Replace with the actual fragment i want to navigate to
+//                val nextFragment = Game // Replace with the actual fragment i want to navigate to
 //                val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-//                fragmentTransaction.replace(R.id.fragmentContainer, nextFragment) // Replace fragmentContainer with your actual container ID
+//                fragmentTransaction.replace(R.id.home_fragment, nextFragment) // Replace fragmentContainer with your actual container ID
 //                fragmentTransaction.addToBackStack(null) // This allows the user to navigate back
 //                fragmentTransaction.commit()
             }
@@ -197,7 +197,7 @@ class homefragment : Fragment() {
         bestseller2RecyclerView = view.findViewById(R.id.bestSeller2RecyclerView)
         bestseller2RecyclerView.setHasFixedSize(true)
 
-        // Set the adapter first
+        // Set the adapter
         val adapter = BestSeller2Adapter(requireContext(), emptyList())
         bestseller2RecyclerView.adapter = adapter
 
@@ -205,7 +205,7 @@ class homefragment : Fragment() {
             LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         println("display 2nd step working ")
 
-        // Use viewModelScope or lifecycleScope depending on your needs
+
         lifecycleScope.launch {
             try {
                 println("try working")

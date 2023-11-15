@@ -1,6 +1,6 @@
 package com.android.soundlyspotify
 
-import Game
+
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -41,7 +41,7 @@ class MainActivity2 : AppCompatActivity() {
         }
     }
 
-    // Move these functions outside of the onCreate function
+
     fun hideBottomNavigationView() {
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottomNavigationView)
         bottomNavigationView.visibility = View.GONE
