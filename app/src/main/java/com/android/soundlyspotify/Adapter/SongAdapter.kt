@@ -6,10 +6,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.android.soundlyspotify.applied_api.SongModel
 
-
-class SongAdapter(private val dataList: List<SongModelshai>) :
+class SongAdapter(private var dataList: MutableList<SongModel>) :
     RecyclerView.Adapter<SongAdapter.ViewHolder>() {
+
+    // Getter for dataList
+    fun getDataList(): MutableList<SongModel> {
+        return dataList
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.music_view, parent, false)
@@ -25,19 +30,29 @@ class SongAdapter(private val dataList: List<SongModelshai>) :
         return dataList.size
     }
 
+    // This method updates the dataset and refreshes the RecyclerView
+    fun setData(newData: MutableList<SongModel>) {
+        dataList.clear()
+        dataList.addAll(newData)
+        notifyDataSetChanged()
+    }
+
+    // Additional method to add a single song to the dataset
+    fun addSong(song: SongModel) {
+        dataList.add(song)
+        notifyItemInserted(dataList.size - 1)
+    }
+
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageView: ImageView = itemView.findViewById(R.id.imageMV)
         private val textViewTitle: TextView = itemView.findViewById(R.id.songNameTextView)
         private val textViewArtist: TextView = itemView.findViewById(R.id.artistTextView)
-        private val textViewAlbum: TextView = itemView.findViewById(R.id.SongDuration)
 
-        fun bind(item: SongModelshai) {
-            imageView.setImageResource(item.image)
-            textViewTitle.text = item.title
+        fun bind(item: SongModel) {
+            imageView.setImageResource(item.imageMV)
+            textViewTitle.text = item.name
             textViewArtist.text = item.artist
-            textViewAlbum.text = item.album
+            // You can further bind other properties as needed
         }
     }
 }
-
-data class SongModelshai(val image: Int, val title: String, val artist: String, val album: String)

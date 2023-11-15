@@ -19,7 +19,8 @@ data class SongModel(
 data class ApiSongResponse(
     val success: Boolean,
     val message: String,
-    val data: List<Song>
+    val data: List<SongModel>
 )
+
 
 
