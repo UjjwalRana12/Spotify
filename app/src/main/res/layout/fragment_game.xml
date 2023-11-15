@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,26 +13,49 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/QuestiontextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="220dp"
-            android:text="To Be Announced!!!"
+            android:layout_marginTop="52dp"
+            android:text="Remeber This Song"
             android:textColor="@color/black"
             android:textSize="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.428"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView14"
+            app:layout_constraintHorizontal_bias="0.473"
+            app:layout_constraintStart_toStartOf="@+id/imageView14"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/openPlayerButton"
+        <ImageView
+            android:id="@+id/imageView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:text="Button"
-            app:layout_constraintEnd_toEndOf="@+id/textView14"
-            app:layout_constraintStart_toStartOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            android:layout_marginTop="16dp"
+            android:src="@drawable/illus_for_game"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.445"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/QuestiontextView" />
+
+        <Button
+            android:id="@+id/option1Button"
+            android:layout_width="320dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="40dp"
+            android:text="Desi Kalakar"
+            app:layout_constraintEnd_toEndOf="@+id/imageView14"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="@+id/imageView14"
+            app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+
+        <Button
+            android:id="@+id/option2Button"
+            android:layout_width="320dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="27dp"
+            android:text="Rata Lambiyan"
+
+            app:layout_constraintEnd_toEndOf="@+id/option1Button"
+            app:layout_constraintStart_toStartOf="@+id/option1Button"
+            app:layout_constraintTop_toBottomOf="@+id/option1Button" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</ScrollView>

@@ -1,34 +1,19 @@
 package com.android.soundlyspotify
-
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import com.android.soundlyspotify.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Game.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Game : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var questionTextView: TextView
+    private lateinit var option1Button: Button
+    private lateinit var option2Button: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,19 +22,24 @@ class Game : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_game, container, false)
 
-        val openPlayerButton: Button = view.findViewById(R.id.openPlayerButton)
-        openPlayerButton.setOnClickListener {
-            openPlayerFragment()
-        }
+        questionTextView = view.findViewById(R.id.QuestiontextView)
+        option1Button = view.findViewById(R.id.option1Button)
+        option2Button = view.findViewById(R.id.option2Button)
 
         return view
     }
 
-    private fun openPlayerFragment() {
-        val playerFragment = playerfragment()
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.Game, playerFragment)
-            .addToBackStack(null)
-            .commit()
+    fun onOptionSelected(view: View) {
+        // Reset background color for both options
+        option1Button.setBackgroundColor(Color.TRANSPARENT)
+        option2Button.setBackgroundColor(Color.TRANSPARENT)
+
+        // Highlight the selected option
+        val selectedOption = view as Button
+        selectedOption.setBackgroundColor(Color.YELLOW)
+
+        // Handle the selected option (you may want to do something specific here)
+        val selectedOptionText = selectedOption.text.toString()
+        // Do something with the selected option text, e.g., check if it's the correct answer.
     }
 }
