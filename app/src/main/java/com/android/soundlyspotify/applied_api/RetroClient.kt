@@ -1,5 +1,6 @@
 package com.android.soundlyspotify.applied_api
 
+import com.android.soundlyspotify.data.SongApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

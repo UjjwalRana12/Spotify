@@ -1,13 +1,12 @@
 package com.android.soundlyspotify.data
 
-import com.android.soundlyspotify.applied_api.DisplayInterface
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitDisplay {
-    private const val BASE_URL = "https://test-mkcw.onrender.com/"
+    private const val BASE_URL = "https://test-mkcw.onrender.com/api/"
 
     // Define the Retrofit instance
     private val retrofit: Retrofit = Retrofit.Builder()

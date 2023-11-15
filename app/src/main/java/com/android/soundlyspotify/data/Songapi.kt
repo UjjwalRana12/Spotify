@@ -1,9 +1,7 @@
-package com.android.soundlyspotify.applied_api
+package com.android.soundlyspotify.data
 
-import com.android.soundlyspotify.Song
-import com.android.soundlyspotify.data.DisplayResponse
+import com.android.soundlyspotify.applied_api.ApiSongResponse
 
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

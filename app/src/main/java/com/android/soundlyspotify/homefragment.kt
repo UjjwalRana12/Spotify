@@ -22,12 +22,10 @@ import com.android.soundlyspotify.Myadapter.ClothingAdapter
 import com.android.soundlyspotify.Myadapter.ImagePagerAdapter
 import com.android.soundlyspotify.Myadapter.MusicAdapter
 import com.android.soundlyspotify.Myadapter.OfferAdapter
-import com.android.soundlyspotify.applied_api.DisplayInterface
-import com.android.soundlyspotify.applied_api.RetroClient
+import com.android.soundlyspotify.data.DisplayInterface
 import com.android.soundlyspotify.data.RetrofitDisplay
 import com.android.soundlyspotify.data.SongDisplayed
 import com.android.soundlyspotify.models.BestSeller
-import com.android.soundlyspotify.models.BestSeller2
 import com.android.soundlyspotify.models.Clothing
 import com.android.soundlyspotify.models.MyItem
 import com.android.soundlyspotify.models.Offer
