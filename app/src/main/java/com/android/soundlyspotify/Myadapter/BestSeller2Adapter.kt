@@ -1,6 +1,6 @@
-package com.android.soundlyspotify.Myadapter
-
+package com.android.soundlyspotify
 import android.content.Context
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,20 +8,21 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
-import com.android.soundlyspotify.models.BestSeller2
+import com.android.soundlyspotify.data.SongDisplayed
 
-class BestSeller2Adapter(private val context: Context, private val bestSellers: List<BestSeller2>) :
-    RecyclerView.Adapter<BestSeller2Adapter.BestSeller2ViewHolder>() {
+import com.bumptech.glide.Glide
 
-    // Click listener interface
+class BestSeller2Adapter(
+private val context: Context,
+private val songs: List<SongDisplayed>
+) : RecyclerView.Adapter<BestSeller2Adapter.BestSeller2ViewHolder>() {
+
     interface OnItemClickListener {
-        fun onItemClick(item: BestSeller2)
+        fun onItemClick(item: SongDisplayed)
     }
 
-    // Reference to the click listener
     private var listener: OnItemClickListener? = null
 
-    // Setter for the click listener
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.listener = listener
     }
@@ -32,27 +33,32 @@ class BestSeller2Adapter(private val context: Context, private val bestSellers: 
     }
 
     override fun onBindViewHolder(holder: BestSeller2ViewHolder, position: Int) {
-        val currentItem = bestSellers[position]
+        val currentItem = songs[position]
         holder.bind(currentItem)
 
-        // Set click listener for each item
         holder.itemView.setOnClickListener {
-            // Notify the listener that an item is clicked
             listener?.onItemClick(currentItem)
         }
     }
 
     override fun getItemCount(): Int {
-        return bestSellers.size
+        return songs.size
     }
 
     inner class BestSeller2ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageView: ImageView = itemView.findViewById(R.id.bestseller2Mv)
         private val titleTextView: TextView = itemView.findViewById(R.id.bestseller2Tv)
 
-        fun bind(bestSeller: BestSeller2) {
-            imageView.setImageResource(bestSeller.image)
-            titleTextView.text = bestSeller.title
+        fun bind(song: SongDisplayed) {
+            // Load image using Glide
+            Glide.with(context)
+                .load(song.thumbnailUrl)
+                .placeholder(R.drawable.defaultimage) // Placeholder image while loading
+                .error(R.drawable.defaultimage) // Image to show in case of error
+                .into(imageView)
+
+            // Set other data
+            titleTextView.text = song.name
         }
     }
 }

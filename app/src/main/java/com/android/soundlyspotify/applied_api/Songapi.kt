@@ -16,16 +16,16 @@ interface SongApi {
 }
 
 interface DisplayInterface {
-    @GET("offer-endpoint")
+    @GET("allpublicsongs")
     suspend fun getOfferSongs(): Response<DisplayResponse>
 
-    @GET("bestseller-endpoint")
+    @GET("allpublicsongs")
     suspend fun getBestsellerSongs(): Response<DisplayResponse>
 
-    @GET("clothing-endpoint")
+    @GET("allpublicsongs")
     suspend fun getClothingSongs(): Response<DisplayResponse>
 
-    @GET("bestseller2-endpoint")
+    @GET("allpublicsongs")
     suspend fun getBestseller2Songs(): Response<DisplayResponse>
 }
 

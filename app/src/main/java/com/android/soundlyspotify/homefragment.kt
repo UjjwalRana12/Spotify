@@ -4,26 +4,34 @@ import CarouselAdapter
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
-import com.android.soundlyspotify.Myadapter.BestSeller2Adapter
+//import com.android.soundlyspotify.Myadapter.BestSeller2Adapter
+
 import com.android.soundlyspotify.Myadapter.BestSellerAdapter
 import com.android.soundlyspotify.Myadapter.ClothingAdapter
 import com.android.soundlyspotify.Myadapter.ImagePagerAdapter
 import com.android.soundlyspotify.Myadapter.MusicAdapter
 import com.android.soundlyspotify.Myadapter.OfferAdapter
+import com.android.soundlyspotify.applied_api.DisplayInterface
+import com.android.soundlyspotify.applied_api.RetroClient
+import com.android.soundlyspotify.data.RetrofitDisplay
+import com.android.soundlyspotify.data.SongDisplayed
 import com.android.soundlyspotify.models.BestSeller
 import com.android.soundlyspotify.models.BestSeller2
 import com.android.soundlyspotify.models.Clothing
 import com.android.soundlyspotify.models.MyItem
 import com.android.soundlyspotify.models.Offer
+import kotlinx.coroutines.launch
 import java.util.Timer
 import java.util.TimerTask
 
@@ -33,6 +41,8 @@ class homefragment : Fragment() {
     private lateinit var bestsellerRecyclerView: RecyclerView
     private lateinit var clothingRecyclerView: RecyclerView
     private lateinit var bestseller2RecyclerView: RecyclerView
+
+    private lateinit var displayInterface: DisplayInterface
     private lateinit var viewPager: ViewPager
     private lateinit var imageAdapter: ImagePagerAdapter
 
@@ -180,33 +190,54 @@ class homefragment : Fragment() {
 
 
         // BEST SELLER 2
-        // best seller 2 is here
+        displayInterface = RetrofitDisplay.instance
+        println("Display interface running")
+
+        // BEST SELLER 2
         bestseller2RecyclerView = view.findViewById(R.id.bestSeller2RecyclerView)
         bestseller2RecyclerView.setHasFixedSize(true)
-        bestseller2RecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        val bestSellersList = listOf(
-            BestSeller2(R.drawable.photosaath, "arjit singh"),
-            BestSeller2(R.drawable.photocheh, "arjit Awaits"),
-            BestSeller2(R.drawable.photoek, "arjit"),
-            BestSeller2(R.drawable.phototeen, "arjit"),
-            BestSeller2(R.drawable.photochaar, "arjit"),
-            // Add item
-        )
-
-
-
-        val adapter = BestSeller2Adapter(requireContext(), bestSellersList)
+        // Set the adapter first
+        val adapter = BestSeller2Adapter(requireContext(), emptyList())
         bestseller2RecyclerView.adapter = adapter
 
-        // Set the item click listener
-        adapter.setOnItemClickListener(object : BestSeller2Adapter.OnItemClickListener {
-            override fun onItemClick(item: BestSeller2) {
-                // Handle item click here
-                Toast.makeText(requireContext(), "Item clicked: ${item.title}", Toast.LENGTH_SHORT).show()
-            }
-        })
+        bestseller2RecyclerView.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        println("display 2nd step working ")
 
+        // Use viewModelScope or lifecycleScope depending on your needs
+        lifecycleScope.launch {
+            try {
+                println("try working")
+                val response = displayInterface.getBestseller2Songs()
+                if (response.isSuccessful) {
+                    println("Bestseller is successful called")
+                    val bestSellersList = response.body()?.data ?: emptyList()
+
+                    val adapter = BestSeller2Adapter(requireContext(), bestSellersList)
+                    bestseller2RecyclerView.adapter = adapter
+
+                    // Set the item click listener
+                    adapter.setOnItemClickListener(object : BestSeller2Adapter.OnItemClickListener {
+                        override fun onItemClick(item: SongDisplayed) {
+                            // Handle item click here
+                            Toast.makeText(
+                                requireContext(),
+                                "Item clicked: ${item.name}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    })
+
+                } else {
+                    // Handle error
+                    Log.e("API Request", "Error: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                // Handle exception
+                Log.e("API Request", "Exception: ${e.message}")
+            }
+        }
 
 
 
