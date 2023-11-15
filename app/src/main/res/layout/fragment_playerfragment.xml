@@ -54,10 +54,12 @@
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="329dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:max="10"
-        android:progress="3"
+        android:layout_marginTop="20dp"
+        android:max="1"
         android:outlineSpotShadowColor="@color/black"
+        android:progress="3"
+        android:progressTint="@color/black"
+        android:thumbTint="@color/bluegreen"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/imageView2"
@@ -67,10 +69,10 @@
         android:id="@+id/imageplaypause"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/baseline_play_circle_24"
         app:layout_constraintEnd_toEndOf="@+id/seekBar"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="@+id/seekBar"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
@@ -78,7 +80,7 @@
         android:id="@+id/imageView4"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/baseline_repeat_24"
         app:layout_constraintEnd_toEndOf="@+id/seekBar"
         app:layout_constraintHorizontal_bias="1.0"
@@ -89,7 +91,7 @@
         android:id="@+id/imageView7"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/baseline_shuffle_24"
         app:layout_constraintEnd_toEndOf="@+id/seekBar"
         app:layout_constraintHorizontal_bias="0.0"
@@ -100,10 +102,10 @@
         android:id="@+id/imageView8"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/baseline_skip_previous"
         app:layout_constraintEnd_toEndOf="@+id/seekBar"
-        app:layout_constraintHorizontal_bias="0.232"
+        app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintStart_toStartOf="@+id/seekBar"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
@@ -111,26 +113,25 @@
         android:id="@+id/imageView13"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/baseline_skip_next"
         app:layout_constraintEnd_toEndOf="@+id/seekBar"
-        app:layout_constraintHorizontal_bias="0.777"
+        app:layout_constraintHorizontal_bias="0.771"
         app:layout_constraintStart_toStartOf="@+id/seekBar"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="82dp"
-        android:layout_marginTop="30dp"
+
         android:background="@drawable/desikalakarcornerradius"
 
+
         android:backgroundTint="@color/lightbg"
-
-
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageplaypause">
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -153,6 +154,7 @@
                 android:layout_marginTop="28dp"
                 android:fontFamily="@font/poppins"
                 android:text="More Like Desi Kalakar"
+                android:textColor="@color/black"
                 android:textFontWeight="400"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"

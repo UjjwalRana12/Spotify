@@ -47,7 +47,7 @@ class search : Fragment() {
 
                 searchJob = lifecycleScope.launch {
                     Log.d(TAG, "Delay started")
-                    delay(1000) // Increase the delay to 1000 milliseconds (1 second)
+                    delay(2000) // Increase the delay to 1000 milliseconds (1 second)
                     Log.d(TAG, "Delay completed")
                     newText?.let {
                         Log.d(TAG, "Calling searchSongs with query: $it")
