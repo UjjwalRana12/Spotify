@@ -11,11 +11,6 @@ import com.android.soundlyspotify.applied_api.SongModel
 class SongAdapter(private var dataList: MutableList<SongModel>) :
     RecyclerView.Adapter<SongAdapter.ViewHolder>() {
 
-    // Getter for dataList
-    fun getDataList(): MutableList<SongModel> {
-        return dataList
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.music_view, parent, false)
         return ViewHolder(view)

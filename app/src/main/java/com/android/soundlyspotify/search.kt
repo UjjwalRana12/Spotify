@@ -46,8 +46,11 @@ class search : Fragment() {
                 searchJob?.cancel()
 
                 searchJob = lifecycleScope.launch {
-                    delay(300)
+                    Log.d(TAG, "Delay started")
+                    delay(1000) // Increase the delay to 1000 milliseconds (1 second)
+                    Log.d(TAG, "Delay completed")
                     newText?.let {
+                        Log.d(TAG, "Calling searchSongs with query: $it")
                         searchSongs(it)
                     }
                 }
@@ -55,15 +58,19 @@ class search : Fragment() {
                 return true
             }
         })
+        Log.d(TAG, "API called with search")
 
         return view
     }
+
 
     private fun searchSongs(query: String) {
         lifecycleScope.launch {
             try {
                 val apiResponse = songApi.searchSongs(query)
+
                 if (apiResponse.success) {
+                    Log.d(TAG, "API call successfully")
                     val apiResults = apiResponse.data
                     songAdapter.setData(apiResults.toMutableList()) // Convert to MutableList
                     Log.d(TAG, "Search successful. Number of results: ${apiResults.size}")
@@ -85,6 +92,6 @@ class search : Fragment() {
     }
 
     companion object {
-        private const val TAG = "SearchFragment"
+        private const val TAG = "search"
     }
 }
