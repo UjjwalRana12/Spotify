@@ -50,6 +50,7 @@ class SongAdapter(private var dataList: MutableList<SongModel>) :
             textViewArtist.text = item.artist
             textViewDuration.text = item.song_duration
 
+
             // You can further bind other properties as needed
         }
     }
