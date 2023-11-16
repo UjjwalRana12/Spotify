@@ -1,6 +1,8 @@
 package com.android.soundlyspotify.applied_api
 
+
 import com.android.soundlyspotify.data.SongApi
+import com.android.soundlyspotify.data.SongApiService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,5 +20,7 @@ object RetroClient {
 
     // Define the SongApi instance
     val instance: SongApi = retrofit.create(SongApi::class.java)
+
+
 }
 //hello world

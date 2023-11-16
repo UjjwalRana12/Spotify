@@ -1,9 +1,12 @@
 package com.android.soundlyspotify.data
 
+import com.android.soundlyspotify.ApiResponse
 import com.android.soundlyspotify.applied_api.ApiSongResponse
+import com.android.soundlyspotify.applied_api.SongDetails
 
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -26,6 +29,13 @@ interface DisplayInterface {
     @GET("allpublicsongs")
     suspend fun getBestseller2Songs(): Response<DisplayResponse>
 }
+interface SongApiService {
+
+    @GET("getSongDetails/{id}")
+    suspend fun getSongDetails(@Path("id") songId: Int): Response<ApiResponse<SongDetails>>
+
+}
+
 
 
 
