@@ -6,6 +6,7 @@ data class SongModel(
     val name: String,
     val imageMV: Int,
     val uploader: String,
+    val song_duration: String,
     val language: String,
     val lyricsUrl: String?,
     val mood: String,

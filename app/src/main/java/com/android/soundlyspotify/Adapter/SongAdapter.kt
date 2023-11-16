@@ -42,11 +42,14 @@ class SongAdapter(private var dataList: MutableList<SongModel>) :
         private val imageView: ImageView = itemView.findViewById(R.id.imageMV)
         private val textViewTitle: TextView = itemView.findViewById(R.id.songNameTextView)
         private val textViewArtist: TextView = itemView.findViewById(R.id.artistTextView)
-
+        private val textViewDuration: TextView = itemView.findViewById(R.id.SongDuration)
+        private val playpause: ImageView = itemView.findViewById(R.id.imageView3play)
         fun bind(item: SongModel) {
             imageView.setImageResource(item.imageMV)
             textViewTitle.text = item.name
             textViewArtist.text = item.artist
+            textViewDuration.text = item.song_duration
+
             // You can further bind other properties as needed
         }
     }
