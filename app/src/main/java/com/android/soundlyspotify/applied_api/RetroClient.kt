@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetroClient {
-    private const val BASE_URL = "https://test-mkcw.onrender.com/"
+    private const val BASE_URL = "https://test-mkcw.onrender.com/api/"
 
     // Define the Retrofit instance
     private val retrofit: Retrofit = Retrofit.Builder()

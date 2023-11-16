@@ -53,6 +53,7 @@ private val songs: List<SongDisplayed>
             // Load image using Glide
             Glide.with(context)
                 .load(song.thumbnailUrl)
+                .override(450, 450)
                 .placeholder(R.drawable.defaultimage) // Placeholder image while loading
                 .error(R.drawable.defaultimage) // Image to show in case of error
                 .into(imageView)

@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 
 interface SongApi {
-    @GET("search")
+    @GET("songsearch")
     suspend fun searchSongs(@Query("query") query: String): ApiSongResponse
 }
 
