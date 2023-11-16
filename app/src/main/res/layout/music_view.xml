@@ -27,7 +27,7 @@
 
     <TextView
         android:id="@+id/songNameTextView"
-        android:layout_width="112dp"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
         android:layout_alignParentTop="true"
