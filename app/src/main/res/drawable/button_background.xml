@@ -5,5 +5,11 @@
     <corners android:radius="8dp" />
     <stroke
         android:color="#000000"
-        android:width="2dp" /> <!-- Border width -->
+        android:width="2dp" /><!-- Border width -->
+
+    <!-- Default state -->
+    <item android:color="@color/black" />
+
+    <!-- State when text is not empty -->
+    <item android:state_expanded="true" android:color="@color/black" />
 </shape>

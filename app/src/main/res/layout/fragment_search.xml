@@ -8,9 +8,22 @@
         android:layout_height="match_parent"
     android:background="@color/white">
 
-        <androidx.recyclerview.widget.RecyclerView
+    <FrameLayout
+        android:id="@+id/aayein_frame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchView">
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/firstrecycler"
             android:layout_width="414dp"
+
             android:layout_height="478dp"
             android:layout_marginTop="124dp"
             app:layout_constraintEnd_toEndOf="parent"
