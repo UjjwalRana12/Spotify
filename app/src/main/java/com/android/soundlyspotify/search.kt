@@ -113,18 +113,20 @@ class search : Fragment() {
 
     private fun onSongClicked(song: SongModel) {
         // Perform actions when a song is clicked
-        // For example, make another API call using the song details
+
         makeAnotherApiCall(song)
     }
 
     private fun makeAnotherApiCall(song: SongModel) {
         lifecycleScope.launch {
             try {
+                println("makeanother ka try successful")
                 // Use the details from the clicked song to make an API call
                 val apiResponse = SongApiService.getSongDetails(song.id)
-
+                println("api responsse is started")
                 // Handle the response as needed
                 if (apiResponse.isSuccessful) {
+                    println("response is successful")
                     val songApiResponse = apiResponse.body()
                     if (songApiResponse != null && songApiResponse.success) {
                         val songDetails = songApiResponse.data
@@ -144,7 +146,7 @@ class search : Fragment() {
                     Log.e(TAG, "HTTP error: ${apiResponse.code()} ${apiResponse.message()}")
                 }
             } catch (e: HttpException) {
-                // Handle other HTTP errors (e.g., 404 Not Found)
+
                 Log.e(TAG, "HTTP error: ${e.code()} ${e.message}", e)
             } catch (e: Exception) {
                 // Handle other exceptions
@@ -155,19 +157,45 @@ class search : Fragment() {
 
 
     private fun showEmptyResultFragment() {
-        // Implementation for showing an empty result fragment
+        val transaction = parentFragmentManager.beginTransaction()
+
+        // Replace the current fragment with the not found fragment and add a tag
+        val notFoundFragment = aayein()
+        transaction.addToBackStack("not_found")
+        transaction.replace(R.id.aayein_frame, notFoundFragment, "not_found")
+        transaction.commit()
     }
 
     private fun showNotFoundErrorFragment() {
-        // Implementation for showing a not found error fragment
+        val transaction = parentFragmentManager.beginTransaction()
+
+        // Replace the current fragment with the not found fragment and add a tag
+        val notFoundFragment = aayein()
+        transaction.addToBackStack("not_found")
+        transaction.replace(R.id.aayein_frame, notFoundFragment, "not_found")
+        transaction.commit()
     }
 
     private fun showErrorFragment() {
-        // Implementation for showing a general error fragment
+        val transaction = parentFragmentManager.beginTransaction()
+        transaction.addToBackStack("error_fragment")
+        // Replace the current fragment with the error fragment and add a tag
+        val errorFragment = aayein()
+
+        transaction.replace(R.id.aayein_frame, errorFragment, "error_fragment")
+        transaction.commit()
     }
 
     private fun hideErrorFragment() {
-        // Implementation for hiding the error fragment
+        val fragmentManager = parentFragmentManager
+        val errorFragment = fragmentManager.findFragmentByTag("not_found")
+
+        errorFragment?.let {
+            val transaction = fragmentManager.beginTransaction()
+
+            transaction.remove(it)
+            transaction.commit()
+        }
     }
 
     companion object {
