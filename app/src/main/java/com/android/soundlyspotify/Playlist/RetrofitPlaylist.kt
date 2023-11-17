@@ -13,7 +13,7 @@ object RetrofitPlaylist {
             .build()
     }
 
-    val playlistApi: PlaylistApi by lazy {
-        retrofit.create(PlaylistApi::class.java)
+    val playlistService: PlaylistService by lazy {
+        retrofit.create(PlaylistService::class.java)
     }
 }

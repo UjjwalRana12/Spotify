@@ -1,29 +1,22 @@
 package com.android.soundlyspotify.Playlist
 
-import com.google.gson.annotations.SerializedName
+import com.android.soundlyspotify.Song
 
-data class Playlist(
-    val id: Int,
-    val name: String,
+
+data class CreatePlaylist(
+    val date_created: String,
+    val date_updated: String,
     val description: String,
-    @SerializedName("thumbnail_url") val thumbnailUrl: String? = null,
-    val artist: String
-)
-
-data class UpdatedPlaylist(
+    val id: String?,
+    val is_private: Boolean,
     val name: String,
-    val description: String,
-    @SerializedName("thumbnail_url") val thumbnailUrl: String? = null
-)
-
-data class DeleteResponse(
-    val success: Boolean,
-    val message: String
+    val songs: List<Song>,
+    val thumbnail_url: Int,
+    val uploader: String
 )
 
 data class CreatePlaylistResponse(
-    val success: Boolean,
+    val data: CreatePlaylist,
     val message: String,
-    val data: Playlist? = null //  Playlist is the data class for a playlist item
+    val success: Boolean
 )
-
