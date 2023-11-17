@@ -31,10 +31,11 @@ interface DisplayInterface {
 }
 interface SongApiService {
 
-    @GET("getSongDetails/{id}")
+    @GET("getsong/{id}")
     suspend fun getSongDetails(@Path("id") songId: Int): Response<ApiResponse<SongDetails>>
 
 }
+
 
 
 

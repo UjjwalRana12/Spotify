@@ -1,4 +1,5 @@
 package com.android.soundlyspotify
+
 import android.os.Bundle
 import android.util.Log
 import kotlinx.coroutines.Job
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.widget.SearchView
 import com.android.soundlyspotify.applied_api.RetroClient
+import com.android.soundlyspotify.applied_api.SongModel
 
 class search : Fragment() {
 
@@ -29,7 +31,14 @@ class search : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.firstrecycler)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        songAdapter = SongAdapter(mutableListOf()) // Initialize with a MutableList
+        // Initialize the SongAdapter with an empty list and an item click listener
+        songAdapter = SongAdapter(mutableListOf(), object : SongAdapter.OnItemClickListener {
+            override fun onItemClick(song: SongModel) {
+                // Handle item click here, e.g., make another API call
+                onSongClicked(song)
+            }
+        })
+
         recyclerView.adapter = songAdapter
 
         val searchView: SearchView = view.findViewById(R.id.searchView)
@@ -45,11 +54,11 @@ class search : Fragment() {
 
                 searchJob = lifecycleScope.launch {
                     Log.d(TAG, "Delay started")
-                    delay(2000) // Increase the delay to 1000 milliseconds (1 second)
+                    delay(2000)
                     Log.d(TAG, "Delay completed")
                     newText?.let {
                         Log.d(TAG, "Calling searchSongs with query: $it")
-                        hideErrorFragment()  // Hide the error fragment when a new search is initiated
+                        hideErrorFragment()
                         searchSongs(it)
                     }
                 }
@@ -57,6 +66,7 @@ class search : Fragment() {
                 return true
             }
         })
+
         Log.d(TAG, "API called with search")
 
         return view
@@ -98,45 +108,33 @@ class search : Fragment() {
         }
     }
 
-    private fun showEmptyResultFragment() {
-        val transaction = parentFragmentManager.beginTransaction()
+    private fun onSongClicked(song: SongModel) {
+        // Perform actions when a song is clicked
+        // For example, make another API call using the song details
+        makeAnotherApiCall(song)
+    }
 
-        // Replace the current fragment with the not found fragment and add a tag
-        val notFoundFragment = aayein()
-        transaction.addToBackStack("not_found")
-        transaction.replace(R.id.aayein_frame, notFoundFragment, "not_found")
-        transaction.commit()
+    private fun makeAnotherApiCall(song: SongModel) {
+        // Implement the logic to make another API call based on the selected song
+        // You can use the song details (e.g., song.id) to customize the request
+        // Example: songApi.getSongDetails(song.id)
+        // Handle the response as needed
+    }
+
+    private fun showEmptyResultFragment() {
+        // Implementation for showing an empty result fragment
     }
 
     private fun showNotFoundErrorFragment() {
-        val transaction = parentFragmentManager.beginTransaction()
-
-        // Replace the current fragment with the not found fragment and add a tag
-        val notFoundFragment = aayein()
-        transaction.addToBackStack("not_found")
-        transaction.replace(R.id.aayein_frame, notFoundFragment, "not_found")
-        transaction.commit()
+        // Implementation for showing a not found error fragment
     }
-    private fun showErrorFragment() {
-        val transaction = parentFragmentManager.beginTransaction()
-        transaction.addToBackStack("error_fragment")
-        // Replace the current fragment with the error fragment and add a tag
-        val errorFragment = aayein()
 
-        transaction.replace(R.id.aayein_frame, errorFragment, "error_fragment")
-        transaction.commit()
+    private fun showErrorFragment() {
+        // Implementation for showing a general error fragment
     }
 
     private fun hideErrorFragment() {
-        val fragmentManager = parentFragmentManager
-        val errorFragment = fragmentManager.findFragmentByTag("not_found")
-
-        errorFragment?.let {
-            val transaction = fragmentManager.beginTransaction()
-
-            transaction.remove(it)
-            transaction.commit()
-        }
+        // Implementation for hiding the error fragment
     }
 
     companion object {

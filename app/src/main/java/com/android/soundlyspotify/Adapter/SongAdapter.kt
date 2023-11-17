@@ -8,8 +8,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.applied_api.SongModel
 
-class SongAdapter(private var dataList: MutableList<SongModel>) :
-    RecyclerView.Adapter<SongAdapter.ViewHolder>() {
+class SongAdapter(
+    private var dataList: MutableList<SongModel>,
+    private val itemClickListener: OnItemClickListener
+) : RecyclerView.Adapter<SongAdapter.ViewHolder>() {
+
+    // Interface for item click listener
+    interface OnItemClickListener {
+        fun onItemClick(song: SongModel)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.music_view, parent, false)
@@ -38,20 +45,31 @@ class SongAdapter(private var dataList: MutableList<SongModel>) :
         notifyItemInserted(dataList.size - 1)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    // ViewHolder class with item click listener
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageView: ImageView = itemView.findViewById(R.id.imageMV)
         private val textViewTitle: TextView = itemView.findViewById(R.id.songNameTextView)
         private val textViewArtist: TextView = itemView.findViewById(R.id.artistTextView)
         private val textViewDuration: TextView = itemView.findViewById(R.id.SongDuration)
         private val playpause: ImageView = itemView.findViewById(R.id.imageView3play)
+
         fun bind(item: SongModel) {
             imageView.setImageResource(item.imageMV)
             textViewTitle.text = item.name
             textViewArtist.text = item.artist
             textViewDuration.text = item.song_duration
 
-
             // You can further bind other properties as needed
+        }
+
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    itemClickListener.onItemClick(dataList[position])
+                }
+            }
         }
     }
 }
+
