@@ -12,3 +12,9 @@ data class GridItemData(val text: String, val imageUrl: Int)
 
 data class MyItem(val text: String, val imageUrl: Int)
 
+data class AddSong(
+    val imageResource: Int,  // Resource ID for the song image
+    val songName: String,
+    val artist: String,
+    val timing: String
+)
