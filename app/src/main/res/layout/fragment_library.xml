@@ -5,17 +5,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".library"
+    android:id="@+id/library_frag"
     android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <FrameLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/librarykaframe"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerViewgridlibrary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="NotSibling">
+
+        </FrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewgridlibrary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="44dp"
             android:clipToPadding="false"
             android:padding="16dp"
             android:scrollbars="vertical"

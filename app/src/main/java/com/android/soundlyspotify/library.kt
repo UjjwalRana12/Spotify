@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.models.GridItemData
@@ -32,13 +33,18 @@ class library : Fragment() {
             GridItemData("Item 2", R.drawable.photoek),
             GridItemData("Item 3", R.drawable.photoek),
             GridItemData("Item 4", R.drawable.photoek),
-            GridItemData("Item 5", R.drawable.photoek),
+            GridItemData("Item 5", R.drawable.addyoplay),
             // Add more items as needed
         )
 
         val adapter = GridAdapter(data) { clickedItem ->
-            addPlaylist(clickedItem)
+            if (clickedItem.text == "Item 5") {
+                navigateToAnotherFragment()
+            } else {
+                addPlaylist(clickedItem)
+            }
         }
+
 
         recyclerView.adapter = adapter
 
@@ -103,7 +109,19 @@ class library : Fragment() {
         // Show a loading indicator if needed
         // You can implement a loading indicator in your UI here
     }
+    private fun navigateToAnotherFragment() {
+        val anotherFragment = Add_Songs()
+        val transaction: FragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
 
+        // Replace the current fragment with AnotherFragment
+        transaction.replace(R.id.librarykaframe, anotherFragment)
+
+        // Add the transaction to the back stack so the user can navigate back
+        transaction.addToBackStack(null)
+
+        // Commit the transaction
+        transaction.commit()
+    }
     private fun showToast(message: String) {
 
 
