@@ -16,12 +16,15 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.appcompat.widget.SearchView
 import com.android.soundlyspotify.applied_api.RetroClient
 import com.android.soundlyspotify.applied_api.SongModel
+import com.android.soundlyspotify.data.RetrofitDisplay
 
 class search : Fragment() {
 
     private lateinit var songAdapter: SongAdapter
     private val songApi = RetroClient.instance
     private var searchJob: Job? = null
+    private var SongApiService =RetrofitDisplay.songApiService
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -115,11 +118,41 @@ class search : Fragment() {
     }
 
     private fun makeAnotherApiCall(song: SongModel) {
-        // Implement the logic to make another API call based on the selected song
-        // You can use the song details (e.g., song.id) to customize the request
-        // Example: songApi.getSongDetails(song.id)
-        // Handle the response as needed
+        lifecycleScope.launch {
+            try {
+                // Use the details from the clicked song to make an API call
+                val apiResponse = SongApiService.getSongDetails(song.id)
+
+                // Handle the response as needed
+                if (apiResponse.isSuccessful) {
+                    val songApiResponse = apiResponse.body()
+                    if (songApiResponse != null && songApiResponse.success) {
+                        val songDetails = songApiResponse.data
+                        if (songDetails != null) {
+                            val songUrl = songDetails.song_url
+                            // Do something with the song URL, e.g., play the song
+                            Log.d(TAG, "Song URL: $songUrl")
+                        } else {
+                            Log.e(TAG, "Response data is null")
+                        }
+                    } else {
+                        // Handle the case where the API call was not successful
+                        Log.e(TAG, "Failed to fetch additional details. API message: ${songApiResponse?.message}")
+                    }
+                } else {
+                    // Handle the case where the HTTP request itself failed
+                    Log.e(TAG, "HTTP error: ${apiResponse.code()} ${apiResponse.message()}")
+                }
+            } catch (e: HttpException) {
+                // Handle other HTTP errors (e.g., 404 Not Found)
+                Log.e(TAG, "HTTP error: ${e.code()} ${e.message}", e)
+            } catch (e: Exception) {
+                // Handle other exceptions
+                Log.e(TAG, "Error fetching additional details", e)
+            }
+        }
     }
+
 
     private fun showEmptyResultFragment() {
         // Implementation for showing an empty result fragment
