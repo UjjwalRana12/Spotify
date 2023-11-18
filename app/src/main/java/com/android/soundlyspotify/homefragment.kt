@@ -125,20 +125,17 @@ class homefragment : Fragment() {
         // BESTSELLER IS HERE
         bestsellerRecyclerView = view.findViewById(R.id.bestSellerRecyclerView)
         bestsellerRecyclerView.setHasFixedSize(true)
-        bestsellerRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        bestsellerRecyclerView.layoutManager =
+            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
+        // Sample list of BestSeller items
         val bestSellers = listOf(
-            BestSeller(R.drawable.photoek, "Title 1"),
-            BestSeller(R.drawable.photodo, "Title 2"),
-            BestSeller(R.drawable.phototeen, "Title 3"),
-            BestSeller(R.drawable.photochaar, "Title 3"),
-            BestSeller(R.drawable.photopaanch, "Title 3"),
-            // or item add krlo agar krna ho toh
-
-
-            // Assuming you have a list of BestSeller objects named bestSellers
-            // val bestSellers: List<BestSeller> = // Populate this with your data
-            //this will help me to put api
+            BestSeller(R.drawable.photoek, "Title 1", "Query 1"),
+            BestSeller(R.drawable.photodo, "Title 2", "Query 2"),
+            BestSeller(R.drawable.phototeen, "Title 3", "Query 3"),
+            BestSeller(R.drawable.photochaar, "Title 4", "Query 4"),
+            BestSeller(R.drawable.photopaanch, "Title 5", "Query 5")
+            // Add more items as needed
         )
 
         // setting up bestseller adapter
@@ -146,20 +143,20 @@ class homefragment : Fragment() {
         bestsellerRecyclerView.adapter = bestSellerAdapter
 
         bestSellerAdapter.setOnItemClickListener(object : BestSellerAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(position: Int, query: String) {
                 // Handle item click here
                 val clickedBestSeller = bestSellers[position]
+
+                // Log the query to Logcat
+                Log.d("ItemClicked", "Query: $query")
+
+                // Show a Toast message with the query
                 Toast.makeText(
                     requireContext(),
-                    "Clicked on ${clickedBestSeller.title}",
+                    "Clicked on ${clickedBestSeller.title}, Query: $query",
                     Toast.LENGTH_SHORT
                 ).show()
-                // Navigate to the next fragment
-//                val nextFragment = Game // Replace with the actual fragment i want to navigate to
-//                val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
-//                fragmentTransaction.replace(R.id.home_fragment, nextFragment) // Replace fragmentContainer with your actual container ID
-//                fragmentTransaction.addToBackStack(null) // This allows the user to navigate back
-//                fragmentTransaction.commit()
+
             }
         })
 

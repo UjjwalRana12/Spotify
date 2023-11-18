@@ -14,7 +14,7 @@ class BestSellerAdapter(private val bestSellers: List<BestSeller>) :
 
     // Define a listener interface
     interface OnItemClickListener {
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int, query: String)
     }
 
     // Declare a listener variable
@@ -35,10 +35,10 @@ class BestSellerAdapter(private val bestSellers: List<BestSeller>) :
         val currentBestSeller = bestSellers[position]
         holder.bind(currentBestSeller)
 
-        // Set click listener for the ImageView
-        holder.bestSellerImage.setOnClickListener {
+        // Set click listener for the entire item view
+        holder.itemView.setOnClickListener {
             // Notify the listener when an item is clicked
-            onItemClickListener?.onItemClick(position)
+            onItemClickListener?.onItemClick(position, currentBestSeller.query)
         }
     }
 

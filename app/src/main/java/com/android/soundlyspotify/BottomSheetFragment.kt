@@ -26,11 +26,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         // Sample data for testing
         val bestSellers = listOf(
-            BestSeller(R.drawable.photoek, "Title 1"),
-            BestSeller(R.drawable.photodo, "Title 2"),
-            BestSeller(R.drawable.phototeen, "Title 3"),
-            BestSeller(R.drawable.photochaar, "Title 4"),
-            BestSeller(R.drawable.photopaanch, "Title 5")
+            BestSeller(R.drawable.photoek, "Title 1", "Query 1"),
+            BestSeller(R.drawable.photodo, "Title 2", "Query 2"),
+            BestSeller(R.drawable.phototeen, "Title 3", "Query 3"),
+            BestSeller(R.drawable.photochaar, "Title 4", "Query 4"),
+            BestSeller(R.drawable.photopaanch, "Title 5", "Query 5")
             // Add more items as needed
         )
 
