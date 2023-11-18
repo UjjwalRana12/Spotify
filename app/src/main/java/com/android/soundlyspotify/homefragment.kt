@@ -22,15 +22,18 @@ import com.android.soundlyspotify.Myadapter.ClothingAdapter
 import com.android.soundlyspotify.Myadapter.ImagePagerAdapter
 import com.android.soundlyspotify.Myadapter.MusicAdapter
 import com.android.soundlyspotify.Myadapter.OfferAdapter
-import com.android.soundlyspotify.data.DisplayInterface
+import com.android.soundlyspotify.applied_api.ApiSongResponse
+import com.android.soundlyspotify.applied_api.RetroClient
+import com.android.soundlyspotify.applied_api.SongModel
+
 import com.android.soundlyspotify.data.RetrofitDisplay
-import com.android.soundlyspotify.data.SongDisplayed
 import com.android.soundlyspotify.models.BestSeller
 import com.android.soundlyspotify.models.BestSeller2
 import com.android.soundlyspotify.models.Clothing
 import com.android.soundlyspotify.models.MyItem
 import com.android.soundlyspotify.models.Offer
 import kotlinx.coroutines.launch
+import retrofit2.Response
 import java.util.Timer
 import java.util.TimerTask
 
@@ -40,8 +43,6 @@ class homefragment : Fragment() {
     private lateinit var bestsellerRecyclerView: RecyclerView
     private lateinit var clothingRecyclerView: RecyclerView
     private lateinit var bestseller2RecyclerView: RecyclerView
-
-    private lateinit var displayInterface: DisplayInterface
     private lateinit var viewPager: ViewPager
     private lateinit var imageAdapter: ImagePagerAdapter
 
@@ -216,6 +217,9 @@ class homefragment : Fragment() {
 // Set the item click listener
         adapter.setOnItemClickListener(object : BestSeller2Adapter.OnItemClickListener {
             override fun onItemClick(item: BestSeller2) {
+
+                // API CALLED HERE
+                makeApiRequest(item.query)
                 // Handle item click here
                 Log.d("ItemClicked", "Query: ${item.query}")
                 Toast.makeText(
@@ -257,4 +261,48 @@ class homefragment : Fragment() {
 
         return view
     }
+    private fun makeApiRequest(query: String) {
+        lifecycleScope.launch {
+            try {
+                val apiService = RetroClient.instance
+                val response: ApiSongResponse = apiService.searchSongs(query)
+
+                // Check if the 'success' property indicates success
+                if (response.success) {
+                    // Access response data using response object
+                    val songs: List<SongModel> = response.data
+
+                    // Display a Toast message
+                    Toast.makeText(
+                        requireContext(),
+                        "API request successful for query: $query",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    // Now you can work with the 'songs' data as needed
+                } else {
+                    // Handle unsuccessful response
+                    Toast.makeText(
+                        requireContext(),
+                        "API request failed for query: $query",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            } catch (e: Exception) {
+                // Handle exception or error
+                e.printStackTrace()
+                Toast.makeText(
+                    requireContext(),
+                    "Error during API request for query: $query",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+    }
+
+
+
+
+
 }
