@@ -90,25 +90,34 @@ class homefragment : Fragment() {
         offerRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         val offers = listOf(
-            Offer(R.drawable.phototeen, "Offer Title 1"),
-            Offer(R.drawable.photoek, "Offer Title 2"),
-            Offer(R.drawable.photocheh, "Offer Title 3"),
-            Offer(R.drawable.photodo, "Offer Title 4"),
-            Offer(R.drawable.photopaanch, "Offer Title 5"),
+            Offer(R.drawable.phototeen, "Offer Title 1", "query1"),
+            Offer(R.drawable.photoek, "Offer Title 2", "query2"),
+            Offer(R.drawable.photocheh, "Offer Title 3", "query3"),
+            Offer(R.drawable.photodo, "Offer Title 4", "query4"),
+            Offer(R.drawable.photopaanch, "Offer Title 5", "query5"),
             // Add more items as needed
         )
 
         val offerAdapter = OfferAdapter(offers) { clickedOffer ->
             // Handle item click here
+            // You can use clickedOffer.query to make API requests with the specific query for each item
 
-            Toast.makeText(requireContext(), "Item clicked: ${clickedOffer.title}", Toast.LENGTH_SHORT).show()
+            // Example: Logging the query for demonstration purposes
+            println("Item clicked 1")
+
+
+            // You can also call your ViewModel or repository to make the API request with the specific query
         }
 
+        offerAdapter.setOnItemClickListener(object : OfferAdapter.OnItemClickListener {
+            override fun onItemClick(clickedOffer: Offer) {
+                // Handle item click
+                // You can use the properties of clickedOffer or perform other actions
+                Log.d("OfferAdapter", "Item clicked:  Title: ${clickedOffer.title}, Query: ${clickedOffer.query}")
+            }
+        })
+
         offerRecyclerView.adapter = offerAdapter
-
-
-        offerRecyclerView.adapter = offerAdapter
-
 
 
 

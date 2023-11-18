@@ -9,7 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.Offer
 
-class OfferAdapter(private val offers: List<Offer>, private val onItemClick: (Offer) -> Unit) : RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
+class OfferAdapter(
+    private val offers: List<Offer>,
+    private val onQueryRequested: (String) -> Unit
+) : RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
+
+    private var itemClickListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OfferViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.offer_layout, parent, false)
@@ -22,7 +27,11 @@ class OfferAdapter(private val offers: List<Offer>, private val onItemClick: (Of
 
         // Set click listener for each item
         holder.itemView.setOnClickListener {
-            onItemClick(currentOffer)
+            // Call the onQueryRequested callback with the query property
+            onQueryRequested(currentOffer.query)
+
+            // Notify the external click listener
+            itemClickListener?.onItemClick(currentOffer)
         }
     }
 
@@ -38,5 +47,13 @@ class OfferAdapter(private val offers: List<Offer>, private val onItemClick: (Of
             offerImage.setImageResource(offer.image)
             offerTitle.text = offer.title
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(offer: Offer)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener?) {
+        itemClickListener = listener
     }
 }
