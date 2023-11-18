@@ -115,30 +115,23 @@ class search : Fragment() {
 
     private fun onSongClicked(song: SongModel) {
         // Perform actions when a song is clicked
-
-        makeAnotherApiCall(song)
+        playSong(song)
     }
 
-    private fun makeAnotherApiCall(song: SongModel) {
+    private fun playSong(song: SongModel) {
         lifecycleScope.launch {
             try {
-                println("makeanother ka try successful")
-
                 // Use the details from the clicked song to make an API call
                 val apiResponse = SongApiService.getSongDetails(song.id)
 
                 withContext(Dispatchers.Main) {
-                    println("api responsse is started")
-
                     // Handle the response as needed
                     if (apiResponse.isSuccessful) {
-                        println("response is successful")
                         val songApiResponse = apiResponse.body()
                         if (songApiResponse != null && songApiResponse.success) {
                             val songDetails = songApiResponse.data
                             if (songDetails != null) {
                                 val songUrl = songDetails.song_url
-                                Log.d(TAG, "Song URL: $songUrl")
 
                                 // Create an instance of your new fragment and pass the song URL as an argument
                                 val newFragment = playerfragment.createInstance(songUrl)

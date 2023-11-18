@@ -1,4 +1,5 @@
 package com.android.soundlyspotify
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -6,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
-import com.android.soundlyspotify.MediaPlayerManager
 import com.android.soundlyspotify.R
-import androidx.appcompat.app.AppCompatActivity
+import com.android.soundlyspotify.MediaPlayerManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
 
 class playerfragment : Fragment() {
 
@@ -68,6 +67,13 @@ class playerfragment : Fragment() {
         }
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // Start playing the song when the fragment is resumed
+        mediaPlayerManager.start()
     }
 
     override fun onDestroyView() {
