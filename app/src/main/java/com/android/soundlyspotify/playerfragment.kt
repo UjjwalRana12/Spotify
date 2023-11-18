@@ -101,6 +101,3 @@ class playerfragment : Fragment() {
         }
     }
 }
-
-
-

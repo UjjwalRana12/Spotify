@@ -165,7 +165,7 @@ class search : Fragment() {
                 Log.e(TAG, "HTTP error: ${e.code()} ${e.message}", e)
             } catch (e: Exception) {
                 // Handle other exceptions
-                Log.e(TAG, "Error fetching additional details", e)
+                Log.e(TAG, "There is Error fetching additional details", e)
             }
         }
     }
