@@ -146,6 +146,7 @@ class homefragment : Fragment() {
 
         bestSellerAdapter.setOnItemClickListener(object : BestSellerAdapter.OnItemClickListener {
             override fun onItemClick(position: Int, query: String) {
+
                 // Handle item click here
                 val clickedBestSeller = bestSellers[position]
 
@@ -251,6 +252,7 @@ class homefragment : Fragment() {
 
         val adapterss = MusicAdapter(itemList) { clickedItem ->
             // Handle item click here
+
             Toast.makeText(requireContext(), "Item clicked with query: ${clickedItem.query}", Toast.LENGTH_SHORT).show()
 
             // Add any other actions you want to perform on item click
