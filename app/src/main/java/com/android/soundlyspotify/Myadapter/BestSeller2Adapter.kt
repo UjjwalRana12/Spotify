@@ -1,6 +1,6 @@
 package com.android.soundlyspotify
+
 import android.content.Context
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,17 +8,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
-import com.android.soundlyspotify.data.SongDisplayed
-
+import com.android.soundlyspotify.models.BestSeller2
 import com.bumptech.glide.Glide
 
 class BestSeller2Adapter(
-private val context: Context,
-private val songs: List<SongDisplayed>
+    private val context: Context,
+    private val bestSellers: List<BestSeller2>
 ) : RecyclerView.Adapter<BestSeller2Adapter.BestSeller2ViewHolder>() {
 
     interface OnItemClickListener {
-        fun onItemClick(item: SongDisplayed)
+        fun onItemClick(item: BestSeller2)
     }
 
     private var listener: OnItemClickListener? = null
@@ -33,33 +32,33 @@ private val songs: List<SongDisplayed>
     }
 
     override fun onBindViewHolder(holder: BestSeller2ViewHolder, position: Int) {
-        val currentItem = songs[position]
-        holder.bind(currentItem)
+        val currentBestSeller = bestSellers[position]
+        holder.bind(currentBestSeller)
 
         holder.itemView.setOnClickListener {
-            listener?.onItemClick(currentItem)
+            listener?.onItemClick(currentBestSeller)
         }
     }
 
     override fun getItemCount(): Int {
-        return songs.size
+        return bestSellers.size
     }
 
     inner class BestSeller2ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val imageView: ImageView = itemView.findViewById(R.id.bestseller2Mv)
         private val titleTextView: TextView = itemView.findViewById(R.id.bestseller2Tv)
 
-        fun bind(song: SongDisplayed) {
+        fun bind(bestSeller: BestSeller2) {
             // Load image using Glide
             Glide.with(context)
-                .load(song.thumbnailUrl)
+                .load(bestSeller.image)
                 .override(450, 450)
                 .placeholder(R.drawable.defaultimage) // Placeholder image while loading
                 .error(R.drawable.defaultimage) // Image to show in case of error
                 .into(imageView)
 
             // Set other data
-            titleTextView.text = song.name
+            titleTextView.text = bestSeller.title
         }
     }
 }

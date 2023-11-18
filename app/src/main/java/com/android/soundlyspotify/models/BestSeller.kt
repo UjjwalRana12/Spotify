@@ -7,7 +7,7 @@ data class Offer(val image: Int, val title: String, val query: String)
 
 data class Clothing(val image: Int, val title: String,val query: String)
 
-data class BestSeller2(val image: Int, val title: String)
+data class BestSeller2(val image: Int, val title: String,val query: String)
 
 data class GridItemData(val text: String, val imageUrl: Int)
 

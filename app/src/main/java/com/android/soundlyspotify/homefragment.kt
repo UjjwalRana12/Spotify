@@ -26,6 +26,7 @@ import com.android.soundlyspotify.data.DisplayInterface
 import com.android.soundlyspotify.data.RetrofitDisplay
 import com.android.soundlyspotify.data.SongDisplayed
 import com.android.soundlyspotify.models.BestSeller
+import com.android.soundlyspotify.models.BestSeller2
 import com.android.soundlyspotify.models.Clothing
 import com.android.soundlyspotify.models.MyItem
 import com.android.soundlyspotify.models.Offer
@@ -197,54 +198,34 @@ class homefragment : Fragment() {
 
 
         // BEST SELLER 2
-        displayInterface = RetrofitDisplay.instance
-        println("Display interface running")
-
-        // BEST SELLER 2
         bestseller2RecyclerView = view.findViewById(R.id.bestSeller2RecyclerView)
         bestseller2RecyclerView.setHasFixedSize(true)
+        bestseller2RecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        // Set the adapter
-        val adapter = BestSeller2Adapter(requireContext(), emptyList())
+        val bestSellersList = listOf(
+            BestSeller2(R.drawable.photodo, "Song 1", "Query 1"),
+            BestSeller2(R.drawable.photochaar, "Song 2", "Query 2"),
+            BestSeller2(R.drawable.phototeen, "Song 3", "Query 3"),
+            // Add more items as needed
+        )
+
+
+        val adapter = BestSeller2Adapter(requireContext(), bestSellersList)
         bestseller2RecyclerView.adapter = adapter
 
-        bestseller2RecyclerView.layoutManager =
-            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        println("display 2nd step working ")
-
-
-        lifecycleScope.launch {
-            try {
-                println("try working")
-                val response = displayInterface.getBestseller2Songs()
-                if (response.isSuccessful) {
-                    println("Bestseller is successful called")
-                    val bestSellersList = response.body()?.data ?: emptyList()
-
-                    val adapter = BestSeller2Adapter(requireContext(), bestSellersList)
-                    bestseller2RecyclerView.adapter = adapter
-
-                    // Set the item click listener
-                    adapter.setOnItemClickListener(object : BestSeller2Adapter.OnItemClickListener {
-                        override fun onItemClick(item: SongDisplayed) {
-                            // Handle item click here
-                            Toast.makeText(
-                                requireContext(),
-                                "Item clicked: ${item.name}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    })
-
-                } else {
-                    // Handle error
-                    Log.e("API Request", "Error: ${response.code()}")
-                }
-            } catch (e: Exception) {
-                // Handle exception
-                Log.e("API Request", "Exception: ${e.message}")
+// Set the item click listener
+        adapter.setOnItemClickListener(object : BestSeller2Adapter.OnItemClickListener {
+            override fun onItemClick(item: BestSeller2) {
+                // Handle item click here
+                Log.d("ItemClicked", "Query: ${item.query}")
+                Toast.makeText(
+                    requireContext(),
+                    "Item clicked: ${item.title}, Query: ${item.query}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-        }
+        })
+
 
 
 
