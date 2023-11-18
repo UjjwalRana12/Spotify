@@ -17,6 +17,8 @@ import androidx.appcompat.widget.SearchView
 import com.android.soundlyspotify.applied_api.RetroClient
 import com.android.soundlyspotify.applied_api.SongModel
 import com.android.soundlyspotify.data.RetrofitDisplay
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class search : Fragment() {
 
@@ -121,32 +123,36 @@ class search : Fragment() {
         lifecycleScope.launch {
             try {
                 println("makeanother ka try successful")
+
                 // Use the details from the clicked song to make an API call
                 val apiResponse = SongApiService.getSongDetails(song.id)
-                println("api responsse is started")
-                // Handle the response as needed
-                if (apiResponse.isSuccessful) {
-                    println("response is successful")
-                    val songApiResponse = apiResponse.body()
-                    if (songApiResponse != null && songApiResponse.success) {
-                        val songDetails = songApiResponse.data
-                        if (songDetails != null) {
-                            val songUrl = songDetails.song_url
-                            // Do something with the song URL, e.g., play the song
-                            Log.d(TAG, "Song URL: $songUrl")
+
+                withContext(Dispatchers.Main) {
+                    println("api responsse is started")
+
+                    // Handle the response as needed
+                    if (apiResponse.isSuccessful) {
+                        println("response is successful")
+                        val songApiResponse = apiResponse.body()
+                        if (songApiResponse != null && songApiResponse.success) {
+                            val songDetails = songApiResponse.data
+                            if (songDetails != null) {
+                                val songUrl = songDetails.song_url
+                                // Do something with the song URL, e.g., play the song
+                                Log.d(TAG, "Song URL: $songUrl")
+                            } else {
+                                Log.e(TAG, "Response data is null")
+                            }
                         } else {
-                            Log.e(TAG, "Response data is null")
+                            // Handle the case where the API call was not successful
+                            Log.e(TAG, "Failed to fetch additional details. API message: ${songApiResponse?.message}")
                         }
                     } else {
-                        // Handle the case where the API call was not successful
-                        Log.e(TAG, "Failed to fetch additional details. API message: ${songApiResponse?.message}")
+                        // Handle the case where the HTTP request itself failed
+                        Log.e(TAG, "HTTP error: ${apiResponse.code()} ${apiResponse.message()}")
                     }
-                } else {
-                    // Handle the case where the HTTP request itself failed
-                    Log.e(TAG, "HTTP error: ${apiResponse.code()} ${apiResponse.message()}")
                 }
             } catch (e: HttpException) {
-
                 Log.e(TAG, "HTTP error: ${e.code()} ${e.message}", e)
             } catch (e: Exception) {
                 // Handle other exceptions
