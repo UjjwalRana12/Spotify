@@ -261,21 +261,20 @@ class homefragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         val itemList = listOf(
-            MyItem("musico 1", R.drawable.photoek),
-            MyItem("musico 2", R.drawable.photoek),
-            MyItem("musico 3", R.drawable.photoek),
+            MyItem("musico 1", R.drawable.photoek, "query1"),
+            MyItem("musico 2", R.drawable.photoek, "query2"),
+            MyItem("musico 3", R.drawable.photoek, "query3"),
             // Add more items as needed
         )
 
         val adapterss = MusicAdapter(itemList) { clickedItem ->
             // Handle item click here
-            Toast.makeText(requireContext(), "Item clicked: ${clickedItem.text}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Item clicked with query: ${clickedItem.query}", Toast.LENGTH_SHORT).show()
 
-            // Add any other actions i want to perform on item click
+            // Add any other actions you want to perform on item click
         }
 
         recyclerView.adapter = adapterss
-
 
 
         return view

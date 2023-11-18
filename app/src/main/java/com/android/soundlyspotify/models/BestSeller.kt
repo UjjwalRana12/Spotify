@@ -11,7 +11,7 @@ data class BestSeller2(val image: Int, val title: String)
 
 data class GridItemData(val text: String, val imageUrl: Int)
 
-data class MyItem(val text: String, val imageUrl: Int)
+data class MyItem(val text: String, val imageUrl: Int,val query: String)
 
 data class AddSong(
     val imageResource: Int,  // Resource ID for the song image
