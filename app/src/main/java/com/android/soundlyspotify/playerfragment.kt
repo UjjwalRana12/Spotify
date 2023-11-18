@@ -19,12 +19,6 @@ class playerfragment : Fragment() {
     private lateinit var seekBar: SeekBar
     private var songUrl: String? = null
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // Access MainActivity2 and hide the BottomNavigationView
-        (activity as? MainActivity2)?.hideBottomNavigationView()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -62,6 +56,9 @@ class playerfragment : Fragment() {
                 // Do something when the user stops touching the SeekBar
             }
         })
+
+        // Hide the BottomNavigationView
+        (activity as? MainActivity2)?.hideBottomNavigationView()
 
         // Set up Bottom Sheet
         val bottomSheetButton = view.findViewById<AppCompatImageView>(R.id.imageViewbottom18)
@@ -104,5 +101,6 @@ class playerfragment : Fragment() {
         }
     }
 }
+
 
 
