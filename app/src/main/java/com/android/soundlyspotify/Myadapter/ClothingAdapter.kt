@@ -1,27 +1,28 @@
 package com.android.soundlyspotify.Myadapter
 
+
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.Clothing
 
-class ClothingAdapter(private val context: Context, private val clothingList: List<Clothing>) :
-    RecyclerView.Adapter<ClothingAdapter.ClothingViewHolder>() {
-
-    // Define a listener interface
-    interface OnItemClickListener {
-        fun onItemClick(item: Clothing)
-    }
-
+class ClothingAdapter(
+    private val context: Context,
     private var itemClickListener: OnItemClickListener? = null
+) : ListAdapter<Clothing, ClothingAdapter.ClothingViewHolder>(ClothingDiffCallback()) {
 
-    // Set the click listener
-    fun setOnItemClickListener(listener: OnItemClickListener) {
+    interface OnItemClickListener {
+        fun onItemClick(query: String)
+    }
+    fun setOnItemClickListener(listener: OnItemClickListener?) {
         itemClickListener = listener
     }
 
@@ -31,24 +32,32 @@ class ClothingAdapter(private val context: Context, private val clothingList: Li
     }
 
     override fun onBindViewHolder(holder: ClothingViewHolder, position: Int) {
-        val currentItem = clothingList[position]
+        val currentItem = getItem(position)
 
         holder.clothingImage.setImageResource(currentItem.image)
         holder.clothingTitle.text = currentItem.title
 
         // Set click listener for each item
         holder.itemView.setOnClickListener {
-            // Notify the listener when an item is clicked
-            itemClickListener?.onItemClick(currentItem)
+            currentItem.query?.let { query ->
+                // Notify the listener when an item is clicked
+                itemClickListener?.onItemClick(query)
+            }
         }
-    }
-
-    override fun getItemCount(): Int {
-        return clothingList.size
     }
 
     inner class ClothingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val clothingImage: ImageView = itemView.findViewById(R.id.clothingMv)
         val clothingTitle: TextView = itemView.findViewById(R.id.clothingTv)
+    }
+
+    private class ClothingDiffCallback : DiffUtil.ItemCallback<Clothing>() {
+        override fun areItemsTheSame(oldItem: Clothing, newItem: Clothing): Boolean {
+            return oldItem.query == newItem.query
+        }
+
+        override fun areContentsTheSame(oldItem: Clothing, newItem: Clothing): Boolean {
+            return oldItem == newItem
+        }
     }
 }

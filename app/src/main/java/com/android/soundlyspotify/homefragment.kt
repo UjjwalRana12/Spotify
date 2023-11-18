@@ -158,33 +158,32 @@ class homefragment : Fragment() {
         // clothing is here
 
 
-
-        clothingRecyclerView = view.findViewById(R.id.clothingRecyclerView)
+        val clothingRecyclerView = view.findViewById<RecyclerView>(R.id.clothingRecyclerView)
         clothingRecyclerView.setHasFixedSize(true)
         clothingRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        val context: Context = requireContext()// suggested by chatgpt to encounter errors
         val clothingList = listOf(
-            Clothing(R.drawable.photoek, "listen this "),
-            Clothing(R.drawable.phototeen, "Casual song"),
-            Clothing(R.drawable.photopaanch, "Formal "),
-            Clothing(R.drawable.photochaar, "Formal "),
-            Clothing(R.drawable.photodo, "Formal "),
-            // Add more  items as needed
+            Clothing(R.drawable.photoek, "listen this", "query1"),
+            Clothing(R.drawable.phototeen, "Casual song", "query2"),
+            Clothing(R.drawable.photopaanch, "Formal", "query3"),
+            Clothing(R.drawable.photochaar, "Formal", "query4"),
+            Clothing(R.drawable.photodo, "Formal", "query5")
+            // Add more items as needed
         )
 
-        val clothingAdapter = ClothingAdapter(context,clothingList)
+        val clothingAdapter = ClothingAdapter(requireContext())
         clothingRecyclerView.adapter = clothingAdapter
 
-
-
-        // Set item click listener
+// Set item click listener
         clothingAdapter.setOnItemClickListener(object : ClothingAdapter.OnItemClickListener {
-            override fun onItemClick(item: Clothing) {
+            override fun onItemClick(query: String) {
                 // Handle item click here
-                Toast.makeText(requireContext(), "Item clicked: ${item.title}", Toast.LENGTH_SHORT).show()
+                // For now, let's just print the query
+                Log.d("ItemClicked", "Query: $query")
             }
         })
+
+        clothingAdapter.submitList(clothingList)
 
 
         // BEST SELLER 2
