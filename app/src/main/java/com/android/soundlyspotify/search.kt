@@ -138,8 +138,17 @@ class search : Fragment() {
                             val songDetails = songApiResponse.data
                             if (songDetails != null) {
                                 val songUrl = songDetails.song_url
-                                // Do something with the song URL, e.g., play the song
                                 Log.d(TAG, "Song URL: $songUrl")
+
+                                // Create an instance of your new fragment and pass the song URL as an argument
+                                val newFragment = playerfragment.createInstance(songUrl)
+
+                                // Replace the current fragment with the new fragment
+                                val fragmentManager = requireActivity().supportFragmentManager
+                                fragmentManager.beginTransaction()
+                                    .replace(R.id.search_frag, newFragment)
+                                    .addToBackStack(null)  // Add to the back stack for back navigation if needed
+                                    .commit()
                             } else {
                                 Log.e(TAG, "Response data is null")
                             }
@@ -160,6 +169,7 @@ class search : Fragment() {
             }
         }
     }
+
 
 
     private fun showEmptyResultFragment() {

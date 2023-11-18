@@ -15,6 +15,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class playerfragment : Fragment() {
 
     private lateinit var mediaPlayerManager: MediaPlayerManager
+    private lateinit var playPauseButton: AppCompatImageView
+    private lateinit var seekBar: SeekBar
+    private var songUrl: String? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -28,13 +31,20 @@ class playerfragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_playerfragment, container, false)
 
-        val playPauseButton = view.findViewById<AppCompatImageView>(R.id.imageplaypause)
-        val seekBar = view.findViewById<SeekBar>(R.id.seekBar)
+        playPauseButton = view.findViewById(R.id.imageplaypause)
+        seekBar = view.findViewById(R.id.seekBar)
+
+        // Access the song URL from arguments
+        songUrl = arguments?.getString(ARG_SONG_URL)
+
+        // Initialize MediaPlayerManager with the song URL
+        mediaPlayerManager = songUrl?.let { MediaPlayerManager(requireContext(), it) }
+            ?: throw IllegalStateException("Song URL is null")
 
         // Set up click listeners and other necessary UI setup
         playPauseButton.setOnClickListener {
             mediaPlayerManager.playPause()
-            // Update UI as needed
+            updatePlayPauseButton()
         }
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -52,9 +62,6 @@ class playerfragment : Fragment() {
                 // Do something when the user stops touching the SeekBar
             }
         })
-
-        // Initialize MediaPlayerManager
-        mediaPlayerManager = MediaPlayerManager(requireContext(), R.raw.media1)
 
         // Set up Bottom Sheet
         val bottomSheetButton = view.findViewById<AppCompatImageView>(R.id.imageViewbottom18)
@@ -77,4 +84,25 @@ class playerfragment : Fragment() {
         mediaPlayerManager.release()
         super.onDestroy()
     }
+
+    private fun updatePlayPauseButton() {
+        // Update play/pause button UI based on the current playback state
+        val iconResource =
+            if (mediaPlayerManager.isPlaying()) R.drawable.playarrow else R.drawable.baseline_pause_circle_24
+        playPauseButton.setImageResource(iconResource)
+    }
+
+    companion object {
+        private const val ARG_SONG_URL = "arg_song_url"
+
+        fun createInstance(songUrl: String): playerfragment {
+            val fragment = playerfragment()
+            val args = Bundle()
+            args.putString(ARG_SONG_URL, songUrl)
+            fragment.arguments = args
+            return fragment
+        }
+    }
 }
+
+
