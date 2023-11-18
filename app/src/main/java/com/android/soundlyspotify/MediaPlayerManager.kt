@@ -2,22 +2,24 @@ package com.android.soundlyspotify
 
 import android.content.Context
 import android.media.MediaPlayer
-import androidx.annotation.RawRes
 
+class MediaPlayerManager(private val context: Context, private val songUrl: String) {
 
-
-class MediaPlayerManager(private val context: Context, @RawRes rawResourceId: Int) {
-
-    private val mediaPlayer: MediaPlayer = MediaPlayer.create(context, rawResourceId)
+    private val mediaPlayer: MediaPlayer = MediaPlayer()
 
     init {
+        mediaPlayer.setDataSource(songUrl)
         mediaPlayer.setOnPreparedListener {
             // Handle preparation, e.g., setting up SeekBar max value
+            // You can also start playback here if needed
         }
 
         mediaPlayer.setOnCompletionListener {
             // Handle completion
         }
+
+        // Prepare the MediaPlayer asynchronously
+        mediaPlayer.prepareAsync()
     }
 
     fun playPause() {
@@ -36,5 +38,8 @@ class MediaPlayerManager(private val context: Context, @RawRes rawResourceId: In
         mediaPlayer.release()
     }
 
-
+    // Example of checking if the MediaPlayer is currently playing
+    fun isPlaying(): Boolean {
+        return mediaPlayer.isPlaying
+    }
 }
