@@ -68,6 +68,7 @@ class otpfragment : Fragment() {
             val enteredOTP = "${editText1.text}${editText2.text}${editText3.text}${editText4.text}"
             if (enteredOTP.length == 4) {
                 verifyOTP(enteredOTP)
+                println("enteredOTP")
             }
         }
 

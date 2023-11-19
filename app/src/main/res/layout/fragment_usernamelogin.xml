@@ -18,9 +18,10 @@
 
         <TextView
             android:id="@+id/textView15"
-            android:layout_width="117dp"
-            android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins"
             android:text="@string/sssoundly"
             android:textColor="@color/black"
@@ -29,21 +30,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView16"
-            app:layout_constraintTop_toTopOf="@+id/textView16"
-            app:layout_constraintVertical_bias="0.766" />
+            app:layout_constraintTop_toTopOf="@+id/textView16" />
 
         <TextView
             android:id="@+id/textView16"
-            android:layout_width="40sp"
-            android:layout_height="70sp"
-            android:layout_marginTop="0dp"
-            android:text="S"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
 
-            android:textColor="#FFA500"
+            android:text="S"
+            android:textColor="#008B8B"
             android:textSize="64sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/imageView5"
-            app:layout_constraintHorizontal_bias="0.294"
             app:layout_constraintStart_toStartOf="@+id/imageView5"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="96dp"
-            android:src="@drawable/signin"
+            android:src="@drawable/sign_in_illustration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +61,7 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="360dp"
-            app:cardBackgroundColor="@color/lightyellow"
+            app:cardBackgroundColor="@color/lightbg"
             app:cardCornerRadius="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,8 +74,8 @@
 
                 <TextView
                     android:id="@+id/textView17"
-                    android:layout_width="116dp"
-                    android:layout_height="40dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/poppins"
                     android:text="Login"
@@ -91,8 +90,8 @@
 
                 <TextView
                     android:id="@+id/textView18"
-                    android:layout_width="283dp"
-                    android:layout_height="37dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="52dp"
                     android:text="@string/welcome_to_soundly"
                     android:fontFamily="@font/poppins"
@@ -127,7 +126,7 @@
                     android:layout_width="320dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="272dp"
-                    android:backgroundTint="@color/darkyellow"
+                    android:backgroundTint="@color/bluegreen"
                     android:text="Continue"
                     android:fontFamily="@font/poppins"
                     android:textColor="@color/white"
@@ -137,10 +136,11 @@
 
                 <TextView
                     android:id="@+id/textView20"
-                    android:layout_width="154dp"
-                    android:layout_height="23dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="164dp"
                     android:text="Username"
+                    android:textStyle="bold"
                     android:fontFamily="@font/poppins"
                     android:textColor="@color/black"
                     android:textSize="12sp"
@@ -151,8 +151,8 @@
 
                 <TextView
                     android:id="@+id/textView3"
-                    android:layout_width="314dp"
-                    android:layout_height="58dp"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="96dp"
                     android:fontFamily="@font/poppins"
                     android:text="Create an account or login using your mobile number or email to get started"
@@ -221,12 +221,12 @@
 
         <TextView
             android:id="@+id/signup2button"
-            android:layout_width="64dp"
-            android:layout_height="32dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Sign Up"
             android:fontFamily="@font/poppins"
             android:textAlignment="center"
-            android:textColor="@color/darkyellow"
+            android:textColor="@color/bluegreen"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView15"
             app:layout_constraintEnd_toEndOf="parent"
