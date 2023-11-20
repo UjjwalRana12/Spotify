@@ -101,14 +101,10 @@ class homefragment : Fragment() {
         )
 
         val offerAdapter = OfferAdapter(offers) { clickedOffer ->
-            // Handle item click here
-            // You can use clickedOffer.query to make API requests with the specific query for each item
 
             // Example: Logging the query for demonstration purposes
             println("Item clicked 1")
 
-
-            // You can also call your ViewModel or repository to make the API request with the specific query
         }
 
         offerAdapter.setOnItemClickListener(object : OfferAdapter.OnItemClickListener {
@@ -120,9 +116,6 @@ class homefragment : Fragment() {
         })
 
         offerRecyclerView.adapter = offerAdapter
-
-
-
 
         // BESTSELLER IS HERE
         bestsellerRecyclerView = view.findViewById(R.id.bestSellerRecyclerView)
@@ -218,9 +211,6 @@ class homefragment : Fragment() {
 // Set the item click listener
         adapter.setOnItemClickListener(object : BestSeller2Adapter.OnItemClickListener {
             override fun onItemClick(item: BestSeller2) {
-
-                // API CALLED HERE
-                makeApiRequest(item.query)
                 // Handle item click here
                 Log.d("ItemClicked", "Query: ${item.query}")
                 Toast.makeText(
@@ -263,48 +253,5 @@ class homefragment : Fragment() {
 
         return view
     }
-    private fun makeApiRequest(query: String) {
-        lifecycleScope.launch {
-            try {
-                val apiService = RetroClient.instance
-                val response: ApiSongResponse = apiService.searchSongs(query)
-
-                // Check if the 'success' property indicates success
-                if (response.success) {
-                    // Access response data using response object
-                    val songs: List<SongModel> = response.data
-
-                    // Display a Toast message
-                    Toast.makeText(
-                        requireContext(),
-                        "API request successful for query: $query",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                    // Now you can work with the 'songs' data as needed
-                } else {
-                    // Handle unsuccessful response
-                    Toast.makeText(
-                        requireContext(),
-                        "API request failed for query: $query",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-            } catch (e: Exception) {
-                // Handle exception or error
-                e.printStackTrace()
-                Toast.makeText(
-                    requireContext(),
-                    "Error during API request for query: $query",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
-
-
-
-
 
 }

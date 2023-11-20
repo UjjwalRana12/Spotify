@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.Clothing
 
-class ClothingAdapter(
-    private val context: Context,
-    private var itemClickListener: OnItemClickListener? = null
+class ClothingAdapter(private val context: Context, private var itemClickListener: OnItemClickListener? = null
 ) : ListAdapter<Clothing, ClothingAdapter.ClothingViewHolder>(ClothingDiffCallback()) {
 
     interface OnItemClickListener {
