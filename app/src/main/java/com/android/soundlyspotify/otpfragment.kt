@@ -2,6 +2,7 @@ package com.android.soundlyspotify
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import retrofit2.Callback
 
 import android.os.Bundle
@@ -100,11 +101,17 @@ class otpfragment : Fragment() {
                 response: Response<ApiResponse<ResponseData?>>
             ) {
                 if (response.isSuccessful && response.body()?.success == true) {
+                    println("response is going")
                     val accessToken = response.body()?.data?.access_token
                     if (!accessToken.isNullOrBlank()) {
                         saveTokenToPreferences(accessToken)
+                        println()
                         showToast("OTP Verified successfully")
-                        // Next screen navigation logic here
+                        val intent = Intent(requireContext(), MainActivity3::class.java)
+                        startActivity(intent)
+                        requireActivity().finish()
+                        //  finish the current activity if you don't want to navigate back
+
                     } else {
                         showToast("Access token is null or empty")
                     }
@@ -147,7 +154,7 @@ class otpfragment : Fragment() {
             }
 
             override fun onFinish() {
-                timerTextView.text = "Resend Otp?"
+                timerTextView.text = "Otp Sent"
                 // Additional logic on timer completion can be added here
             }
         }.start()
@@ -157,6 +164,9 @@ class otpfragment : Fragment() {
         super.onDestroy()
         countdownTimer?.cancel() // Cancel the timer to prevent memory leaks
     }
+//    private fun <T> Call<T>.enqueue(callback: Callback<ApiResponse<ResponseData?>>) {
+//        this.enqueue(callback)
+//    }
 }
 
 private fun <T> Call<T>.enqueue(callback: Callback<ApiResponse<ResponseData?>>) {

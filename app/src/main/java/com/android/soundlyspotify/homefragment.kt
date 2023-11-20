@@ -78,7 +78,7 @@ class homefragment : Fragment() {
             override fun run() {
                 handler.post(update)
             }
-        }, 1000, 3000)
+        }, 1000, 2000)
 
         // closuer apply
         val viewPagerCarousel = view.findViewById<ViewPager2>(R.id.viewPager2)
