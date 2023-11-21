@@ -2,7 +2,8 @@ package com.android.soundlyspotify.models
 
 // these are the data classes for my recyclerView
 data class BestSeller(val image: Int, val title: String,val query: String)
-data class Offer(val image: Int, val title: String, val query: String)
+data class Offer(var image: Int, var title: String, var query: String)
+
 
 
 data class Clothing(val image: Int, val title: String,val query: String)

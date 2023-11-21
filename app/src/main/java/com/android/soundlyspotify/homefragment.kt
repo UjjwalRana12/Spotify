@@ -32,7 +32,10 @@ import com.android.soundlyspotify.models.BestSeller2
 import com.android.soundlyspotify.models.Clothing
 import com.android.soundlyspotify.models.MyItem
 import com.android.soundlyspotify.models.Offer
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import java.util.Timer
 import java.util.TimerTask
@@ -91,21 +94,24 @@ class homefragment : Fragment() {
         offerRecyclerView.setHasFixedSize(true)
         offerRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
+        val fixedQueries = listOf("abcd", "abcd", "abcd", "abcd", "abcd")
+
         val offers = listOf(
-            Offer(R.drawable.phototeen, "Offer Title 1", "query1"),
-            Offer(R.drawable.photoek, "Offer Title 2", "query2"),
-            Offer(R.drawable.photocheh, "Offer Title 3", "query3"),
-            Offer(R.drawable.photodo, "Offer Title 4", "query4"),
-            Offer(R.drawable.photopaanch, "Offer Title 5", "query5"),
+            Offer(R.drawable.phototeen, "Offer Title 1", "abcd"),
+            Offer(R.drawable.photoek, "Offer Title 2", "abcd"),
+            Offer(R.drawable.photocheh, "Offer Title 3", "abcd"),
+            Offer(R.drawable.photodo, "Offer Title 4", "abcd"),
+            Offer(R.drawable.photopaanch, "Offer Title 5", "abcd"),
             // Add more items as needed
         )
 
-        val offerAdapter = OfferAdapter(offers) { clickedOffer ->
+        val offerAdapter = OfferAdapter { clickedOffer ->
 
             // Example: Logging the query for demonstration purposes
             println("Item clicked 1")
 
         }
+
 
         offerAdapter.setOnItemClickListener(object : OfferAdapter.OnItemClickListener {
             override fun onItemClick(clickedOffer: Offer) {
@@ -114,8 +120,27 @@ class homefragment : Fragment() {
                 Log.d("OfferAdapter", "Item clicked:  Title: ${clickedOffer.title}, Query: ${clickedOffer.query}")
             }
         })
+        println("the offer api start calling")
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val apiService = RetroClient.instance
 
+                val apiResponses = fixedQueries.map { query ->
+                    apiService.searchSongs(query)
+                }
+
+                // Update the UI on the main thread
+                withContext(Dispatchers.Main) {
+                    val updatedOffers = updateItemsWithApiData(offers, apiResponses)
+                    offerAdapter.submitList(updatedOffers)
+                }
+            } catch (e: Exception) {
+                // Handle error
+                Log.e("homefragment", "Error fetching offer data: ${e.message}")
+            }
+        }
         offerRecyclerView.adapter = offerAdapter
+
 
         // BESTSELLER IS HERE
         bestsellerRecyclerView = view.findViewById(R.id.bestSellerRecyclerView)
@@ -253,5 +278,23 @@ class homefragment : Fragment() {
 
         return view
     }
+    private fun updateItemsWithApiData(offers: List<Offer>, apiResponses: List<ApiSongResponse>): List<Offer> {
+        return offers.mapIndexed { index, offer ->
+            if (index < apiResponses.size && index < apiResponses[index].data.size) {
+                // Update the corresponding Offer item with API response data
+                val songModel = apiResponses[index].data[index]
+                offer.copy(
+                    title = songModel.name,
+                    image = songModel.imageMV
+                    // Add more properties as needed
+                )
+            } else {
+                // If there's no corresponding API response, return the original Offer
+                offer
+            }
+        }
+    }
+
+
 
 }

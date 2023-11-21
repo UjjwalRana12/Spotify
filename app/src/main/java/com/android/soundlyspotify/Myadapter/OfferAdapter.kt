@@ -5,14 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.Offer
 
 class OfferAdapter(
-    private val offers: List<Offer>,
     private val onQueryRequested: (String) -> Unit
-) : RecyclerView.Adapter<OfferAdapter.OfferViewHolder>() {
+) : ListAdapter<Offer, OfferAdapter.OfferViewHolder>(OfferDiffCallback()) {
 
     private var itemClickListener: OnItemClickListener? = null
 
@@ -22,7 +23,7 @@ class OfferAdapter(
     }
 
     override fun onBindViewHolder(holder: OfferViewHolder, position: Int) {
-        val currentOffer = offers[position]
+        val currentOffer = getItem(position)
         holder.bind(currentOffer)
 
         // Set click listener for each item
@@ -36,7 +37,7 @@ class OfferAdapter(
     }
 
     override fun getItemCount(): Int {
-        return offers.size
+        return currentList.size
     }
 
     inner class OfferViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -55,5 +56,15 @@ class OfferAdapter(
 
     fun setOnItemClickListener(listener: OnItemClickListener?) {
         itemClickListener = listener
+    }
+
+    private class OfferDiffCallback : DiffUtil.ItemCallback<Offer>() {
+        override fun areItemsTheSame(oldItem: Offer, newItem: Offer): Boolean {
+            return oldItem.query == newItem.query // Assuming query is unique
+        }
+
+        override fun areContentsTheSame(oldItem: Offer, newItem: Offer): Boolean {
+            return oldItem == newItem
+        }
     }
 }
