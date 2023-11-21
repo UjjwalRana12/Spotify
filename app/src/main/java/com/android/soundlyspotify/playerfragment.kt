@@ -1,6 +1,7 @@
 package com.android.soundlyspotify
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ class playerfragment : Fragment() {
         songUrl = arguments?.getString(ARG_SONG_URL)
 
         // Initialize MediaPlayerManager with the song URL
+
         mediaPlayerManager = songUrl?.let { MediaPlayerManager(requireContext(), it) }
             ?: throw IllegalStateException("Song URL is null")
 
@@ -106,4 +108,5 @@ class playerfragment : Fragment() {
             return fragment
         }
     }
+
 }
