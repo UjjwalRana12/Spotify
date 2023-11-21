@@ -180,12 +180,6 @@ class homefragment : Fragment() {
 
             }
         })
-
-
-
-
-
-
         // clothing is here
 
 

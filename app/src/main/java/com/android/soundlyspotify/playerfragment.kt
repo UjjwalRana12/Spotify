@@ -12,7 +12,7 @@ import com.android.soundlyspotify.R
 import com.android.soundlyspotify.MediaPlayerManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class playerfragment : Fragment() {
+class playerfragment : Fragment(), MediaPlayerManagerListener {
 
     private lateinit var mediaPlayerManager: MediaPlayerManager
     private lateinit var playPauseButton: AppCompatImageView
@@ -33,6 +33,7 @@ class playerfragment : Fragment() {
 
         // Initialize MediaPlayerManager with the song URL
 
+        Log.d("Ashu", songUrl.toString())
         mediaPlayerManager = songUrl?.let { MediaPlayerManager(requireContext(), it) }
             ?: throw IllegalStateException("Song URL is null")
 
@@ -93,7 +94,7 @@ class playerfragment : Fragment() {
     private fun updatePlayPauseButton() {
         // Update play/pause button UI based on the current playback state
         val iconResource =
-            if (mediaPlayerManager.isPlaying()) R.drawable.playarrow else R.drawable.baseline_pause_circle_24
+            if (mediaPlayerManager.isPlaying()) R.drawable.baseline_pause_circle_24 else R.drawable.playarrow
         playPauseButton.setImageResource(iconResource)
     }
 
@@ -109,4 +110,15 @@ class playerfragment : Fragment() {
         }
     }
 
+    override fun onPrepared() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onCompletion() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onError(error: String) {
+        Log.d("Ashu", error)
+    }
 }

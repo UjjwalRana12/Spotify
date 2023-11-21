@@ -86,6 +86,7 @@ dependencies {
     //glide
     implementation("com.github.bumptech.glide:glide:4.14.2")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
+
     //search view
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation ("androidx.appcompat:appcompat-resources:1.6.1")
