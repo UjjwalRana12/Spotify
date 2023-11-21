@@ -60,8 +60,8 @@ class usernamelogin : Fragment() {
             val userAPI = RetrofitClient.userAPI
             val call = userAPI.userLogin(userLoginRequest)
 
-            call.enqueue(object : Callback<ApiResponse<Any?>> {
-                override fun onResponse(call: Call<ApiResponse<Any?>>, response: Response<ApiResponse<Any?>>) {
+            call.enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
 
                         val apiResponse = response.body()
@@ -71,7 +71,7 @@ class usernamelogin : Fragment() {
                             args.putString("USERNAME_KEY", username)
                             fragment.arguments = args
 
-                           // Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
+                            // Toast.makeText(requireContext(), "Login Successful", Toast.LENGTH_SHORT).show()
 
                             val fragmentTransaction = parentFragmentManager.beginTransaction()
                             fragmentTransaction.replace(R.id.usernamelogin, fragment)
@@ -93,7 +93,7 @@ class usernamelogin : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<ApiResponse<Any?>>, t: Throwable) {
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                     loadingProgressBar.visibility=View.GONE
                     Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()
 

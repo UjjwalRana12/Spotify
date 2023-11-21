@@ -3,8 +3,6 @@ package com.android.soundlyspotify
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import retrofit2.Callback
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,7 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.android.soundlyspotify.RetrofitClient.userAPI
 import retrofit2.Call
-
+import retrofit2.Callback
 import retrofit2.Response
 import android.os.CountDownTimer
 
@@ -69,7 +67,6 @@ class otpfragment : Fragment() {
             val enteredOTP = "${editText1.text}${editText2.text}${editText3.text}${editText4.text}"
             if (enteredOTP.length == 4) {
                 verifyOTP(enteredOTP)
-                println("enteredOTP")
             }
         }
 
@@ -94,46 +91,37 @@ class otpfragment : Fragment() {
     private fun verifyOTP(enteredOTP: String) {
         val invalidots = view?.findViewById<TextView>(R.id.invalidotp)
         val verificationRequest = VerificationRequest(username, enteredOTP)
-
-        userAPI.verifyUser(verificationRequest).enqueue(object : Callback<ApiResponse<ResponseData?>> {
-            override fun onResponse(
-                call: Call<ApiResponse<ResponseData?>>,
-                response: Response<ApiResponse<ResponseData?>>
-            ) {
+        userAPI.verifyUser(verificationRequest).enqueue(object : Callback<ApiResponse> {
+            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.isSuccessful && response.body()?.success == true) {
-                    println("response is going")
                     val accessToken = response.body()?.data?.access_token
                     if (!accessToken.isNullOrBlank()) {
                         saveTokenToPreferences(accessToken)
-                        println()
                         showToast("OTP Verified successfully")
+
                         val intent = Intent(requireContext(), MainActivity3::class.java)
                         startActivity(intent)
                         requireActivity().finish()
-                        //  finish the current activity if you don't want to navigate back
-
+                        // Next screen navigation logic here
                     } else {
                         showToast("Access token is null or empty")
                     }
                 } else {
+
                     if (invalidots != null) {
-                        invalidots.text = "Invalid Otp"
-                        invalidots.visibility = View.VISIBLE
+                        invalidots.text="Invalid Otp"
+                        invalidots.visibility=View.VISIBLE
                     }
+
                     showToast("OTP Verification failed")
                 }
             }
 
-            override fun onFailure(call: Call<ApiResponse<ResponseData?>>, t: Throwable) {
+            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                 showToast("API call failed. Please try again.")
             }
         })
     }
-
-
-
-
-
 
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
@@ -154,7 +142,7 @@ class otpfragment : Fragment() {
             }
 
             override fun onFinish() {
-                timerTextView.text = "Otp Sent"
+                timerTextView.text = "Resend Otp?"
                 // Additional logic on timer completion can be added here
             }
         }.start()
@@ -164,11 +152,4 @@ class otpfragment : Fragment() {
         super.onDestroy()
         countdownTimer?.cancel() // Cancel the timer to prevent memory leaks
     }
-//    private fun <T> Call<T>.enqueue(callback: Callback<ApiResponse<ResponseData?>>) {
-//        this.enqueue(callback)
-//    }
-}
-
-private fun <T> Call<T>.enqueue(callback: Callback<ApiResponse<ResponseData?>>) {
-
 }

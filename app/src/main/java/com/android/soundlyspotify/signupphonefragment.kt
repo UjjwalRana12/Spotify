@@ -31,7 +31,7 @@ class signupphonefragment : Fragment() {
         }
     }
 
-    @SuppressLint("SetTextI18n", "MissingInflatedId", "SuspiciousIndentation")
+    @SuppressLint("SetTextI18n", "MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,7 +45,7 @@ class signupphonefragment : Fragment() {
         val phoneError = view.findViewById<TextView>(R.id.supphnoerror)
         val loadingProgressBar = view.findViewById<ProgressBar>(R.id.progressBar)
 
-            signupButton.setOnClickListener {
+        signupButton.setOnClickListener {
             loadingProgressBar.visibility = View.VISIBLE
             val username = usernamephoneEditText.text.toString()
             val phone = phonenEditText.text.toString()
@@ -56,8 +56,8 @@ class signupphonefragment : Fragment() {
                 phoneError.visibility = View.GONE
                 return@setOnClickListener
             }
-             else if ( phone.isEmpty()) {
-                 phoneError.text ="phone no. is empty"
+            else if ( phone.isEmpty()) {
+                phoneError.text ="phone no. is empty"
                 usernameError.visibility = View.GONE
                 phoneError.visibility = View.VISIBLE
                 loadingProgressBar.visibility = View.GONE
@@ -69,8 +69,8 @@ class signupphonefragment : Fragment() {
             val userphoneRegistrationRequest = PhoneRegistrationRequest(username, phone)
 
             val call = userAPI.registerByPhone(userphoneRegistrationRequest)
-            call.enqueue(object : Callback<ApiResponse<Any?>> {
-                override fun onResponse(call: Call<ApiResponse<Any?>>, response: Response<ApiResponse<Any?>>) {
+            call.enqueue(object : Callback<ApiResponse> {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
                         val bundle = Bundle()
                         bundle.putString("USERNAME_KEY", username)
@@ -91,7 +91,7 @@ class signupphonefragment : Fragment() {
                     }
                 }
 
-                override fun onFailure(call: Call<ApiResponse<Any?>>, t: Throwable) {
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                     Log.e("api", "API call failed: ${t.message}")
                     loadingProgressBar.visibility = View.GONE
                     Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()

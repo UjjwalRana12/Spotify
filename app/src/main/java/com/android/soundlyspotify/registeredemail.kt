@@ -59,25 +59,25 @@ class registeredemail : Fragment() {
             val useremailRegistrationRequest = ForgotEmailVerificationRequest(emailInput)
 
             val call = userAPI.verifyForgotEmail(useremailRegistrationRequest)
-            call.enqueue(object : Callback<ApiResponse<Any?>> {
+            call.enqueue(object : Callback<ApiResponse> {
                 @SuppressLint("SuspiciousIndentation")
-                override fun onResponse(call: Call<ApiResponse<Any?>>, response: Response<ApiResponse<Any?>>) {
+                override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                     if (response.isSuccessful) {
                         Log.d("api", "Success")
                         val fragmentTransaction = parentFragmentManager.beginTransaction()
-                            fragmentTransaction.replace(R.id.registeredemail, otpfragment())
-                            fragmentTransaction.addToBackStack(null)
-                            fragmentTransaction.commit()
+                        fragmentTransaction.replace(R.id.registeredemail, otpfragment())
+                        fragmentTransaction.addToBackStack(null)
+                        fragmentTransaction.commit()
                     } else {
                         regisemailbharo.text="Enter valid email address"
                         regisemailbharo.visibility=View.VISIBLE
                         progressbarmy.visibility=View.GONE
                         Log.d("api", "Unsuccessful")
-                       // Toast.makeText(requireContext(), "Api calling failed.", Toast.LENGTH_SHORT).show()
+                        // Toast.makeText(requireContext(), "Api calling failed.", Toast.LENGTH_SHORT).show()
                     }
                 }
 
-                override fun onFailure(call: Call<ApiResponse<Any?>>, t: Throwable) {
+                override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
                     progressbarmy.visibility=View.GONE
                     Log.e("api", "API call failed: ${t.message}")
                     Toast.makeText(requireContext(), "API call failed. Please try again.", Toast.LENGTH_SHORT).show()
