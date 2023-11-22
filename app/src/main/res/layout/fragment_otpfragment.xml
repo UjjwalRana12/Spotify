@@ -50,12 +50,13 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="34dp"
         app:cardBackgroundColor="@color/lightbg"
         app:cardCornerRadius="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -65,7 +66,7 @@
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="@font/poppins"
                 android:text="Enter OTP"
                 android:textAlignment="center"
@@ -73,7 +74,7 @@
                 android:textSize="26sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.468"
+                app:layout_constraintHorizontal_bias="0.465"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,37 +82,37 @@
                 android:id="@+id/button2"
                 android:layout_width="320dp"
                 android:layout_height="56dp"
-                android:layout_marginTop="256dp"
+                android:layout_marginTop="56dp"
                 android:backgroundTint="@color/bluegreen"
-                android:text="Verify"
                 android:fontFamily="@font/poppins"
+                android:text="Verify"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="0.377"
+                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins"
-                android:textSize="12sp"
                 android:text="Please enter the 4 - digit code sent to you at"
                 android:textAlignment="viewStart"
                 android:textColor="@color/black"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView17"
-                app:layout_constraintHorizontal_bias="0.413"
+                app:layout_constraintHorizontal_bias="0.436"
                 app:layout_constraintStart_toStartOf="@+id/textView17"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
             <TextView
                 android:id="@+id/textView5"
                 android:layout_width="195dp"
                 android:layout_height="38dp"
-                android:layout_marginTop="96dp"
+                android:layout_marginTop="10dp"
                 android:width="195sp"
                 android:height="24sp"
                 android:fontFamily="@font/poppins"
@@ -121,9 +122,9 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
-                app:layout_constraintHorizontal_bias="0.439"
+                app:layout_constraintHorizontal_bias="0.413"
                 app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <EditText
                 android:id="@+id/textView6"
@@ -131,9 +132,9 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="164dp"
                 android:background="@drawable/otpbackground"
-                android:text=""
                 android:inputType="number"
                 android:maxLength="1"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/lightblack"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -147,9 +148,9 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="164dp"
                 android:background="@drawable/otpbackground"
-                android:text=""
                 android:inputType="number"
                 android:maxLength="1"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/lightblack"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -163,9 +164,9 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="164dp"
                 android:background="@drawable/otpbackground"
-                android:text=""
                 android:inputType="number"
                 android:maxLength="1"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/lightblack"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -179,9 +180,9 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="164dp"
                 android:background="@drawable/otpbackground"
-                android:text=""
                 android:inputType="number"
                 android:maxLength="1"
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/lightblack"
                 app:layout_constraintEnd_toEndOf="@+id/textView"
@@ -193,14 +194,14 @@
                 android:id="@+id/textView222"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="212dp"
+                android:layout_marginTop="4dp"
                 android:text="i am invisible"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView9"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView6"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
             <TextView
                 android:id="@+id/textView1234"
@@ -208,9 +209,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="212dp"
                 android:text="Invalid Otp"
+                android:textColor="@color/red"
                 android:textSize="12sp"
                 android:visibility="gone"
-                android:textColor="@color/red"
 
                 app:layout_constraintEnd_toEndOf="@+id/textView9"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -223,8 +224,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="236dp"
                 android:text="invalid otp"
-                android:visibility="gone"
                 android:textColor="@color/red"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/textView9"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView6"
