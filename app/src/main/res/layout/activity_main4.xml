@@ -13,6 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:background="@color/white"
+        android:clickable="true"
+        android:foreground="@drawable/ripple_backgroun"
         app:layout_constraintStart_toStartOf="@+id/textView45"
         app:layout_constraintTop_toBottomOf="@+id/cardView1as">
 

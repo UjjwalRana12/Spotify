@@ -98,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
                 android:fontFamily="@font/poppins"
+                android:textSize="12sp"
                 android:text="Please enter the 4 - digit code sent to you at"
                 android:textAlignment="viewStart"
                 android:textColor="@color/black"
