@@ -12,16 +12,16 @@
         android:layout_width="320dp"
         android:layout_height="64dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/textview_ka_border"
         android:fontFamily="@font/poppins"
-        android:text="HINDI"
         android:paddingStart="22dp"
         android:paddingTop="16dp"
-        android:textSize="20sp"
-        android:background="@drawable/textview_ka_border"
+        android:text="HINDI"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView39"
         app:layout_constraintHorizontal_bias="0.681"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView39"
         app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
     <TextView
@@ -90,4 +90,20 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/NextView45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:fontFamily="@font/poppins"
+        android:text="Next"
+        android:backgroundTint="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/bluegreen"
+        app:layout_constraintEnd_toEndOf="@+id/textView38"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textView38"
+        app:layout_constraintTop_toBottomOf="@+id/textView38" />
 </androidx.constraintlayout.widget.ConstraintLayout>

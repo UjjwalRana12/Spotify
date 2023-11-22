@@ -11,18 +11,16 @@
         android:id="@+id/CardView3as"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="44dp"
         android:background="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView45"
         app:layout_constraintTop_toBottomOf="@+id/cardView1as">
 
         <ImageView
             android:id="@+id/imageView3as"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arjitsingh"
-            tools:srcCompat="@drawable/arjitsingh" />
+            android:src="@drawable/arjit_imgg" />
     </androidx.cardview.widget.CardView>
 
 
@@ -31,10 +29,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="44dp"
         android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView45"
         app:layout_constraintStart_toEndOf="@+id/CardView3as"
         app:layout_constraintTop_toBottomOf="@+id/CardView2as">
 
@@ -42,8 +39,7 @@
             android:id="@+id/imageView4as"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arjitsingh"
-            tools:srcCompat="@drawable/arjitsingh" />
+            android:src="@drawable/neha_img"/>
     </androidx.cardview.widget.CardView>
 
 
@@ -51,20 +47,18 @@
         android:id="@+id/cardView5as"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="44dp"
         android:background="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/cardview6as"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/CardView3as"
         app:layout_constraintTop_toBottomOf="@+id/CardView3as">
 
         <ImageView
             android:id="@+id/imageView5as"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arjitsingh"
-            tools:srcCompat="@drawable/arjitsingh" />
+            android:src="@drawable/dhvani_img"/>
     </androidx.cardview.widget.CardView>
 
 
@@ -73,10 +67,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="44dp"
         android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/CardView4as"
         app:layout_constraintStart_toEndOf="@+id/CardView3as"
         app:layout_constraintTop_toBottomOf="@+id/CardView4as">
 
@@ -84,27 +77,26 @@
             android:id="@+id/imageView6as"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arjitsingh"
-            tools:srcCompat="@drawable/arjitsingh" />
+            android:backgroundTint="@color/white"
+            android:src="@drawable/badshah_img" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView1as"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="32dp"
         android:background="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/CardView2as"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="@+id/textView45"
+        app:layout_constraintTop_toBottomOf="@+id/textView45">
 
         <ImageView
             android:id="@+id/imageView1as"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arjitsingh" />
+            android:src="@drawable/honey_img" />
     </androidx.cardview.widget.CardView>
 
 
@@ -113,19 +105,112 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="32dp"
         android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView45"
         app:layout_constraintStart_toEndOf="@+id/CardView3as"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView45">
 
         <ImageView
             android:id="@+id/imageView2as"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arjitsingh"
-            tools:srcCompat="@drawable/arjitsingh" />
+            android:src="@drawable/darshan_img" />
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Which artist you love to listen?"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView46"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Honey Singh"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins"
+        app:layout_constraintEnd_toEndOf="@+id/cardView1as"
+        app:layout_constraintStart_toStartOf="@+id/cardView1as"
+        app:layout_constraintTop_toBottomOf="@+id/cardView1as" />
+
+    <TextView
+        android:id="@+id/textView47"
+        android:layout_width="wrap_content"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins"
+        android:layout_height="wrap_content"
+        android:text="Darshan Raval"
+        app:layout_constraintEnd_toEndOf="@+id/CardView2as"
+        app:layout_constraintStart_toStartOf="@+id/CardView2as"
+        app:layout_constraintTop_toBottomOf="@+id/CardView2as" />
+
+    <TextView
+        android:id="@+id/textView48"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Arjit Singh"
+        app:layout_constraintEnd_toEndOf="@+id/CardView3as"
+        app:layout_constraintStart_toStartOf="@+id/CardView3as"
+        app:layout_constraintTop_toBottomOf="@+id/CardView3as" />
+
+    <TextView
+        android:id="@+id/textView49"
+        android:layout_width="wrap_content"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins"
+        android:layout_height="wrap_content"
+        android:text="Neha Kakar"
+        app:layout_constraintEnd_toEndOf="@+id/CardView4as"
+        app:layout_constraintStart_toStartOf="@+id/CardView4as"
+        app:layout_constraintTop_toBottomOf="@+id/CardView4as" />
+
+    <TextView
+        android:id="@+id/textView50"
+        android:layout_width="124dp"
+        android:layout_height="39dp"
+        android:fontFamily="@font/poppins"
+        android:text="Dhavni Bhanushali"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/cardView5as"
+        app:layout_constraintStart_toStartOf="@+id/cardView5as"
+        app:layout_constraintTop_toBottomOf="@+id/cardView5as" />
+
+    <TextView
+        android:id="@+id/textView51"
+        android:layout_width="98dp"
+        android:layout_height="30dp"
+
+        android:fontFamily="@font/poppins"
+        android:text="Badshah"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/cardview6as"
+        app:layout_constraintStart_toStartOf="@+id/cardview6as"
+        app:layout_constraintTop_toBottomOf="@+id/cardview6as" />
+
+    <Button
+        android:id="@+id/buttonnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/white"
+        android:text="Next"
+        android:textColor="@color/bluegreen"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/cardview6as"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/cardview6as"
+        app:layout_constraintTop_toBottomOf="@+id/textView51" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,9 @@
 package com.android.soundlyspotify
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 
@@ -27,6 +29,13 @@ class MainActivity4 : AppCompatActivity() {
         cardView4.setOnClickListener { toggleCardSelection(cardView4) }
         cardView5.setOnClickListener { toggleCardSelection(cardView5) }
         cardView6.setOnClickListener { toggleCardSelection(cardView6) }
+
+        val button: Button = findViewById(R.id.buttonnect)
+        button.setOnClickListener {
+            // Code to execute when the button is clicked
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun toggleCardSelection(clickedCardView: CardView) {

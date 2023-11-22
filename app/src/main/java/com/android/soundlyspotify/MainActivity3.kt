@@ -1,7 +1,9 @@
 package com.android.soundlyspotify
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -23,6 +25,14 @@ class MainActivity3 : AppCompatActivity() {
         text2.setOnClickListener { toggleColor(text2) }
         text3.setOnClickListener { toggleColor(text3) }
         text4.setOnClickListener { toggleColor(text4) }
+
+        // Move the button and its click listener inside the onCreate method
+        val button: Button = findViewById(R.id.NextView45)
+        button.setOnClickListener {
+            // Code to execute when the button is clicked
+            val intent = Intent(this, MainActivity4::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun toggleColor(clickedTextView: TextView) {
