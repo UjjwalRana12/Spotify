@@ -41,11 +41,12 @@ class MainActivity3 : AppCompatActivity() {
             // If already selected, remove it
             selectedTextViews.remove(clickedTextView)
             clickedTextView.setBackgroundColor(Color.TRANSPARENT)
+            clickedTextView.setBackgroundResource(R.drawable.textview_ka_border)
             clickedTextView.setTextColor(Color.BLACK)
         } else {
             // If not selected, add it
             selectedTextViews.add(clickedTextView)
-            clickedTextView.setBackgroundColor(Color.parseColor("#008B8B"))
+            clickedTextView.setBackgroundResource(R.drawable.rounded_background)
             clickedTextView.setTextColor(Color.WHITE)
         }
     }

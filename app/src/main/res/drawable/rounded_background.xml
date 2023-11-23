@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="#008B8B" />
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+    <item android:drawable="@drawable/textview_ka_border" />
+</layer-list>
