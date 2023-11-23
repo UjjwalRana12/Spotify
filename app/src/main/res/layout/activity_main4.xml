@@ -11,11 +11,12 @@
         android:id="@+id/CardView3as"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="44dp"
         android:background="@color/white"
         android:clickable="true"
         android:foreground="@drawable/ripple_backgroun"
-        app:layout_constraintStart_toStartOf="@+id/textView45"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView1as">
 
         <ImageView
@@ -60,7 +61,7 @@
             android:id="@+id/imageView5as"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/dhvani_img"/>
+            android:src="@drawable/dhvani_img" />
     </androidx.cardview.widget.CardView>
 
 
@@ -87,11 +88,12 @@
         android:id="@+id/cardView1as"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="32dp"
         android:background="@color/white"
         app:layout_constraintEnd_toStartOf="@+id/CardView2as"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView45"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView45">
 
         <ImageView
@@ -124,11 +126,12 @@
         android:id="@+id/textView45"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="26dp"
         android:text="Which artist you love to listen?"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -137,9 +140,10 @@
         android:id="@+id/textView46"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:fontFamily="@font/poppins"
         android:text="Honey Singh"
         android:textColor="@color/black"
-        android:fontFamily="@font/poppins"
         app:layout_constraintEnd_toEndOf="@+id/cardView1as"
         app:layout_constraintStart_toStartOf="@+id/cardView1as"
         app:layout_constraintTop_toBottomOf="@+id/cardView1as" />
@@ -160,6 +164,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Arjit Singh"
+        android:fontFamily="@font/poppins"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/CardView3as"
         app:layout_constraintStart_toStartOf="@+id/CardView3as"
         app:layout_constraintTop_toBottomOf="@+id/CardView3as" />
@@ -208,7 +214,7 @@
         android:backgroundTint="@color/white"
         android:text="Next"
         android:textColor="@color/bluegreen"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/cardview6as"
         app:layout_constraintHorizontal_bias="1.0"

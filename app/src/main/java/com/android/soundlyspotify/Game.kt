@@ -78,7 +78,7 @@ class Game : Fragment() {
     }
 
     private fun updateUI() {
-        questionTextView.text = gameData.data.name
+       // questionTextView.text = gameData.data.name
         option1Button.text = gameData.data.option1
         option2Button.text = gameData.data.option2
     }
@@ -153,6 +153,7 @@ class Game : Fragment() {
     }
 
     private fun showToast(message: String) {
+        showToast("the error message is : ${message}")
         // Use your preferred method to display a message to the user
         // For example, Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }

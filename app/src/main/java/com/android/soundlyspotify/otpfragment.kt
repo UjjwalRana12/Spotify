@@ -48,7 +48,7 @@ class otpfragment : Fragment() {
 
         val phoneNumberTextView = view.findViewById<TextView>(R.id.textView5)
 
-        phoneNumberTextView.text = param1 ?: "No phone number received"
+        phoneNumberTextView.text = param1 ?: "Credentials..."
 
         val editText1: EditText = view.findViewById(R.id.textView6)
         val editText2: EditText = view.findViewById(R.id.textView7)
@@ -142,7 +142,9 @@ class otpfragment : Fragment() {
             }
 
             override fun onFinish() {
-                timerTextView.text = "Resend Otp?"
+                timerTextView.text = "Otp Sent"
+                val enteredOTP = "yourValidOTP"
+                verifyOTP(enteredOTP)
                 // Additional logic on timer completion can be added here
             }
         }.start()
