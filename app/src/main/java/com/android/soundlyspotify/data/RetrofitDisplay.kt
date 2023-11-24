@@ -1,7 +1,7 @@
 package com.android.soundlyspotify.data
 
-import okhttp3.OkHttpClient
 import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -9,14 +9,13 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitDisplay {
     private const val BASE_URL = "https://test-mkcw.onrender.com/api/"
-    private const val ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxODA1MTczLCJpYXQiOjE2OTkyMTMxNzMsImp0aSI6IjYwOTdkYTkxNTJmMDQ1YzY4YmE1MTBjZWQyMDM4MzAxIiwidXNlcl9pZCI6ImFkbWluIn0.zhhXZrQzl4fls2jh26tGQ6KMuKojlFV8r-rE1LEWT_w" // Replace with your actual access token
+    private var accessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxODA1MTczLCJpYXQiOjE2OTkyMTMxNzMsImp0aSI6IjYwOTdkYTkxNTJmMDQ1YzY4YmE1MTBjZWQyMDM4MzAxIiwidXNlcl9pZCI6ImFkbWluIn0.zhhXZrQzl4fls2jh26tGQ6KMuKojlFV8r-rE1LEWT_w"
 
-    // Define the AuthInterceptor to add the "Authorization" header
     private class AuthInterceptor : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val original = chain.request()
             val requestBuilder = original.newBuilder()
-                .header("Authorization", "Bearer $ACCESS_TOKEN")
+                .header("Authorization", "Bearer $accessToken")
             val request = requestBuilder.build()
             return chain.proceed(request)
         }
@@ -40,4 +39,9 @@ object RetrofitDisplay {
 
     // Define the SongApiService instance
     val songApiService: SongApiService = retrofit.create(SongApiService::class.java)
+
+    // Function to update the access token dynamically
+    fun updateAccessToken(newToken: String) {
+        accessToken = newToken
+    }
 }

@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hey, Ujjwal"
+        android:text="Hey, User"
         android:textColor="@color/black"
         android:textSize="24sp" />
 
@@ -17,7 +17,7 @@
         android:layout_height="30dp"
         android:layout_gravity="end"
         android:layout_marginEnd="22dp"
-        android:src="@drawable/photopaanch"/>
+        android:src="@drawable/default_img"/>
 
 </androidx.appcompat.widget.Toolbar>
 
