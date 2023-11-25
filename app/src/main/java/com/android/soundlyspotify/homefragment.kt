@@ -103,7 +103,8 @@ class homefragment : Fragment() {
 
         val fixedQueriesOffer = listOf("abcd", "aashke", "angreji beat", "brown rang", "2phone")
         val fixedQueriesbestseller = listOf("nasha", "abcd", "aashke", "abcd", "fairplay")
-        val fixedQueriesbestseller2 = listOf("abcd", "nasha", "abcd", "abcd", "angreji beat")
+        val fixedQueriesmusic = listOf("abcd", "nasha", "abcd", "abcd", "angreji beat")
+        val fixedQueriesclothing = listOf("abcd", "nasha", "abcd", "abcd", "angreji beat")
 
 
         val offers = listOf(
@@ -282,6 +283,33 @@ class homefragment : Fragment() {
                 Log.d("ItemClicked", "Query: $query")
             }
         })
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val apiService = RetroClient.instance
+                val token = requireActivity().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE).getString("access_token", null)
+
+                if (token == null) {
+                    Log.e("homefragment", "Access token is null")
+                } else {
+                    Log.d("homefragment", "Access token: $token")
+                    RetroClient.updateAccessToken(token)
+                }
+
+                val apiResponses = fixedQueriesclothing.map { query ->
+                    apiService.searchSongs(query)
+                }
+
+                apiResponses.forEachIndexed { index, response ->
+                    Log.d("homefragment", "API Response for query '${fixedQueriesclothing[index]}': $response")
+                }
+
+                // Convert apiResponses to a List<Offer> or extract the necessary data
+
+            } catch (e: Exception) {
+                // Handle error
+                Log.e("homefragment", "Error fetching offer data: ${e.message}")
+            }
+        }
 
         clothingAdapter.submitList(clothingList)
 
@@ -295,9 +323,11 @@ class homefragment : Fragment() {
         bestseller2RecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
         val bestSellersList = listOf(
-            BestSeller2(R.drawable.photodo, "Song 1", "Query 1"),
-            BestSeller2(R.drawable.photochaar, "Song 2", "Query 2"),
-            BestSeller2(R.drawable.phototeen, "Song 3", "Query 3"),
+            BestSeller2(R.drawable.arjit_imgg, "Song 1", "Query 1"),
+            BestSeller2(R.drawable.badshah_img, "Song 2", "Query 2"),
+            BestSeller2(R.drawable.honey_img, "Song 3", "Query 3"),
+            BestSeller2(R.drawable.darshan_img, "Song 3", "Query 3"),
+            BestSeller2(R.drawable.neha_img, "Song 3", "Query 3"),
             // Add more items as needed
         )
 
@@ -361,12 +391,12 @@ class homefragment : Fragment() {
                     RetroClient.updateAccessToken(token)
                 }
 
-                val apiResponses = fixedQueriesbestseller2.map { query ->
+                val apiResponses = fixedQueriesmusic.map { query ->
                     apiService.searchSongs(query)
                 }
 
                 apiResponses.forEachIndexed { index, response ->
-                    Log.d("homefragment", "API Response for query '${fixedQueriesbestseller2[index]}': $response")
+                    Log.d("homefragment", "API Response for query '${fixedQueriesmusic[index]}': $response")
                 }
 
                 // Convert apiResponses to a List<Offer> or extract the necessary data
