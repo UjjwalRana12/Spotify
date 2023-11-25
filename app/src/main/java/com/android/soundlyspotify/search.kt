@@ -120,6 +120,12 @@ class search : Fragment() {
 
 
     private fun playSong(song: SongModel) {
+
+        val newToken = "new_access_token"
+
+// Update the access token in RetrofitClient
+        RetrofitClient.updateAccessToken(newToken)
+
         lifecycleScope.launch {
             try {
                 // Use the details from the clicked song to make an API call

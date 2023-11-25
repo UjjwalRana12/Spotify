@@ -1,6 +1,7 @@
 package com.android.soundlyspotify.applied_api
 
-import AuthInterceptor
+
+import com.android.soundlyspotify.AuthInterceptor
 import com.android.soundlyspotify.data.SongApi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
