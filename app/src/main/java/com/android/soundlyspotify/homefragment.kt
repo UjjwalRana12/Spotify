@@ -124,6 +124,15 @@ class homefragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val apiService = RetroClient.instance
+                val token = requireActivity().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE).getString("access_token", null)
+
+                if(token == null){
+                    Log.e("homefragment", "Access token is null")
+                }
+                else{
+                    Log.d("homefragment", "Access token: $token")
+                    RetroClient.updateAccessToken(token)
+                   }
 
                 val apiResponses = fixedQueries.map { query ->
                     apiService.searchSongs(query)
