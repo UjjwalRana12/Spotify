@@ -98,10 +98,10 @@ class homefragment : Fragment() {
 
         val offers = listOf(
             Offer(R.drawable.phototeen, "Offer Title 1", "abcd"),
-            Offer(R.drawable.photoek, "Offer Title 2", "abcd"),
-            Offer(R.drawable.photocheh, "Offer Title 3", "abcd"),
-            Offer(R.drawable.photodo, "Offer Title 4", "abcd"),
-            Offer(R.drawable.photopaanch, "Offer Title 5", "abcd"),
+            Offer(R.drawable.photoek, "Offer Title 2", "ashke"),
+            Offer(R.drawable.photocheh, "Offer Title 3", "angreji beat"),
+            Offer(R.drawable.photodo, "Offer Title 4", "brown rang"),
+            Offer(R.drawable.photopaanch, "Offer Title 5", "2phone"),
             // Add more items as needed
         )
 
@@ -121,27 +121,35 @@ class homefragment : Fragment() {
             }
         })
         println("the offer api start calling")
+        // Inside your CoroutineScope
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val apiService = RetroClient.instance
                 val token = requireActivity().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE).getString("access_token", null)
 
-                if(token == null){
+                if (token == null) {
                     Log.e("homefragment", "Access token is null")
-                }
-                else{
+                } else {
                     Log.d("homefragment", "Access token: $token")
                     RetroClient.updateAccessToken(token)
-                   }
+                }
 
                 val apiResponses = fixedQueries.map { query ->
                     apiService.searchSongs(query)
                 }
 
+                apiResponses.forEachIndexed { index, response ->
+                    Log.d("homefragment", "API Response for query '${fixedQueries[index]}': $response")
+                }
+
+                // Convert apiResponses to a List<Offer> or extract the necessary data
+                val updatedOffers = updateItemsWithApiData(offers, apiResponses)
+
                 // Update the UI on the main thread
                 withContext(Dispatchers.Main) {
-                    val updatedOffers = updateItemsWithApiData(offers, apiResponses)
-                    offerAdapter.submitList(updatedOffers)
+                    offerAdapter.updateOffers(updatedOffers)
+                    Log.d("RecyclerView", "Data size: ${updatedOffers.size}")
+                    offerAdapter.notifyDataSetChanged()
                 }
             } catch (e: Exception) {
                 // Handle error

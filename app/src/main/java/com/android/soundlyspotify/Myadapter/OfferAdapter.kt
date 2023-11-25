@@ -1,5 +1,6 @@
 package com.android.soundlyspotify.Myadapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.Offer
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class OfferAdapter(
     private val onQueryRequested: (String) -> Unit
@@ -28,10 +33,13 @@ class OfferAdapter(
 
         // Set click listener for each item
         holder.itemView.setOnClickListener {
-            // Call the onQueryRequested callback with the query property
-            onQueryRequested(currentOffer.query)
-
             // Notify the external click listener
+//            Log.d(
+//                "OfferAdapter",
+//                "Item clicked: ID: ${currentOffer.id}, Title: ${currentOffer.title}, Query: ${currentOffer.query}"
+//            )
+
+            Log.d("OfferAdapter", "Item clicked: Title: ${currentOffer.title}, Query: ${currentOffer.query}")
             itemClickListener?.onItemClick(currentOffer)
         }
     }
@@ -40,13 +48,20 @@ class OfferAdapter(
         return currentList.size
     }
 
-    inner class OfferViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class OfferViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         private val offerImage: ImageView = itemView.findViewById(R.id.offerMv)
         private val offerTitle: TextView = itemView.findViewById(R.id.offerTv)
 
         fun bind(offer: Offer) {
-            offerImage.setImageResource(offer.image)
-            offerTitle.text = offer.title
+            // Handle null image resource
+            if (offer.image != null) {
+                offerImage.setImageResource(offer.image)
+            } else {
+                offerImage.setImageResource(R.drawable.defaultimage) // Provide a default image resource
+            }
+
+            // Handle null title
+            offerTitle.text = offer.title ?: "Default Title"
         }
     }
 
@@ -56,6 +71,12 @@ class OfferAdapter(
 
     fun setOnItemClickListener(listener: OnItemClickListener?) {
         itemClickListener = listener
+    }
+
+    fun updateOffers(offers: List<Offer>) {
+        GlobalScope.launch(Dispatchers.Main) {
+            submitList(offers)
+        }
     }
 
     private class OfferDiffCallback : DiffUtil.ItemCallback<Offer>() {
