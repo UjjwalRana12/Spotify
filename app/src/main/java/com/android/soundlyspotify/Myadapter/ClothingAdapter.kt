@@ -1,7 +1,4 @@
 package com.android.soundlyspotify.Myadapter
-
-
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -13,15 +10,25 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.Clothing
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-class ClothingAdapter(private val context: Context, private var itemClickListener: OnItemClickListener? = null
+class ClothingAdapter(
+    private val context: Context,
+    private var itemClickListener: OnItemClickListener? = null
 ) : ListAdapter<Clothing, ClothingAdapter.ClothingViewHolder>(ClothingDiffCallback()) {
 
     interface OnItemClickListener {
         fun onItemClick(query: String)
     }
+
     fun setOnItemClickListener(listener: OnItemClickListener?) {
         itemClickListener = listener
+    }
+
+    fun updateList(newList: List<Clothing>) {
+        submitList(newList)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClothingViewHolder {
@@ -32,7 +39,13 @@ class ClothingAdapter(private val context: Context, private var itemClickListene
     override fun onBindViewHolder(holder: ClothingViewHolder, position: Int) {
         val currentItem = getItem(position)
 
-        holder.clothingImage.setImageResource(currentItem.image)
+        // Load image using Picasso
+        Picasso.get()
+            .load(currentItem.image)
+            .resize(450, 450)
+            .centerCrop()
+            .into(holder.clothingImage)
+
         holder.clothingTitle.text = currentItem.title
 
         // Set click listener for each item
@@ -59,3 +72,4 @@ class ClothingAdapter(private val context: Context, private var itemClickListene
         }
     }
 }
+

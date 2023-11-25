@@ -334,6 +334,16 @@ class homefragment : Fragment() {
                 }
 
                 // Convert apiResponses to a List<Offer> or extract the necessary data
+                val newClothingList = apiResponses.mapIndexed { index, response ->
+                    // Replace the placeholders with the actual data from your API response
+                    Clothing(R.drawable.defaultimage, "Title $index", "Query $index")
+                }
+
+// Switch to the main thread to update the UI
+                withContext(Dispatchers.Main) {
+                    // Update the UI with the transformed data
+                    clothingAdapter.updateList(newClothingList)
+                }
 
             } catch (e: Exception) {
                 // Handle error
