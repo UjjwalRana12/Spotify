@@ -285,7 +285,7 @@ class homefragment : Fragment() {
 
 
 
-        // CLOTHING RECYCLER VIEW
+        // CLOTHING RECYCLER VIEW AND API IS ALSO DONE
         // clothing is here
 
 
@@ -444,11 +444,9 @@ class homefragment : Fragment() {
             // Add more items as needed
         )
 
-        val adapterss = MusicAdapter(itemList) { clickedItem ->
+        val adapterss = MusicAdapter(itemList.toMutableList()) { clickedItem ->
             // Handle item click here
-
             Toast.makeText(requireContext(), "Item clicked with query: ${clickedItem.query}", Toast.LENGTH_SHORT).show()
-
             // Add any other actions you want to perform on item click
         }
 
@@ -473,7 +471,16 @@ class homefragment : Fragment() {
                 }
 
                 // Convert apiResponses to a List<Offer> or extract the necessary data
+                val newItems = apiResponses.mapIndexed { index, response ->
+                    // Replace the placeholders with the actual data from your API response
+                    MyItem("Title $index", R.drawable.defaultimage, "Query $index")
+                }
 
+                // Switch to the main thread to update the UI
+                withContext(Dispatchers.Main) {
+                    // Update the adapter with the transformed data
+                    adapterss.updateData(newItems)
+                }
             } catch (e: Exception) {
                 // Handle error
                 Log.e("homefragment", "Error fetching offer data: ${e.message}")

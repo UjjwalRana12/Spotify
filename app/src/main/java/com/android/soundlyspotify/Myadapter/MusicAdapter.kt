@@ -10,8 +10,10 @@ import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.MyItem
 import com.bumptech.glide.Glide
 
-class MusicAdapter(private val itemList: List<MyItem>, private val onItemClick: (MyItem) -> Unit) :
-    RecyclerView.Adapter<MusicAdapter.MyViewHolder>() {
+class MusicAdapter(
+    private var itemList: MutableList<MyItem>,
+    private val onItemClick: (MyItem) -> Unit
+) : RecyclerView.Adapter<MusicAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -19,21 +21,27 @@ class MusicAdapter(private val itemList: List<MyItem>, private val onItemClick: 
         return MyViewHolder(itemView)
     }
 
+    fun updateData(newItemList: List<MyItem>) {
+        itemList.clear()
+        itemList.addAll(newItemList)
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = itemList[position]
+        val currentItem = itemList.getOrNull(position)
 
-        Glide.with(holder.itemView.context)
-            .load(currentItem.imageUrl)
-            .override(450, 450) // Set your desired width and height
-            .centerCrop()
-            .into(holder.imageViewItem)
+        currentItem?.let {
+            Glide.with(holder.itemView.context)
+                .load(it.imageUrl)
+                .override(450, 450)
+                .centerCrop()
+                .into(holder.imageViewItem)
 
-        holder.textViewItem.text = currentItem.text
+            holder.textViewItem.text = it.text
 
-        // Set click listener for each item
-        holder.itemView.setOnClickListener {
-            // Handle item click here
-            onItemClick(currentItem)
+            holder.itemView.setOnClickListener { _ ->
+                onItemClick(it)
+            }
         }
     }
 
