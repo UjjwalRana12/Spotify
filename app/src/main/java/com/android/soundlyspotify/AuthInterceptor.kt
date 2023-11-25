@@ -1,5 +1,6 @@
 package com.android.soundlyspotify
 import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import okhttp3.Response
 
 class AuthInterceptor(private var token: String) : Interceptor {
@@ -14,4 +15,9 @@ class AuthInterceptor(private var token: String) : Interceptor {
             .build()
         return chain.proceed(request)
     }
+}
+fun createOkHttpClient(authToken: String): OkHttpClient {
+    return OkHttpClient.Builder()
+        .addInterceptor(AuthInterceptor(authToken))
+        .build()
 }
