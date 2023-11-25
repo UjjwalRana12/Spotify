@@ -10,7 +10,6 @@ interface PlaylistService {
     fun createPlaylist(@Body playlist: CreatePlaylist): Call<CreatePlaylistResponse>
 
 
-    // Example:
     // @GET("getPlaylist/{playlistId}")
     // fun getPlaylist(@Path("playlistId") playlistId: Int): Call<PlaylistResponse>
 

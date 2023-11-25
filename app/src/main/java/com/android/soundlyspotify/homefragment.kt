@@ -94,7 +94,10 @@ class homefragment : Fragment() {
         offerRecyclerView.setHasFixedSize(true)
         offerRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        val fixedQueries = listOf("abcd", "abcd", "abcd", "abcd", "abcd")
+        val fixedQueriesOffer = listOf("abcd", "aashke", "angreji beat", "brown rang", "2phone")
+        val fixedQueriesbestseller = listOf("nasha", "abcd", "aashke", "abcd", "fairplay")
+        val fixedQueriesbestseller2 = listOf("abcd", "nasha", "abcd", "abcd", "angreji beat")
+
 
         val offers = listOf(
             Offer(R.drawable.phototeen, "Offer Title 1", "abcd"),
@@ -134,12 +137,12 @@ class homefragment : Fragment() {
                     RetroClient.updateAccessToken(token)
                 }
 
-                val apiResponses = fixedQueries.map { query ->
+                val apiResponses = fixedQueriesOffer.map { query ->
                     apiService.searchSongs(query)
                 }
 
                 apiResponses.forEachIndexed { index, response ->
-                    Log.d("homefragment", "API Response for query '${fixedQueries[index]}': $response")
+                    Log.d("homefragment", "API Response for query '${fixedQueriesOffer[index]}': $response")
                 }
 
                 // Convert apiResponses to a List<Offer> or extract the necessary data
@@ -177,7 +180,7 @@ class homefragment : Fragment() {
 
         // setting up bestseller adapter
         val bestSellerAdapter = BestSellerAdapter(bestSellers)
-        bestsellerRecyclerView.adapter = bestSellerAdapter
+
 
         bestSellerAdapter.setOnItemClickListener(object : BestSellerAdapter.OnItemClickListener {
             override fun onItemClick(position: Int, query: String) {
@@ -197,6 +200,36 @@ class homefragment : Fragment() {
 
             }
         })
+        println("best seller api initiated")
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val apiService = RetroClient.instance
+                val token = requireActivity().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE).getString("access_token", null)
+
+                if (token == null) {
+                    Log.e("homefragment", "Access token is null")
+                } else {
+                    Log.d("homefragment", "Access token: $token")
+                    RetroClient.updateAccessToken(token)
+                }
+
+                val apiResponses = fixedQueriesbestseller.map { query ->
+                    apiService.searchSongs(query)
+                }
+
+                apiResponses.forEachIndexed { index, response ->
+                    Log.d("homefragment", "API Response for query '${fixedQueriesbestseller[index]}': $response")
+                }
+
+                // Convert apiResponses to a List<Offer> or extract the necessary data
+
+            } catch (e: Exception) {
+                // Handle error
+                Log.e("homefragment", "Error fetching offer data: ${e.message}")
+            }
+        }
+
+        bestsellerRecyclerView.adapter = bestSellerAdapter
         // clothing is here
 
 
@@ -242,7 +275,7 @@ class homefragment : Fragment() {
 
 
         val adapter = BestSeller2Adapter(requireContext(), bestSellersList)
-        bestseller2RecyclerView.adapter = adapter
+
 
 // Set the item click listener
         adapter.setOnItemClickListener(object : BestSeller2Adapter.OnItemClickListener {
@@ -257,9 +290,34 @@ class homefragment : Fragment() {
             }
         })
 
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val apiService = RetroClient.instance
+                val token = requireActivity().getSharedPreferences("MyAppPreferences", Context.MODE_PRIVATE).getString("access_token", null)
 
+                if (token == null) {
+                    Log.e("homefragment", "Access token is null")
+                } else {
+                    Log.d("homefragment", "Access token: $token")
+                    RetroClient.updateAccessToken(token)
+                }
 
+                val apiResponses = fixedQueriesbestseller2.map { query ->
+                    apiService.searchSongs(query)
+                }
 
+                apiResponses.forEachIndexed { index, response ->
+                    Log.d("homefragment", "API Response for query '${fixedQueriesbestseller2[index]}': $response")
+                }
+
+                // Convert apiResponses to a List<Offer> or extract the necessary data
+
+            } catch (e: Exception) {
+                // Handle error
+                Log.e("homefragment", "Error fetching offer data: ${e.message}")
+            }
+        }
+        bestseller2RecyclerView.adapter = adapter
 
 
         //MUSIC ADAPTER
@@ -305,6 +363,7 @@ class homefragment : Fragment() {
             }
         }
     }
+
 
 
 
