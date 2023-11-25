@@ -89,6 +89,13 @@ class homefragment : Fragment() {
         viewPagerCarousel.adapter = carouselAdapter
 
 
+
+
+
+
+
+        //OFFER RECYCLERVIEW AND ALSO HAS AN API
+
         // Initialize RecyclerViews and set their properties
         offerRecyclerView = view.findViewById(R.id.offerRecyclerView)
         offerRecyclerView.setHasFixedSize(true)
@@ -162,6 +169,13 @@ class homefragment : Fragment() {
         offerRecyclerView.adapter = offerAdapter
 
 
+
+
+
+
+
+
+        // BEST SELLER RECYCLER VIEW AND IT ALSO HAS AN API
         // BESTSELLER IS HERE
         bestsellerRecyclerView = view.findViewById(R.id.bestSellerRecyclerView)
         bestsellerRecyclerView.setHasFixedSize(true)
@@ -230,6 +244,17 @@ class homefragment : Fragment() {
         }
 
         bestsellerRecyclerView.adapter = bestSellerAdapter
+
+
+
+
+
+
+
+
+
+
+        // CLOTHING RECYCLER VIEW
         // clothing is here
 
 
@@ -261,6 +286,9 @@ class homefragment : Fragment() {
         clothingAdapter.submitList(clothingList)
 
 
+
+
+
         // BEST SELLER 2
         bestseller2RecyclerView = view.findViewById(R.id.bestSeller2RecyclerView)
         bestseller2RecyclerView.setHasFixedSize(true)
@@ -290,6 +318,37 @@ class homefragment : Fragment() {
             }
         })
 
+
+        bestseller2RecyclerView.adapter = adapter
+
+
+
+
+
+
+
+        //MUSIC ADAPTER
+        // music adapter is here
+
+        val recyclerView: RecyclerView = view.findViewById(R.id.musicoRecyclerView)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
+        val itemList = listOf(
+            MyItem("musico 1", R.drawable.photoek, "query1"),
+            MyItem("musico 2", R.drawable.photoek, "query2"),
+            MyItem("musico 3", R.drawable.photoek, "query3"),
+            // Add more items as needed
+        )
+
+        val adapterss = MusicAdapter(itemList) { clickedItem ->
+            // Handle item click here
+
+            Toast.makeText(requireContext(), "Item clicked with query: ${clickedItem.query}", Toast.LENGTH_SHORT).show()
+
+            // Add any other actions you want to perform on item click
+        }
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val apiService = RetroClient.instance
@@ -317,36 +376,13 @@ class homefragment : Fragment() {
                 Log.e("homefragment", "Error fetching offer data: ${e.message}")
             }
         }
-        bestseller2RecyclerView.adapter = adapter
-
-
-        //MUSIC ADAPTER
-        // music adapter is here
-
-        val recyclerView: RecyclerView = view.findViewById(R.id.musicoRecyclerView)
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-
-        val itemList = listOf(
-            MyItem("musico 1", R.drawable.photoek, "query1"),
-            MyItem("musico 2", R.drawable.photoek, "query2"),
-            MyItem("musico 3", R.drawable.photoek, "query3"),
-            // Add more items as needed
-        )
-
-        val adapterss = MusicAdapter(itemList) { clickedItem ->
-            // Handle item click here
-
-            Toast.makeText(requireContext(), "Item clicked with query: ${clickedItem.query}", Toast.LENGTH_SHORT).show()
-
-            // Add any other actions you want to perform on item click
-        }
 
         recyclerView.adapter = adapterss
 
 
         return view
     }
+
     private fun updateItemsWithApiData(offers: List<Offer>, apiResponses: List<ApiSongResponse>): List<Offer> {
         return offers.mapIndexed { index, offer ->
             if (index < apiResponses.size && index < apiResponses[index].data.size) {
