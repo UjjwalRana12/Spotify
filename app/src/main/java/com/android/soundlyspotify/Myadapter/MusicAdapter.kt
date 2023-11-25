@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
+import com.android.soundlyspotify.applied_api.SongModel
 import com.android.soundlyspotify.models.MyItem
 import com.bumptech.glide.Glide
 

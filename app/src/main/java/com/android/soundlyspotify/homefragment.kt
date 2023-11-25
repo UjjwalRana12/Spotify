@@ -27,6 +27,7 @@ import com.android.soundlyspotify.applied_api.RetroClient
 import com.android.soundlyspotify.applied_api.SongModel
 
 import com.android.soundlyspotify.data.RetrofitDisplay
+import com.android.soundlyspotify.data.SongApiService
 import com.android.soundlyspotify.models.BestSeller
 import com.android.soundlyspotify.models.BestSeller2
 import com.android.soundlyspotify.models.Clothing
@@ -36,6 +37,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 import retrofit2.Response
 import java.util.Timer
 import java.util.TimerTask
@@ -444,11 +446,11 @@ class homefragment : Fragment() {
             // Add more items as needed
         )
 
-        val adapterss = MusicAdapter(itemList.toMutableList()) { clickedItem ->
-            // Handle item click here
-            Toast.makeText(requireContext(), "Item clicked with query: ${clickedItem.query}", Toast.LENGTH_SHORT).show()
-            // Add any other actions you want to perform on item click
+        val adapterss = MusicAdapter(itemList.toMutableList()) { clickedQuery ->
+            onSongClicked(clickedQuery)
         }
+
+
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
@@ -510,6 +512,62 @@ class homefragment : Fragment() {
         }
     }
 
+    private fun onSongClicked(song: SongModel) {
+        // Perform actions when a song is clicked
+        playSong(song)
+    }
+
+
+    private fun playSong(song: SongModel) {
+
+        val newToken = "new_access_token"
+
+        // Update the access token in RetrofitClient
+        RetrofitClient.updateAccessToken(newToken)
+
+        lifecycleScope.launch {
+            try {
+                // Use the details from the clicked song to make an API call
+                val apiResponse = SongApiService.getSongDetails(song.id)
+
+                withContext(Dispatchers.Main) {
+                    // Handle the response as needed
+                    if (apiResponse.isSuccessful) {
+                        val songApiResponse = apiResponse.body()
+                        if (songApiResponse != null && songApiResponse.success) {
+                            val songDetails = songApiResponse.data
+                            if (songDetails != null) {
+                                val songUrl = songDetails.song_url
+
+                                // Create an instance of your new fragment and pass the song URL as an argument
+                                val newFragment = playerfragment.createInstance(songUrl)
+
+                                // Replace the current fragment with the new fragment
+                                val fragmentManager = requireActivity().supportFragmentManager
+                                fragmentManager.beginTransaction()
+                                    .replace(R.id.search_frag, newFragment)
+                                    .addToBackStack(null)  // Add to the back stack for back navigation if needed
+                                    .commit()
+                            } else {
+                               println("No song")
+                            }
+                        } else {
+                            // Handle the case where the API call was not successful
+                            println("No song")
+                        }
+                    } else {
+                        // Handle the case where the HTTP request itself failed
+                        println("No song")
+                    }
+                }
+            } catch (e: HttpException) {
+                println("No song")
+            } catch (e: Exception) {
+                // Handle other exceptions
+                println("No song")
+            }
+        }
+    }
 
 
 
