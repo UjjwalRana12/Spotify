@@ -8,8 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.soundlyspotify.R
 import com.android.soundlyspotify.models.BestSeller
+import com.squareup.picasso.Picasso
 
-class BestSellerAdapter(private val bestSellers: List<BestSeller>) :
+class BestSellerAdapter(private var bestSellers: List<BestSeller>) :
     RecyclerView.Adapter<BestSellerAdapter.BestSellerViewHolder>() {
 
     // Define a listener interface
@@ -23,6 +24,12 @@ class BestSellerAdapter(private val bestSellers: List<BestSeller>) :
     // Setter method for the listener
     fun setOnItemClickListener(listener: OnItemClickListener) {
         this.onItemClickListener = listener
+    }
+
+    // Update the dataset with new data
+    fun updateData(newBestSellers: List<BestSeller>) {
+        bestSellers = newBestSellers
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BestSellerViewHolder {
@@ -52,6 +59,14 @@ class BestSellerAdapter(private val bestSellers: List<BestSeller>) :
 
         fun bind(bestSeller: BestSeller) {
             bestSellerImage.setImageResource(bestSeller.image)
+            bestSellerTitle.text = bestSeller.title
+
+            Picasso.get()
+                .load(bestSeller.image)
+                .resize(450, 450) // Set your desired width and height
+                .centerCrop()
+                .into(bestSellerImage)
+
             bestSellerTitle.text = bestSeller.title
         }
     }

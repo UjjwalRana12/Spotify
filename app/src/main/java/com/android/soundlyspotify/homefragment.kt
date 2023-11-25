@@ -176,6 +176,14 @@ class homefragment : Fragment() {
 
 
 
+
+
+
+
+
+
+
+
         // BEST SELLER RECYCLER VIEW AND IT ALSO HAS AN API
         // BESTSELLER IS HERE
         bestsellerRecyclerView = view.findViewById(R.id.bestSellerRecyclerView)
@@ -236,7 +244,17 @@ class homefragment : Fragment() {
                     Log.d("homefragment", "API Response for query '${fixedQueriesbestseller[index]}': $response")
                 }
 
-                // Convert apiResponses to a List<Offer> or extract the necessary data
+                val newBestSellers = apiResponses.mapIndexed { index, response ->
+                    // Extract data from each response and create BestSeller objects
+                    BestSeller(R.drawable.defaultimage, "Title $index", "Query $index")
+                    // Replace the placeholders with the actual data from your API response
+                }
+                withContext(Dispatchers.Main) {
+                    bestSellerAdapter.updateData(newBestSellers)
+                    bestSellerAdapter.notifyDataSetChanged()
+                }
+
+
 
             } catch (e: Exception) {
                 // Handle error
@@ -245,6 +263,18 @@ class homefragment : Fragment() {
         }
 
         bestsellerRecyclerView.adapter = bestSellerAdapter
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -317,6 +347,23 @@ class homefragment : Fragment() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // BEST SELLER 2
         bestseller2RecyclerView = view.findViewById(R.id.bestSeller2RecyclerView)
         bestseller2RecyclerView.setHasFixedSize(true)
@@ -350,6 +397,22 @@ class homefragment : Fragment() {
 
 
         bestseller2RecyclerView.adapter = adapter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
