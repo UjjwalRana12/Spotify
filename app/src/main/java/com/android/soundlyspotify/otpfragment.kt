@@ -97,14 +97,14 @@ class otpfragment : Fragment() {
                     val accessToken = response.body()?.data?.access_token
                     if (!accessToken.isNullOrBlank()) {
                         saveTokenToPreferences(accessToken)
-                        showToast("OTP Verified successfully")
+                       // showToast("OTP Verified successfully")
 
                         val intent = Intent(requireContext(), MainActivity3::class.java)
                         startActivity(intent)
                         requireActivity().finish()
                         // Next screen navigation logic here
                     } else {
-                        showToast("Access token is null or empty")
+                       // showToast("Access token is null or empty")
                     }
                 } else {
 

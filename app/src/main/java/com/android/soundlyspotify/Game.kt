@@ -1,7 +1,9 @@
 package com.android.soundlyspotify
 
+import android.content.Context
 import android.graphics.Color
 import android.media.AudioAttributes
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
@@ -26,9 +28,12 @@ class Game : Fragment() {
     private lateinit var gameData: GameData
     private var mediaPlayer: MediaPlayer? = null
     private lateinit var gameApiService: GameApiService // Declare gameApiService here
+    private lateinit var audioManager: AudioManager
+
+    private val afChangeListener = AudioManager.OnAudioFocusChangeListener {}
 
     private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("https://test-mkcw.onrender.com/api/game/")
+        .baseUrl("https://test-mkcw.onrender.com/game/")
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
@@ -47,6 +52,9 @@ class Game : Fragment() {
         // Initialize gameApiService
         gameApiService = retrofit.create(GameApiService::class.java)
 
+        // Initialize AudioManager
+        audioManager = requireContext().getSystemService(Context.AUDIO_SERVICE) as AudioManager
+
         // Call the API to get game data
         fetchGameData()
 
@@ -54,17 +62,40 @@ class Game : Fragment() {
     }
 
     private fun fetchGameData() {
-        Log.d("GameFragment", "fetchGameData")
+        Log.d("GameFragment", "gamedata fetch ho gya")
         val call = gameApiService.getGameData()
-
+        println("GameFragment api services begin")
         call.enqueue(object : Callback<GameData> {
             override fun onResponse(call: Call<GameData>, response: Response<GameData>) {
                 if (response.isSuccessful) {
+                    println("Game api response is success")
                     gameData = response.body()!!
                     updateUI()
                     println("GameData updated")
+                    Log.d("AUDIO_PLAYBACK", "Audio URL: ${gameData.data.audio_1}")
                     playAudio(gameData.data.audio_1)
                 } else {
+                    when (response.code()) {
+                        401 -> {
+                            // Unauthorized - Handle accordingly
+                            showToast("Unauthorized access")
+                        }
+
+                        404 -> {
+                            // Not Found - Handle accordingly
+                            showToast("Game data not found")
+                        }
+
+                        500 -> {
+                            // Internal Server Error - Handle accordingly
+                            showToast("Internal server error")
+                        }
+
+                        else -> {
+                            // Generic error - Handle accordingly
+                            showToast("Failed to fetch game data. Error code: ${response.code()}")
+                        }
+                    }
                     // Handle unsuccessful response
                 }
             }
@@ -78,13 +109,14 @@ class Game : Fragment() {
     }
 
     private fun updateUI() {
-       // questionTextView.text = gameData.data.name
+        // questionTextView.text = gameData.data.name
         option1Button.text = gameData.data.option1
         option2Button.text = gameData.data.option2
     }
 
     private fun playAudio(audioUrl: String) {
-        mediaPlayer?.release() // Release any existing MediaPlayer resources
+        Log.d("AUDIO_PLAYBACK", "Audio URL: $audioUrl")
+        mediaPlayer?.release()
 
         mediaPlayer = MediaPlayer().apply {
             setAudioAttributes(
@@ -95,14 +127,34 @@ class Game : Fragment() {
             setDataSource(audioUrl)
             prepareAsync()
             setOnPreparedListener {
-                start()
+                if (requestAudioFocus()) {
+                    start()
+                }
             }
-            setOnErrorListener { _, _, _ ->
-                Log.e("AUDIO_PLAYBACK", "Error during audio playback")
+            setOnErrorListener { _, what, extra ->
+                Log.e("AUDIO_PLAYBACK", "Error during audio playback. Error: $what, Extra: $extra")
+                releaseAudioFocus()
                 false
             }
         }
     }
+
+    private fun requestAudioFocus(): Boolean {
+        val result = audioManager.requestAudioFocus(
+            afChangeListener,
+            AudioManager.STREAM_MUSIC,
+            AudioManager.AUDIOFOCUS_GAIN
+        )
+        Log.d("AUDIO_PLAYBACK", "Audio focus request result: $result")
+
+        return result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
+    }
+
+    private fun releaseAudioFocus() {
+        audioManager.abandonAudioFocus(afChangeListener)
+    }
+
+
 
     fun onOptionSelected(view: View) {
         // Reset background color for both options
@@ -153,9 +205,8 @@ class Game : Fragment() {
     }
 
     private fun showToast(message: String) {
-        showToast("the error message is : ${message}")
         // Use your preferred method to display a message to the user
-        // For example, Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        // For example, Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

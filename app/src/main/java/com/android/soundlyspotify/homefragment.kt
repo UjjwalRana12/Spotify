@@ -310,7 +310,7 @@ class homefragment : Fragment() {
         val clothingAdapter = ClothingAdapter(requireContext())
         clothingRecyclerView.adapter = clothingAdapter
 
-// Set item click listener
+        // Set item click listener
         clothingAdapter.setOnItemClickListener(object : ClothingAdapter.OnItemClickListener {
             override fun onItemClick(query: String) {
                 // Handle item click here
@@ -344,7 +344,7 @@ class homefragment : Fragment() {
                     Clothing(R.drawable.defaultimage, "Title $index", "Query $index")
                 }
 
-// Switch to the main thread to update the UI
+                // Switch to the main thread to update the UI
                 withContext(Dispatchers.Main) {
                     // Update the UI with the transformed data
                     clothingAdapter.updateList(newClothingList)

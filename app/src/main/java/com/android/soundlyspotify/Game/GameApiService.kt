@@ -10,7 +10,7 @@ interface GameApiService {
     @GET("music-clips/")
     fun getGameData(): Call<GameData>
 
-    @POST("your/post/endpoint")
+    @POST("music-clips/{id}/check/")
     fun postSelectedOption(@Body postData: Map<String, String>): Call<GameResponse>
 }
 
