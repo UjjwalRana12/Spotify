@@ -532,21 +532,23 @@ class homefragment : Fragment() {
     private fun onSongClicked(song: SongModel) {
         // Perform actions when a song is clicked
         playSong(song)
+        println("${song}")
     }
 
 
 
     private fun playSong(song: SongModel) {
         val newToken = "new_access_token"
+        println("${song.id}")
 
         // Update the access token in RetrofitClient
         RetrofitClient.updateAccessToken(newToken)
-
+        println("${song.id}")
         lifecycleScope.launch {
             try {
                 // Use the song ID to make an API call to get song details
                 val apiResponse: Response<ApikaResponse<SongDetails>> = songApiService.getSongDetails(song.id)
-
+               // println("${song.id}")
                 println("Response code: ${apiResponse.code()}")
                 println("Response body: ${apiResponse.body()}")
                 withContext(Dispatchers.Main) {
