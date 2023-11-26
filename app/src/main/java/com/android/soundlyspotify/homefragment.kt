@@ -3,6 +3,7 @@ package com.android.soundlyspotify
 import CarouselAdapter
 import android.content.Context
 import android.os.Bundle
+import com.android.soundlyspotify.applied_api.SongModel
 import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -24,9 +25,11 @@ import com.android.soundlyspotify.Myadapter.MusicAdapter
 import com.android.soundlyspotify.Myadapter.OfferAdapter
 import com.android.soundlyspotify.applied_api.ApiSongResponse
 import com.android.soundlyspotify.applied_api.RetroClient
-import com.android.soundlyspotify.applied_api.SongModel
+import com.android.soundlyspotify.applied_api.SongDetails
+
 
 import com.android.soundlyspotify.data.RetrofitDisplay
+import com.android.soundlyspotify.data.RetrofitDisplay.songApiService
 import com.android.soundlyspotify.data.SongApiService
 import com.android.soundlyspotify.models.BestSeller
 import com.android.soundlyspotify.models.BestSeller2
@@ -521,6 +524,7 @@ class homefragment : Fragment() {
     private fun playSong(song: SongModel) {
 
         val newToken = "new_access_token"
+        println("Play song pe clicked")
 
         // Update the access token in RetrofitClient
         RetrofitClient.updateAccessToken(newToken)
@@ -528,8 +532,10 @@ class homefragment : Fragment() {
         lifecycleScope.launch {
             try {
                 // Use the details from the clicked song to make an API call
-                val apiResponse = SongApiService.getSongDetails(song.id)
-
+                println("song clicked working 1")
+               // val apiResponse = SongApiService.getSongDetails(song.id)
+                val apiResponse: Response<ApikaResponse<SongDetails>> = songApiService.getSongDetails(song.id)
+                println("song clicked working 2")
                 withContext(Dispatchers.Main) {
                     // Handle the response as needed
                     if (apiResponse.isSuccessful) {
