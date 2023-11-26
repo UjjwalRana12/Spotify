@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 
 class MusicAdapter(
     private var itemList: MutableList<MyItem>,
-    private val onItemClick: (MyItem) -> Unit
+    private val onItemClick: (SongModel) -> Unit
 ) : RecyclerView.Adapter<MusicAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -41,7 +41,8 @@ class MusicAdapter(
             holder.textViewItem.text = it.text
 
             holder.itemView.setOnClickListener { _ ->
-                onItemClick(it)
+                val songModel = convertMyItemToSongModel(it)
+                onItemClick(songModel)
             }
         }
     }
@@ -53,5 +54,24 @@ class MusicAdapter(
 
     override fun getItemCount(): Int {
         return itemList.size
+    }
+    private fun convertMyItemToSongModel(myItem: MyItem): SongModel {
+
+        // For example, create a new SongModel using the properties of MyItem
+        return SongModel(
+            name = myItem.text,
+            imageMV = myItem.imageUrl,
+            id = myItem.query,
+            uploader = "John Doe",
+            song_duration = "4:32",
+            language = "English",
+            lyricsUrl = "https://example.com/lyrics",
+            mood = "Happy",
+            genre = "Pop",
+            thumbnailUrl = "https://example.com/thumbnail",
+            artist = "Artist Name",
+            isPrivate = false,
+            isLiked = false
+        )
     }
 }

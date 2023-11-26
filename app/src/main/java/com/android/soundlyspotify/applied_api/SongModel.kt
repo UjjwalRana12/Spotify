@@ -5,7 +5,7 @@ import com.android.soundlyspotify.Song
 data class SongModel(
     val name: String,
     val imageMV: Int,
-    val id: Int,
+    val id: String,
     val uploader: String,
     val song_duration: String,
     val language: String,

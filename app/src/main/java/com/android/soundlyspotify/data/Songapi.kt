@@ -1,6 +1,5 @@
 package com.android.soundlyspotify.data
 
-import com.android.soundlyspotify.ApiResponse
 import com.android.soundlyspotify.ApikaResponse
 import com.android.soundlyspotify.applied_api.ApiSongResponse
 import com.android.soundlyspotify.applied_api.SongDetails
@@ -33,7 +32,7 @@ interface DisplayInterface {
 interface SongApiService {
 
     @GET("getsong/{id}")
-    suspend fun getSongDetails(@Path("id") songId: Int): Response<ApikaResponse<SongDetails>>
+    suspend fun getSongDetails(@Path("id") songId: String): Response<ApikaResponse<SongDetails>>
 
 }
 
