@@ -22,6 +22,7 @@ class MusicAdapter(
         return MyViewHolder(itemView)
     }
 
+
     fun updateData(newItemList: List<MyItem>) {
         itemList.clear()
         itemList.addAll(newItemList)
@@ -36,6 +37,7 @@ class MusicAdapter(
                 .load(it.imageUrl)
                 .override(450, 450)
                 .centerCrop()
+                .error(R.drawable.defaultimage)
                 .into(holder.imageViewItem)
 
             holder.textViewItem.text = it.text

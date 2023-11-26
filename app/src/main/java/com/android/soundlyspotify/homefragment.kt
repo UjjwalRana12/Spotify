@@ -106,9 +106,9 @@ class homefragment : Fragment() {
         offerRecyclerView.setHasFixedSize(true)
         offerRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
-        val fixedQueriesOffer = listOf("abcd", "aashke", "angreji beat", "brown rang", "2phone")
+        val fixedQueriesOffer = listOf("abcd", "aashke", "nasha", "abcd", "fairplay")
         val fixedQueriesbestseller = listOf("nasha", "abcd", "aashke", "abcd", "fairplay")
-        val fixedQueriesmusic = listOf("abcd", "nasha", "abcd", "abcd", "angreji beat")
+        val fixedQueriesmusic = listOf("nasha", "abcd", "aashke", "abcd", "fairplay")
         val fixedQueriesclothing = listOf("abcd", "nasha", "abcd", "abcd", "angreji beat")
 
 
@@ -449,9 +449,11 @@ class homefragment : Fragment() {
             // Add more items as needed
         )
 
-        val adapterss = MusicAdapter(itemList.toMutableList()) { clickedQuery ->
-            onSongClicked(clickedQuery)
+        val adapterss = MusicAdapter(itemList.toMutableList()) { clickedItem ->
+            onSongClicked(clickedItem)
         }
+
+
 
 
 
@@ -500,14 +502,25 @@ class homefragment : Fragment() {
 
     private fun updateItemsWithApiData(offers: List<Offer>, apiResponses: List<ApiSongResponse>): List<Offer> {
         return offers.mapIndexed { index, offer ->
-            if (index < apiResponses.size && index < apiResponses[index].data.size) {
-                // Update the corresponding Offer item with API response data
-                val songModel = apiResponses[index].data[index]
-                offer.copy(
-                    title = songModel.name,
-                    image = songModel.imageMV
-                    // Add more properties as needed
-                )
+            // Check if there is a corresponding API response for the current offer
+            if (index < apiResponses.size) {
+                val apiResponse = apiResponses[index]
+
+                // Check if there is data in the API response
+                if (apiResponse.data.isNotEmpty()) {
+                    // Assuming the API response contains a list of songs
+                    val songModel = apiResponse.data.first()
+
+                    // Update the corresponding Offer item with API response data
+                    offer.copy(
+                        title = songModel.name,
+                        image = songModel.imageMV
+                        // Add more properties as needed
+                    )
+                } else {
+                    // If there's no data in the API response, return the original Offer
+                    offer
+                }
             } else {
                 // If there's no corresponding API response, return the original Offer
                 offer
@@ -515,27 +528,27 @@ class homefragment : Fragment() {
         }
     }
 
+
     private fun onSongClicked(song: SongModel) {
         // Perform actions when a song is clicked
         playSong(song)
     }
 
 
-    private fun playSong(song: SongModel) {
 
+    private fun playSong(song: SongModel) {
         val newToken = "new_access_token"
-        println("Play song pe clicked")
 
         // Update the access token in RetrofitClient
         RetrofitClient.updateAccessToken(newToken)
 
         lifecycleScope.launch {
             try {
-                // Use the details from the clicked song to make an API call
-                println("song clicked working 1")
-               // val apiResponse = SongApiService.getSongDetails(song.id)
+                // Use the song ID to make an API call to get song details
                 val apiResponse: Response<ApikaResponse<SongDetails>> = songApiService.getSongDetails(song.id)
-                println("song clicked working 2")
+
+                println("Response code: ${apiResponse.code()}")
+                println("Response body: ${apiResponse.body()}")
                 withContext(Dispatchers.Main) {
                     // Handle the response as needed
                     if (apiResponse.isSuccessful) {
@@ -551,29 +564,32 @@ class homefragment : Fragment() {
                                 // Replace the current fragment with the new fragment
                                 val fragmentManager = requireActivity().supportFragmentManager
                                 fragmentManager.beginTransaction()
-                                    .replace(R.id.search_frag, newFragment)
-                                    .addToBackStack(null)  // Add to the back stack for back navigation if needed
+                                    .replace(R.id.home_fragment, newFragment)
+                                    .addToBackStack(null) // Add to the back stack for back navigation if needed
                                     .commit()
                             } else {
-                               println("No song")
+                                println("No song details")
                             }
                         } else {
                             // Handle the case where the API call was not successful
-                            println("No song")
+                            println("API call not successful or success is false")
                         }
                     } else {
                         // Handle the case where the HTTP request itself failed
-                        println("No song")
+                        println("HTTP request failed with code: ${apiResponse.code()}, message: ${apiResponse.message()}")
                     }
                 }
             } catch (e: HttpException) {
-                println("No song")
+
+                println("Response body: ${e.response()?.errorBody()?.string()}")
+                println("HTTP error: ${e.code()} ${e.message}")
             } catch (e: Exception) {
                 // Handle other exceptions
-                println("No song")
+                println("Error fetching data: ${e.message}")
             }
         }
     }
+
 
 
 
